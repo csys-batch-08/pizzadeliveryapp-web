@@ -32,10 +32,10 @@ public class OrderServlet extends HttpServlet {
 		HttpSession session=request.getSession();
 		
 		User user=(User) session.getAttribute("user");
-	//	System.out.println("user "+ user);		
+		System.out.println("user "+ user);		
 		
 		Product product=(Product) session.getAttribute("productid");
-	//	System.out.println("product "+product);		
+		System.out.println("product "+product);		
 
 		int quantity=Integer.parseInt(request.getParameter("qty"));
 		System.out.println(quantity);	

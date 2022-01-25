@@ -48,7 +48,7 @@ public List<Cart> showcart(User user){
 	UserDaoImpl dao=new UserDaoImpl();
 	int userid=dao.finduserid(user);
 	List<Cart> cartList = new ArrayList<Cart>();
-	String query="select * from cart where user_id="+userid;
+	String query="select cart_id,user_id,product_id,quantity,total_prize from cart where user_id="+userid;
 	ConnectionUtill con = new ConnectionUtill();
 	Connection c = con.getDbconnection();
 	Statement stmt=null;

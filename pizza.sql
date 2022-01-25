@@ -124,6 +124,7 @@ select * from products;
 select * from orders;
 select * from cart;
 select * from bills;
+select user_id,user_name,phonenumber,email,address,wallet,password,role from users;
 
 select u.user_name,u.phonenumber,u.email,u.address,o.product_id,o.quantity,o.total_prize,o.order_date from users u join orders o on u.user_id=o.user_id;
 

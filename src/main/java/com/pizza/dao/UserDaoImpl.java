@@ -14,11 +14,10 @@ import com.pizza.model.Product;
 import com.pizza.model.User;
 import com.pizza.utill.ConnectionUtill;
 
-	public class UserDaoImpl implements  UserDao{	
-	
+	public class UserDaoImpl implements  UserDao {		
 	public List<User> showuser() {
 		List<User> userlist = new ArrayList<User>();
-		String userquery = "select * from users ";
+		String userquery = "select 	user_id,user_name,phonenumber,email,address,wallet,password,role from users";
 		ConnectionUtill con = new ConnectionUtill();
 		Connection c = con.getDbconnection();
 		User users = null;
@@ -27,7 +26,7 @@ import com.pizza.utill.ConnectionUtill;
 			Statement stmt = c.createStatement();
 			ResultSet rs = stmt.executeQuery(userquery);
 			while (rs.next()) {
-				users = new User(rs.getString(2),rs.getLong(3), rs.getString(4),rs.getString(5),rs.getString(8),rs.getDouble(7),rs.getString(6));				
+				users = new User(rs.getString(2),rs.getLong(3), rs.getString(4), rs.getString(5),rs.getString(7),rs.getDouble(6),rs.getString(8));				
 				userlist.add(users);	
 				System.out.println("show users"+users);
 			}
@@ -88,7 +87,7 @@ import com.pizza.utill.ConnectionUtill;
 	public   User validateUser(String email,String password) {
 		ConnectionUtill con=new ConnectionUtill();
 		Connection c=con.getDbconnection();
-		String query="select * from users where email='"+email+"' and password='"+password+"'";
+		String query="select user_id,user_name,phonenumber,email,address,wallet,password,role from users where email='"+email+"' and password='"+password+"'";
 		User user=null;
 		System.out.println("hello");
 		try {
@@ -97,8 +96,8 @@ import com.pizza.utill.ConnectionUtill;
 			if(rs.next())
 			{
 			//	System.out.println("user"+rs.getString(2));
-			user=new User(rs.getString(2),rs.getLong(3), rs.getString(4),rs.getString(5),rs.getString(8),rs.getDouble(7),rs.getString(6));
-			System.out.println("dao "+user);
+			user=new User(rs.getString(2),rs.getLong(3), rs.getString(4), rs.getString(5),rs.getString(7),rs.getDouble(6),rs.getString(8));
+			System.out.println("user dao "+user);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -116,13 +115,11 @@ import com.pizza.utill.ConnectionUtill;
 		int userid=0;
 		try {
 			pstmt = c.prepareStatement(query);
-			pstmt.setString(1, user.getEmail());
-			
+			pstmt.setString(1, user.getEmail());			
 			ResultSet rs=pstmt.executeQuery();
 			while(rs.next()) {
 				userid=rs.getInt(1);
-				return userid;
-				
+				return userid;				
 			}	
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
@@ -134,14 +131,14 @@ import com.pizza.utill.ConnectionUtill;
 		public  User finduser(String useremail) {
 		ConnectionUtill con = new ConnectionUtill();
 		Connection c = con.getDbconnection();
-		String findProductQuery = "select * from users where email=?";
+		String findProductQuery = "select user_id,user_name,phonenumber,email,address,wallet,password,role from users where email=?";
 		User user = null;
 		try {
 			PreparedStatement pstmt = c.prepareStatement(findProductQuery);
 			pstmt.setString(1, useremail);
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
-				user = new User(rs.getString(2),rs.getLong(3), rs.getString(4), rs.getString(5),rs.getString(7),rs.getDouble(6),null);
+				user = new User(rs.getString(2),rs.getLong(3), rs.getString(4), rs.getString(5),rs.getString(7),rs.getDouble(6),rs.getString(8));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -153,7 +150,7 @@ import com.pizza.utill.ConnectionUtill;
 	public User findid(int id) {
 		ConnectionUtill con = new ConnectionUtill();
 		Connection c = con.getDbconnection();
-		String findid="select * from users where user_id='"+id+"'" ;
+		String findid="select user_id,user_name,phonenumber,email,address,wallet,password,role from users where user_id='"+id+"'" ;
 		Statement stmt=null;
 		User userid=null;
 		try {
@@ -161,7 +158,7 @@ import com.pizza.utill.ConnectionUtill;
 			 ResultSet rs = stmt.executeQuery(findid);
 				while (rs.next()) {
 					//--------------------------------------------------------------------------
-					userid = new User(rs.getString(2),rs.getLong(3), rs.getString(4), rs.getString(5),rs.getString(7),rs.getDouble(6),null);
+					userid = new User(rs.getString(2),rs.getLong(3), rs.getString(4), rs.getString(5),rs.getString(7),rs.getDouble(6),rs.getString(8));
 				}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -237,37 +234,37 @@ import com.pizza.utill.ConnectionUtill;
 
 	}
 
-public  double update(Double wallet,String useremail) {
-	ConnectionUtill con = new ConnectionUtill();
-	Connection c = con.getDbconnection();	
-	String select="select wallet from users where email=?";
-	String updateQuery="update users set wallet=wallet-? where email=?";	
-	double well=0;		
-	double wallet1 =0;
-	try {
-		PreparedStatement pstmt1= c.prepareStatement(select);
-		pstmt1.setString(1, useremail);
-		ResultSet rs=pstmt1.executeQuery();
-		while(rs.next()) {
-		  wallet1 = rs.getDouble(1);
+	public  double update(Double wallet,String useremail) {
+		ConnectionUtill con = new ConnectionUtill();
+		Connection c = con.getDbconnection();	
+		String select="select wallet from users where email=?";
+		String updateQuery="update users set wallet=wallet-? where email=?";	
+		double well=0;		
+		double wallet1 =0;
+		try {
+			PreparedStatement pstmt1= c.prepareStatement(select);
+			pstmt1.setString(1, useremail);
+			ResultSet rs=pstmt1.executeQuery();
+			while(rs.next()) {
+			  wallet1 = rs.getDouble(1);
+			}
+			if(wallet1>wallet) {
+			PreparedStatement pstmt11= c.prepareStatement(updateQuery);	
+			pstmt11.setDouble(1,wallet);
+		    pstmt11.setString(2,useremail);
+			    well = pstmt11.executeUpdate();
+			     System.out.println("updated");
+		}else {		
+			System.out.println("low balance");
 		}
-		if(wallet1>wallet) {
-		PreparedStatement pstmt11= c.prepareStatement(updateQuery);	
-		pstmt11.setDouble(1,wallet);
-	    pstmt11.setString(2,useremail);
-		    well = pstmt11.executeUpdate();
-		     System.out.println("updated");
-	}else {		
-		System.out.println("low balance");
-	}
+			}
+			catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.out.println("error in query");
 		}
-		catch (SQLException e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-		System.out.println("error in query");
+		return well;	
 	}
-	return well;	
-}
 
 public boolean inactive(String email) {
 	ConnectionUtill con = new ConnectionUtill();
@@ -286,3 +283,5 @@ public boolean inactive(String email) {
 	return b;
 	}
 }
+
+	

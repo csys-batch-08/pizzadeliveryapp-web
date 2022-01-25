@@ -19,7 +19,7 @@ public class ProductDaoImpl implements ProductDao{
 
 	public List<Product> showProduct() {
 		List<Product> productsList = new ArrayList<Product>();
-		String prod = "select * from products";
+		String prod = "select product_id,product_name,product_size,price from products";
 		ConnectionUtill con = new ConnectionUtill();
 		Connection c = con.getDbconnection();
 		Product products = null;
@@ -28,7 +28,7 @@ public class ProductDaoImpl implements ProductDao{
 			ResultSet rs = stmt.executeQuery(prod);
 		//	System.out.println(rs.getString(2));
 			while (rs.next()) {
-				products = new Product(rs.getString(2), rs.getString(3), Double.parseDouble(rs.getString(4)));				
+				products = new Product(rs.getString(2), rs.getString(3), rs.getDouble(4));				
 				productsList.add(products);	
 			}
 		} catch (SQLException e) {
@@ -118,18 +118,12 @@ public class ProductDaoImpl implements ProductDao{
 			pstmt.setString(1, product.getProductname());
 			pstmt.setString(2,product.getSize() );
 			 rs=pstmt.executeQuery();
-			
-//			while(rs.next()) {
-//				proId=rs.getInt(1);
-//			}	
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}	
 		return rs;
 	}
-
-
 
 	public  Product findProduct(String proname,String prosize) {
 		ConnectionUtill con = new ConnectionUtill();
@@ -138,7 +132,7 @@ public class ProductDaoImpl implements ProductDao{
 		PreparedStatement pstmt=null; 
 		Product product2 = null;
 		try {
-			 pstmt = c.prepareStatement(findProductQuery);
+			pstmt = c.prepareStatement(findProductQuery);
 			pstmt.setString(1, proname);
 			pstmt.setString(2, prosize);
 			ResultSet rs = pstmt.executeQuery();
@@ -174,7 +168,7 @@ public class ProductDaoImpl implements ProductDao{
 	public ResultSet search(String search) {
 		ConnectionUtill con = new ConnectionUtill();
 		Connection c = con.getDbconnection();
-		String query = "select * from products where lower(product_name) like '"+search.toLowerCase()+"%'";
+		String query = "select product_id,product_name,product_size,price from products where lower(product_name) like '"+search.toLowerCase()+"%'";
 		PreparedStatement pstmt;
 		ResultSet rs = null;
 		try {
@@ -189,7 +183,7 @@ public class ProductDaoImpl implements ProductDao{
 	}
 public List<Product> productsearch(String search){
 	List<Product> productsList = new ArrayList<Product>();
-	String query="select * from products where product_name like '"+search+ "%'";
+	String query="select product_id,product_name,product_size,price from products where product_name like '"+search+ "%'";
 	ConnectionUtill con = new ConnectionUtill();
 	Connection c = con.getDbconnection();
 	PreparedStatement pstmt;

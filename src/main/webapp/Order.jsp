@@ -57,11 +57,8 @@ li a:hover:not(.active) {
 	 <%String notfound=(String)request.getAttribute("invalidBalance");
         if(notfound !=null){
         	%>
-        	<h2><%=notfound %></h2>
-        	        	
+        	<h2><%=notfound %></h2>        	        	
         	<%} %>
-
-
 <h1>Buy Your snacks</h1>
 <ul>
 <li><a href="Showproducts.jsp">Home</a></li>
@@ -89,8 +86,7 @@ li a:hover:not(.active) {
 	session.setAttribute("productid", product);		
    if(rs1.next()) {	   
     %>	  
-  	<div>
- 
+  	<div> 
 		<label for="productid">product name :</label>
 		<input type="text" name="productid" value="<%=product.getProductname() %>" readonly><br><br>
 		

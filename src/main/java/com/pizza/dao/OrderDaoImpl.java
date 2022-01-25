@@ -22,7 +22,7 @@ public class OrderDaoImpl implements OrderDao{
 		UserDaoImpl dao=new UserDaoImpl();
 		int userId=dao.finduserid(user);
 		List<Order> orderList = new ArrayList<Order>();
-		String orderlist = "select * from orders where user_id="+userId+" order by order_id desc " ;
+		String orderlist = "select order_id,user_id,product_id,quantity,total_prize,order_date,status from orders where user_id="+userId+" order by order_id desc " ;
 		ConnectionUtill con = new ConnectionUtill();
 		Connection c = con.getDbconnection();
 		Statement stmt;
@@ -69,7 +69,7 @@ public class OrderDaoImpl implements OrderDao{
 	public Order findid(int id) {
 		ConnectionUtill con = new ConnectionUtill();
 		Connection c = con.getDbconnection();
-		String findid = "select * from order where order_id='" + id + "'";
+		String findid = "select order_id,user_id,product_id,quantity,total_prize,order_date,status from orders where order_id='" + id + "'";
 		Statement stmt = null;
 		Order orderid = null;
 		try {
@@ -88,7 +88,7 @@ public class OrderDaoImpl implements OrderDao{
 public ResultSet orderdetails(int id) {
 	ConnectionUtill con = new ConnectionUtill();
 	Connection c = con.getDbconnection();
-	String findid = "select * from order where user_id='" + id + "'";
+	String findid = "select order_id,user_id,product_id,quantity,total_prize,order_date,status from orders where user_id='" + id + "'";
 	Statement stmt = null;
 	Order orderid = null;
 	ResultSet rs=null;
@@ -110,8 +110,8 @@ public int orderproduct(Order orders) {
 	Connection c = con.getDbconnection();
 	String query2="select wallet from users where user_id=?";
 	String query = "insert into orders(user_id,product_id,quantity,total_prize,order_date)values(?,?,?,?,sysdate)";
-	PreparedStatement pstmt = null;
 	System.out.println("hi");
+	PreparedStatement pstmt = null;	
 	double wallet=0;
 	int order1 = 0;
 	UserDaoImpl userdao = new UserDaoImpl();

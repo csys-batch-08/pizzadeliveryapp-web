@@ -108,7 +108,7 @@ span:hover {
 <%  ProductDaoImpl dao=new ProductDaoImpl();
 List<Product> list=dao.showProduct();
 for(int i=0;i<list.size();i++) {
-	 product=list.get(i);			
+	product=list.get(i);			
 	session.setAttribute("product", product);		
 	ResultSet rs=dao.findProductId(product);%>	
 		<%		
