@@ -80,7 +80,7 @@ li a:hover:not(.active) {
   <li style="float:right"><a href="Userlogin.jsp">Logout</a></li>
   <li><a href="contect.jsp">Contact</a></li>
 </ul><br><br><br><br>	
-	<% int orderid=Integer.parseInt(request.getParameter("orderId"));
+	<%      int orderid=Integer.parseInt(request.getParameter("orderId"));
 			Double price=Double.parseDouble(request.getParameter("amount"));
 	%>
 <form  action="cancel" align="center">

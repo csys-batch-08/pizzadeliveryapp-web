@@ -1,6 +1,8 @@
 package com.pizza.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,8 +10,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.pizza.dao.ProductDaoImpl;
 import com.pizza.dao.UserDaoImpl;
 import com.pizza.exception.Lowbalance;
+import com.pizza.model.Product;
 import com.pizza.model.User;
 
 @WebServlet("/Login")
@@ -50,9 +54,17 @@ public class UserLoginServlet extends HttpServlet {
 		System.out.println(password);
 		UserDaoImpl userdao=new UserDaoImpl();
 		User user = userdao.validateUser(email, password);			
-		
 		session.setAttribute("user", user);	
-		if(user.getType().equals("Admin")) {
+		
+		ProductDaoImpl dao=new ProductDaoImpl();
+		List<Product> list=dao.showProduct();
+		session.setAttribute("productlist", list);
+	                                                   
+		List<User> userlist=userdao.showuser();
+		System.out.println("login"+ userlist);
+		session.setAttribute("userList", userlist);
+		
+		if(user.getType().equals("Admin")) {			
 			response.sendRedirect("AddDeleteUpdate.jsp");
 		}		
 		else if(user.getType().equals("user")) {

@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 // import org.apache.catalina.connector.Response;
 
@@ -41,13 +42,20 @@ public class InactiveServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	//	doGet(request, response);
+		HttpSession session=request.getSession();
+
 		String email=request.getParameter("id");
 		System.out.println("email id"+email);
+		
 		User user=new User("",0,email,"", "", 0,"");
-		UserDaoImpl dao=new UserDaoImpl();
-			dao.inactive(email);
+		UserDaoImpl dao=new UserDaoImpl();	
+		boolean b=dao.inactive(email);
+		if(b == false) {			
+			response.sendRedirect("inactive.jsp");
+		}
+		else {
 		response.sendRedirect("AddDeleteUpdate.jsp");		
+		}
 	}
 
 }

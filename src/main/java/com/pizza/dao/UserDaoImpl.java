@@ -28,10 +28,8 @@ import com.pizza.utill.ConnectionUtill;
 			while (rs.next()) {
 				users = new User(rs.getString(2),rs.getLong(3), rs.getString(4), rs.getString(5),rs.getString(7),rs.getDouble(6),rs.getString(8));				
 				userlist.add(users);	
-				System.out.println("show users"+users);
 			}
 		} catch (SQLException e) {
-		//	System.out.println("error on query");
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
@@ -157,7 +155,6 @@ import com.pizza.utill.ConnectionUtill;
 			 stmt=c.createStatement();
 			 ResultSet rs = stmt.executeQuery(findid);
 				while (rs.next()) {
-					//--------------------------------------------------------------------------
 					userid = new User(rs.getString(2),rs.getLong(3), rs.getString(4), rs.getString(5),rs.getString(7),rs.getDouble(6),rs.getString(8));
 				}
 		} catch (SQLException e) {

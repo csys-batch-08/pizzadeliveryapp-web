@@ -74,24 +74,22 @@ li a:hover:not(.active) {
 
 	String pname=request.getParameter("productname");
 	String psize=request.getParameter("productsize");
-	Product product=new Product(pname,psize,null);
-	
-	ResultSet rs1=productdao.findProductId(product);
+	Double price=Double.parseDouble(request.getParameter("productprice"));
+	Product product=new Product(pname,psize,price);		
 	session.setAttribute("productid", product);			
-   if(rs1.next()) {	   
-    %>	
-    
+      
+    %>	   
   	<div>		
 		<label for="productid">product name :</label>
 		<input type="text" name="productid" value="<%=product.getProductname() %>" readonly><br><br>
 		<label for="productid">product size :</label>
-		<input type="text" name="productid" value="<%=product.getSize() %>" readonly><br><br>           
+		<input type="text" name="productid" value="<%=product.getSize() %>" readonly><br><br>   
+		<label for="productid">product price :</label>
+		<input type="text" name="productid" value="<%=product.getPrice() %>" readonly><br><br>        
         <button onclick="demo()">add to cart</button>  &nbsp &nbsp &nbsp &nbsp 
         <button type="reset">RESET</button>      
         </div>        
  </form>
-  <%
-	}%>
 </body>
 </html> 
     

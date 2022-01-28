@@ -110,9 +110,6 @@ List<Product> list=dao.showProduct();
 for(int i=0;i<list.size();i++) {
 	product=list.get(i);			
 	session.setAttribute("product", product);		
-	ResultSet rs=dao.findProductId(product);%>	
-		<%		
-		if(rs.next()) {
 		%>
 		<div align="center">
 	<span class="bounce_button"><img src="<%= product.getProductname()%>.jpg" alt="img" width=300px height=175px class="bounce"></span><br>
@@ -122,6 +119,6 @@ for(int i=0;i<list.size();i++) {
 	  	<a href="Cart.jsp?productname=<%=product.getProductname()%>&productsize=<%=product.getSize()%>&productprice=<%=product.getPrice()%>"><button class="btn btn-primary"> cart</button></a>    &nbsp &nbsp &nbsp		
 		<a href="Order.jsp?productname=<%=product.getProductname()%>&productsize=<%=product.getSize()%>&productprice=<%=product.getPrice()%>"><button class="btn btn-primary">order</button></a>   <br><br><br><br>
 		</div>
-		<% }} %>				
+		<% } %>				
 </body>
 </html>

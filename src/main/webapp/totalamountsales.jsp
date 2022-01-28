@@ -42,15 +42,14 @@ li a:hover:not(.active) {
  <li style="float:right"><a href="Userlogin.jsp">Logout</a></li>
 </ul><br><br><br>
 		<% Date fromdate=(Date)session.getAttribute("fromDate");
-	Date todate=(Date)session.getAttribute("toDate");
-OrderDaoImpl orderdao= new OrderDaoImpl();
- ResultSet rs=orderdao.TotalAmount(fromdate, todate);
- if(rs.next()){
+			Date todate=(Date)session.getAttribute("toDate");
+			OrderDaoImpl orderdao= new OrderDaoImpl();
+ 			Double price=orderdao.TotalAmount(fromdate, todate);
 	 %>
 	 <form align="center">
 	 <label for="totalprice">Total Sold Rupess</label> <br><br>
-	 <input type="number" name="money" value="<%= rs.getDouble(1) %>" readonly>
+	 <input type="number" name="money" value="<%= price%>" readonly>
 	</form>
-<% } %> 
+ 
 </body>
 </html>

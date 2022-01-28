@@ -44,20 +44,20 @@ public class OrderServlet extends HttpServlet {
 		System.out.println(productprice);
 		
 		UserDaoImpl dao=new UserDaoImpl();
-		session.setAttribute("price", productprice);
+		session.setAttribute("price", productprice);		
 		
-		dao.update(productprice,user.getEmail());
 				OrderDaoImpl orderdao=new OrderDaoImpl();
 				Order order=new Order(user,product,quantity,productprice,null);
 				System.out.println(order);
-				int i=orderdao.orderproduct(order);		
+				int i=orderdao.orderproduct(order);	
+				dao.update(productprice,user.getEmail());
+				user.setWallet(user.getWallet()-productprice);
+				session.setAttribute("user", user);
 				try {
 				if(i>0) {
 					response.sendRedirect("Showproducts.jsp");
 				}
-				else {
-//					response.sendRedirect("Order.jsp");
-			
+				else {		
 					throw new Lowbalance();
 			}
 				}
@@ -67,6 +67,3 @@ public class OrderServlet extends HttpServlet {
 		}			
 	}
 }
-
-
-

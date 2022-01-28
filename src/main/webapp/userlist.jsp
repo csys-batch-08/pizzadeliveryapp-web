@@ -1,6 +1,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.util.List"%>
 <%@page import="com.pizza.dao.UserDaoImpl"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@page import="com.pizza.model.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -50,7 +51,6 @@ li a {
   padding: 14px 16px;
   text-decoration: none;
 }
-
 li a:hover:not(.active) {
   background-color: #111;
 }
@@ -66,7 +66,7 @@ li a:hover:not(.active) {
 <ul>
 <li><a href="AddDeleteUpdate.jsp">Home</a></li>
 <li><a href="userlist.jsp">Users List</a></li>
- <li style="float:right"><a href="Userlogin.jsp">Logout</a></li>
+<li style="float:right"><a href="Userlogin.jsp">Logout</a></li>
 </ul><br><br><br><br>
 <table>
 	<tr>
@@ -77,24 +77,17 @@ li a:hover:not(.active) {
 	<th>Role</th>
 	<th>Inactive</th>
 	</tr>
-	<% 
-	User user=new User();
-	UserDaoImpl dao=new UserDaoImpl();	
-	List<User> list=dao.showuser();
 	
-	for(int i=0;i<list.size();i++) {
-		user=list.get(i);	
-	//	ResultSet rs=dao.findid(user1);			
-	%>
+	<c:forEach items="${userList}" var="obj">
 	<tr>
-	<td><%=user.getUsername() %></td>
-	<td><%=user.getEmail() %></td>
-	<td><%=user.getPhonenumber() %></td>
-	<td><%=user.getAddress() %></td>
-	<td><%=user.getType() %></td>
-	<td><a href="inactive.jsp?email=<%=user.getEmail()%>">Inactive</a></td>
+	
+		<td><c:out value="${obj.username }"></c:out></td>	
+		<td><c:out value="${obj.email }"></c:out></td>	
+		<td><c:out value="${obj.phonenumber }"></c:out></td>
+		<td><c:out value="${obj.address }"></c:out></td>	
+		<td><c:out value="${obj.type}"></c:out></td>	
+		<td><a href="InactiveUserServlet?email=${obj.email}">Inactive</a></td> 		
 	</tr>
-	<% } %>
+	</c:forEach>
 </table>
-</body>
-</html>
+</body></html>

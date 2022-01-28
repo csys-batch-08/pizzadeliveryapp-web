@@ -1,6 +1,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.pizza.dao.ProductDaoImpl"%>
 <%@page import="java.util.List"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@page import="com.pizza.model.Product"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -106,8 +107,7 @@ left:650px;
 }
 @media screen and (max-height: 450px){
 		.close{ padding-top: 15px;}
-		.close .a{ font-size: 18px;}
-		
+		.close .a{ font-size: 18px;}		
 	}
 th{
 	color: white;
@@ -146,31 +146,22 @@ th{
 		<th>Product price</th>
 		<th>Delete Products</th>	
 		<th>Update Products</th>
-	</tr>		    
-		<%
-		ProductDaoImpl dao=new ProductDaoImpl();
-		List<Product> list=dao.showProduct();
-		for(int i=0;i<list.size();i++){ 
-			Product product=list.get(i);
-		ResultSet rs=dao.findProductId(product);
-		if(rs.next()){%>		
+	</tr>		    		
+		<c:forEach items="${ productlist}" var="obj">	
 		<tr>
-		<td><%= rs.getInt(1)%></td>		
-		<td><%= product.getProductname()%></td>
-		<td><%=product.getSize()%></td>
-		<td><%=product.getPrice() %></td>						
-		<td><a href="Deleteproduct.jsp?Pid=<%= rs.getInt(1)%>">DELETE </a></td>
-		<td><a href="Updateproduct.jsp?Pid=<%= rs.getInt(1)%>">UPDATE </a></td>
-
-		<% }} %>	
-		</tr>	
-		</table><br><br><br><br><br><br>
-		</form>
-	<center>
-	<div class="add">
+		<td><c:out value="${obj.productId}"></c:out></td>	
+		<td><c:out value="${obj.productname }"></c:out></td>	
+		<td><c:out value="${obj.size }"></c:out></td>
+		<td><c:out value="${obj.price }"></c:out></td>		
+		<td><a href="DeleteProductConformation?Pid=${obj.productId}">DELETE </a></td>
+		<td><a href="Updateproduct.jsp?Pid=${obj.productId}">UPDATE </a></td>		 
+		</tr>
+		</c:forEach>
+		</table><br><br><br><br><br><br> 
+		</form> 
+	<div class="add" align="center">
 			<a href="Addproduct.jsp"><button class="btn btn-primary">Add Product </button></a>
 			</div>
-</center>
 
 <script>
 function opennave() {

@@ -20,22 +20,21 @@ public class CartDaoImpl implements CartDao{
 		ConnectionUtill con = new ConnectionUtill();
 		Connection c = con.getDbconnection();
 	String cartQuery="insert into cart(user_id,product_id,quantity,total_prize) values(?,?,?,?)";	
+	System.out.println("cart dao");
 	PreparedStatement pstmt = null;
-	int cart1=0;
+	int cart1=0;	
 	try {
-		pstmt = c.prepareStatement(cartQuery);
+		pstmt = c.prepareStatement(cartQuery);	
 		UserDaoImpl userdao=new UserDaoImpl();
 		ProductDaoImpl productdao=new ProductDaoImpl();
 		int userid=userdao.finduserid(carts.getUser());
-		ResultSet proId=productdao.findProductId(carts.getProduct());
-		if(proId.next()) {
+		Product proId=productdao.findProductId(carts.getProduct());
 		pstmt.setInt(1,userid);
-		pstmt.setInt(2, proId.getInt(1));
+		pstmt.setInt(2, proId.getProductId());
 		pstmt.setInt(3,carts.getQuantity());
 		pstmt.setDouble(4, carts.getPrice());		
 		cart1 = pstmt.executeUpdate();
 		System.out.println("added to cart suuccessfully");
-		}
 	} catch (SQLException e) {
 		// catch the exception and get that message
 		e.printStackTrace();

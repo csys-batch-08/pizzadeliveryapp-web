@@ -81,10 +81,12 @@ li a:hover:not(.active) {
 
 	String pname=request.getParameter("productname");
 	String psize=request.getParameter("productsize");
-	Product product=new Product(pname,psize,null);		
-	ResultSet rs1=productdao.findProductId(product);
-	session.setAttribute("productid", product);		
-   if(rs1.next()) {	   
+	Double price=Double.parseDouble(request.getParameter("productprice"));
+	Product product=new Product(pname,psize,price);		
+	
+	Product pro=productdao.findProductId(product);
+	session.setAttribute("productid", product);	
+	
     %>	  
   	<div> 
 		<label for="productid">product name :</label>
@@ -105,12 +107,11 @@ function check(){
 	var count=document.getElementById("quantity").value;
 	var totalPrice=document.getElementById("price");
 	console.log(count)
-	totalPrice.value=count * <%=rs1.getDouble(2) %>;
+	totalPrice.value=count * <%=product.getPrice() %>;
 	console.log(totalPrice.value);	
 }
 </script>
-  <%
-	  }%>
+
 </body>
 </html>
 

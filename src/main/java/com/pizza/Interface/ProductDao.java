@@ -11,8 +11,8 @@ public interface ProductDao {
 	public  int insertproduct(Product products);
 	public  int updated(String productname, String size,Double price,int productid);
 	public int delete(int deleteid);
-	public  ResultSet findProductId(Product product);
-	public  Product findProduct(String proname,String prosize);
+	public  Product findProductId(Product product);
+	public  Product findProduct(int id,String proname,String prosize,double price);
 	public Product findid(int id);
 	public List<Product> productsearch(String search);
 }

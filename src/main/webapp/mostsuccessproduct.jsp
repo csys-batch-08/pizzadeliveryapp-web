@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="com.pizza.model.Product"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.pizza.dao.OrderDaoImpl"%>
 <%@page import="java.util.Date"%>
@@ -48,19 +50,17 @@ li a:hover:not(.active) {
 
 		<%  Date fromdate=(Date) session.getAttribute("fromDate");
 			Date todate=(Date)session.getAttribute("toDate");
+			Product product=new Product();
 			OrderDaoImpl orderdao = new OrderDaoImpl();
-	     	ResultSet rs=orderdao.mostsaledproduct(fromdate, todate);
-	     	if(rs.next())
- 			{
-	 %>		 
+			Product productlist=orderdao.mostsaledproduct(fromdate, todate);	
+	     %>		 
 	 <form align="center">
 	 <label for="name">Product Name</label> 
-	 <input type="text" name="name" value="<%=rs.getString(1) %>" readonly><br><br>
+	 <input type="text" name="name" value="<%=productlist.getProductname() %>" readonly><br><br>
 	 <label for="size">Product Size</label>
-	 <input type="text" name="size" value="<%=rs.getString(2) %>" readonly><br><br>
-	 <label for="prize " name="prize" >Total Prize </label>
-	 <input type="number" name="prize" value="<%=rs.getDouble(3) %>" readonly>
+	 <input type="text" name="size" value="<%=productlist.getSize() %>" readonly><br><br>
+	 <label for="prize ">Total Prize </label>
+	 <input type="number" name="prize" value="<%=productlist.getPrice() %>" readonly>
    	</form>
-		<% } %> 
 </body>
 </html>

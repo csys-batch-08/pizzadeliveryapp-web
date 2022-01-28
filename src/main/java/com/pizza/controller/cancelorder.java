@@ -50,16 +50,13 @@ public class cancelorder extends HttpServlet {
 		Double price=Double.parseDouble(request.getParameter("refund"));
 		
 		User user=(User) session.getAttribute("user");
-		
-	//	Order order=new Order(orderid,null,null,0,0.0,null,null);
-		
-		OrderDaoImpl dao=new OrderDaoImpl();
-		
+
+		OrderDaoImpl dao=new OrderDaoImpl();	
 		UserDaoImpl userdao=new UserDaoImpl();
 		userdao.updateuserWallet(user, price);
-		
 		dao.ordercancel(orderid);
-		
+		user.setWallet(user.getWallet()+price);
+		session.setAttribute("user", user);
 		response.sendRedirect("Showorder.jsp");
 
 	}

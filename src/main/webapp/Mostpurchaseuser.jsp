@@ -1,3 +1,5 @@
+<%@page import="com.pizza.model.User"%>
+<%@page import="com.pizza.dao.UserDaoImpl"%>
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.pizza.dao.OrderDaoImpl"%>
 <%@page import="java.util.Date"%>
@@ -45,20 +47,16 @@ li a:hover:not(.active) {
 <li><a href="AddDeleteUpdate.jsp">Home</a></li>
 <li style="float:right"><a href="Userlogin.jsp">Logout</a></li>
 </ul><br><br><br><br>
-
 		<%  Date fromdate=(Date) session.getAttribute("fromDate");
 			Date todate=(Date)session.getAttribute("toDate");
 			OrderDaoImpl orderdao= new OrderDaoImpl();
-		ResultSet rs=orderdao.activeuser(fromdate, todate);
-		if(rs.next())
- 			{
+			User user=orderdao.activeuser(fromdate, todate);			
 		 %>		 
 	 <form align="center">
 	 <label for="name">User Name</label> 
-	 <input type="text" name="name" value="<%=rs.getString(1) %>" readonly><br><br>
+	 <input type="text" name="name" value="<%=user.getUsername() %>" readonly><br><br>
 	 <label for="prize " name="prize" >Total Prize </label>
-	 <input type="number" name="prize" value="<%=rs.getDouble(2) %>" readonly>
+	 <input type="number" name="prize" value="<%=user.getWallet() %>" readonly>
    	</form>
-		<% } %> 
 </body>
 </html>

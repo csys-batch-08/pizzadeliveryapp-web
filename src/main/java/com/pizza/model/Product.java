@@ -36,13 +36,20 @@ public class Product {
 		this.price = price;
 	}
 	
+	
+	public Product(int productId, String productname, String size, Double price) {
+		super();
+		this.productId = productId;
+		this.productname = productname;
+		this.size = size;
+		this.price = price;
+	}
 	public Product(String productname,String size,Double price) {
 		super();
 		this.productname = productname;
 		this.size = size;
 		this.price = price;
 	}
-	
 	
 	public Product() {
 		super();
@@ -51,9 +58,11 @@ public class Product {
 	public Product(int productid2) {
 		// TODO Auto-generated constructor stub
 	}
+	
 	@Override
 	public String toString() {
-		return " [productname=" + productname + ", size=" + size + ", price=" + price + "]";
+		return "Product [productId=" + productId + ", productname=" + productname + ", size=" + size + ", price="
+				+ price + "]";
 	}
 	@Override
 	public int hashCode() {

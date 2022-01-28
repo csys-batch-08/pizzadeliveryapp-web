@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.pizza.dao.ProductDaoImpl;
 import com.pizza.model.Product;
@@ -30,19 +31,18 @@ public class DelectproductServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		//response.getWriter().append("Served at: ").append(request.getContextPath());
-		doPost(request,response);
-		
+		doPost(request,response);		
 	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		//doGet(request, response);		
+		//doGet(request, response);						
 		int productid=Integer.parseInt(request.getParameter("id"));		
-		Product product=new Product(null,null,null);
-		ProductDaoImpl dao=new ProductDaoImpl();
-		dao.delete(productid);
+		System.out.println(productid);
+		ProductDaoImpl dao=new ProductDaoImpl();    
+		int i=dao.delete(productid);
 		response.sendRedirect("AddDeleteUpdate.jsp");
 	}
 }

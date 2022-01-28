@@ -45,27 +45,14 @@ public class Cartservlet extends HttpServlet {
 		HttpSession session=request.getSession();
 
 		User user=(User) session.getAttribute("user");
-		System.out.println("user "+ user);		
+		System.out.println("userser "+ user);		
 		
 		Product product=(Product) session.getAttribute("productid");
 		System.out.println("product "+product);		
-
-//		int quantity=Integer.parseInt(request.getParameter("qty"));
-//		System.out.println(quantity);
-//		
-//		Double productprice=Double.parseDouble(request.getParameter("price"));
-//		System.out.println(productprice);
-//		
+	
 		CartDaoImpl dao=new CartDaoImpl();
 		Cart cart=new Cart(user,product,0,0.0);
-		int i=	dao.insertCart(cart);			
-		response.sendRedirect("Showproducts.jsp");
-//
-//		UserDaoImpl dao=new UserDaoImpl();
-//		dao.update(productprice,user.getEmail() );
-//				OrderDaoImpl orderdao=new OrderDaoImpl();
-//				Order order=new Order(user,product,quantity,productprice,null);
-//				int i=orderdao.orderproduct(order);
-						
+	    dao.insertCart(cart);			
+		response.sendRedirect("Showproducts.jsp");				
 	}
 }

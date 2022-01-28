@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -41,12 +42,13 @@ li a:hover:not(.active) {
 <li><a href="AddDeleteUpdate.jsp">Home</a></li>
  <li style="float:right"><a href="Userlogin.jsp">Logout</a></li>
 </ul><br><br><br><br>
-<form align="center" action="inactive">
+
+<form align="center" action="inactive"> 
 	<div>	
-	<% String email=request.getParameter("email") ; %>
 	 <label for="name">User</label>
-        <input type="text" name="id" value=<%= email%> readonly><br><br> 
-        <button type="submit">Inactive</button>       
-</script>
+        <input type="text" name="id" value="${email}" readonly><br><br> 
+        <button type="submit">Inactive</button>   
+       </div>    
+  </form>
 </body>
 </html>
