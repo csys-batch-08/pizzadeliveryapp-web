@@ -9,8 +9,15 @@ public class Product {
 	private String productname;
 	private String size;
 	private Double price;
+	private String status;
 	
-
+	
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
 	public int getProductId() {
 		return productId;
 	}
@@ -51,6 +58,14 @@ public class Product {
 		this.price = price;
 	}
 	
+	public Product(int productId, String productname, String size, Double price, String status) {
+		super();
+		this.productId = productId;
+		this.productname = productname;
+		this.size = size;
+		this.price = price;
+		this.status = status;
+	}
 	public Product() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -59,14 +74,15 @@ public class Product {
 		// TODO Auto-generated constructor stub
 	}
 	
+	
 	@Override
 	public String toString() {
 		return "Product [productId=" + productId + ", productname=" + productname + ", size=" + size + ", price="
-				+ price + "]";
+				+ price + ", status=" + status + "]";
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(price, productname, size);
+		return Objects.hash(price, productId, productname, size, status);
 	}
 	
 
@@ -79,8 +95,9 @@ public class Product {
 		if (getClass() != obj.getClass())
 			return false;
 		Product other = (Product) obj;
-		return  Objects.equals(price, other.price) && Objects.equals(productname, other.productname)
-				&& Objects.equals(size, other.size);
+		return Objects.equals(price, other.price) && productId == other.productId
+				&& Objects.equals(productname, other.productname) && Objects.equals(size, other.size)
+				&& Objects.equals(status, other.status);
 	}
 	
 }

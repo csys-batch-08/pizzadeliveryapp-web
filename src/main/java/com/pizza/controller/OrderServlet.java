@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
@@ -32,11 +33,14 @@ public class OrderServlet extends HttpServlet {
 		HttpSession session=request.getSession();
 		
 		User user=(User) session.getAttribute("user");
-		System.out.println("user "+ user);		
+		System.out.println("order user "+ user);		
 		
-		Product product=(Product) session.getAttribute("productid");
-		System.out.println("product "+product);		
-
+		ProductDaoImpl productdao=new ProductDaoImpl();
+	
+		Product product=(Product) session.getAttribute("products");
+		Product pro=productdao.findProductId(product);
+		session.setAttribute("productid",pro);
+				
 		int quantity=Integer.parseInt(request.getParameter("qty"));
 		System.out.println(quantity);	
 		
@@ -44,26 +48,31 @@ public class OrderServlet extends HttpServlet {
 		System.out.println(productprice);
 		
 		UserDaoImpl dao=new UserDaoImpl();
-		session.setAttribute("price", productprice);		
+		session.setAttribute("price",productprice);		
 		
 				OrderDaoImpl orderdao=new OrderDaoImpl();
-				Order order=new Order(user,product,quantity,productprice,null);
+				Order order=new Order(user,pro,quantity,productprice,null);
 				System.out.println(order);
-				int i=orderdao.orderproduct(order);	
+				int i=orderdao.orderproduct(order);
 				dao.update(productprice,user.getEmail());
+							
 				user.setWallet(user.getWallet()-productprice);
 				session.setAttribute("user", user);
-				try {
+				
+				List<Order> orderlist=orderdao.showorder(user);
+				session.setAttribute("orderList", orderlist);	
+				
+		         try{
 				if(i>0) {
-					response.sendRedirect("Showproducts.jsp");
+					response.sendRedirect("showproducts.jsp");
 				}
 				else {		
 					throw new Lowbalance();
-			}
+		     	}
 				}
 			catch(Lowbalance l) {
 				session.setAttribute("invalidBalance", l.getMessage());
-				response.sendRedirect("Walletrecharge.jsp");			
+				response.sendRedirect("walletrecharge.jsp");			
 		}			
 	}
 }

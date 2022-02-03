@@ -1,4 +1,5 @@
 <%@page import="java.util.List"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@page import="com.pizza.dao.UserDaoImpl"%>
 <%@page import="com.pizza.model.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -9,7 +10,7 @@
 <meta charset="ISO-8859-1">
 <title>user details</title>
 <style type="text/css">
-    ul {
+ ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -45,26 +46,21 @@ li a:hover:not(.active) {
 <body align="center" style="background-color:pink;">
 <h1>My Details</h1>
 <ul>  
-<li><a href="Showproducts.jsp">Home</a></li>
-  <li> <a href="Showorder.jsp">MyOrders</a></li>
+<li><a href="showproducts.jsp">Home</a></li>
+  <li> <a href="showorder.jsp">MyOrders</a></li>
   <li><a href="showcart.jsp">Mycart</a></li>  
-  <li> <a href="Userdetails.jsp">Account</a></li>
-  <li><a href="Walletrecharge.jsp">RechargeWallet</a></li>
+  <li> <a href="userdetails.jsp">Account</a></li>
+  <li><a href="walletrecharge.jsp">RechargeWallet</a></li>
   <li><a href="contect.jsp">Contact</a></li>
-  <li style="float:right"><a href="Userlogin.jsp">Logout</a></li>
+  <li style="float:right"><a href="userlogin.jsp">Logout</a></li>
 </ul><br><br>
-
-<%
-		User user=(User) session.getAttribute("user");
-		UserDaoImpl dao=new UserDaoImpl();
-		%>	
-		<div class="myDiv" align="center" >
-	<label for="name"><h3>NAME - </h3><%=user.getUsername() %></label><br>
-	<label for="email"><h3>E-MAIL - </h3><%=user.getEmail() %></label><br>
-	<label for="pnumber"><h3>PHONENUMBER - </h3><%=user.getPhonenumber() %></label><br>
-	<label for="address"><h3>ADDRESS - </h3><%=user.getAddress() %></label><br><br>
-	<label for="password"><h3>PASSWORD - </h3><%=user.getPassword() %></label><br>
-	<label for="wallet"><h3>WALLET - </h3><%=user.getWallet() %> Rs</label>
-		</div>
+	<div class="myDiv" >
+	<h3>NAME - </h3><c:out value="${user.username }"></c:out>
+	<h3>E-MAIL - </h3><c:out value="${user.email}"></c:out>
+	<h3>PHONENUMBER - </h3><c:out value="${user.phonenumber}"></c:out>
+	<h3>ADDRESS - </h3><c:out value="${user.address}"></c:out>
+	<h3>PASSWORD - </h3><c:out value="${user.password}"></c:out>
+	<h3>WALLET - </h3><c:out value="${user.wallet}"></c:out>Rs
+	</div>
 </body>
 </html>

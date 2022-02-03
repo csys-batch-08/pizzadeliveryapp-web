@@ -1,6 +1,8 @@
 package com.pizza.controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -45,14 +47,16 @@ public class Cartservlet extends HttpServlet {
 		HttpSession session=request.getSession();
 
 		User user=(User) session.getAttribute("user");
-		System.out.println("userser "+ user);		
-		
-		Product product=(Product) session.getAttribute("productid");
-		System.out.println("product "+product);		
-	
+		                                           
+		Product product=(Product) session.getAttribute("products");
+	    
 		CartDaoImpl dao=new CartDaoImpl();
 		Cart cart=new Cart(user,product,0,0.0);
-	    dao.insertCart(cart);			
-		response.sendRedirect("Showproducts.jsp");				
+	    dao.insertCart(cart);		
+	    CartDaoImpl cartdao=new CartDaoImpl();
+		List<Cart> cartlist=cartdao.showcart(user);
+		session.setAttribute("cartList", cartlist);
+		
+		response.sendRedirect("showproducts.jsp");				
 	}
 }

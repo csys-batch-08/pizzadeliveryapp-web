@@ -62,24 +62,25 @@ li a:hover:not(.active) {
 		<h3>UPDATE THE PRODUCTS</h3>
 </center>
 <ul>  
-<li><a href="AddDeleteUpdate.jsp">Home</a></li>
+<li><a href="adddeleteupdate.jsp">Home</a></li>
 
-  <li style="float:right"><a href="Userlogin.jsp">Logout</a></li>
+  <li style="float:right"><a href="userlogin.jsp">Logout</a></li>
 </ul><br><br><br><br>
-	<%int productid=Integer.parseInt(request.getParameter("Pid"));%>
+	
 
       <form  align="center" class="login" action="updateproduct"> 
-		<label for="name">product id :</label>
-        <input type="text" name="id" value="<%=productid %>" readonly><br><br>      
+		<label for="id">product id :</label>
+        <input type="text" name="id" value="${id }" readonly><br><br>      
         <label for="name">product name :</label>
-        <input type="text" name="name"><br><br>
-        <label for="name">product size :</label>
-        <input type="text" name="size"><br><br>
-        <label for="name">product price :</label>
-        <input type="text" name="price" min="1"><br><br>     
+        <input type="text" name="name" value="${ProductName}"><br><br>
+        <label for="size">product size :</label>
+        <input type="text" name="size" value="${ProductSize}"><br><br>
+        <label for="price">product price :</label>
+        <input type="text" name="price" min="1" value="${ProductPrice}"><br><br>    
+        <label for="status">product status :</label>
+        <input type="text" name="status" value="${ProductStatus}"><br><br> 
         <button onclick="demo()">UPDATE</button>
         <button type="reset">RESET</button>
        </form>
- 
 </body>
 </html>

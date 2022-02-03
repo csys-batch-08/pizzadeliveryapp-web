@@ -38,8 +38,7 @@ public class Walletrechargeservelet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-	//	doGet(request, response);
-		
+//	    doGet(request, response);		
 //		int userid=Integer.parseInt(request.getParameter("userid"));
 //		System.out.println(userid);
 		Double amount=Double.parseDouble(request.getParameter("recharge"));
@@ -54,6 +53,6 @@ public class Walletrechargeservelet extends HttpServlet {
      		user.setWallet(user.getWallet()-amount);
      	}
      	
-		response.sendRedirect("Showproducts.jsp");
+		response.sendRedirect("showproducts.jsp");
 	}
 }

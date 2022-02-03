@@ -1,6 +1,8 @@
 <%@page import="com.pizza.dao.ProductDaoImpl"%>
 <%@page import="com.pizza.model.Product"%>
 <%@page import="java.util.List"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+
 <%@page import="com.pizza.dao.CartDaoImpl"%>
 <%@page import="com.pizza.model.User"%>
 <%@page import="com.pizza.model.Cart"%>
@@ -76,13 +78,12 @@ li a:hover:not(.active) {
 
 			<h1><b>MyCart<b></b></h1>
 <ul>  
-
-<li><a href="Showproducts.jsp">Home</a></li>
-  <li> <a href="Showorder.jsp?orderId=0">MyOrders</a></li>
+<li><a href="showproducts.jsp">Home</a></li>
+  <li> <a href="showorder.jsp?orderId=0">MyOrders</a></li>
   <li><a href="showcart.jsp">Mycart</a></li>  
-  <li> <a href="Userdetails.jsp">Account</a></li>
-  <li><a href="Walletrecharge.jsp">RechargeWallet</a></li>
-  <li style="float:right"><a href="Userlogin.jsp">Logout</a></li>
+  <li> <a href="userdetails.jsp">Account</a></li>
+  <li><a href="walletrecharge.jsp">RechargeWallet</a></li>
+  <li style="float:right"><a href="userlogin.jsp">Logout</a></li>
   <li><a href="contect.jsp">Contact</a></li>
 </ul><br><br><br><br>
 	<tr>	
@@ -90,33 +91,21 @@ li a:hover:not(.active) {
 		<th>product name</th>
 		<th>product size</th>
 		<th>product price</th>
-		<th>Remove</th>
 		<th>Order</th>
+		<th>Remove</th>
 	</tr>	
-
-<%		Product product=new Product();
-		Product productdetails=(Product) session.getAttribute("product");
-		 ProductDaoImpl dao1=new ProductDaoImpl();
-		 List<Product> list1=dao1.showProduct();
-		 for(int j=0;j<list1.size();j++){
-		 	 product=list1.get(j);		
-		 }
-		User user=(User) session.getAttribute("user");	
-		Cart cart=new Cart();
-		CartDaoImpl dao=new CartDaoImpl();
-		List<Cart> list=dao.showcart(user);
-		for(int i=0;i<list.size();i++){
-		cart=list.get(i);	
-		%>		
+	
+		<c:forEach items="${cartList}" var="obj">
 		<tr>
-		<td><%=cart.getId() %></td>
-		<td><%=cart.getProduct().getProductname()%></td>
-		<td><%=cart.getProduct().getSize() %></td>
-		<td><%=cart.getProduct().getPrice()%></td>		
-		<td><a href="Deletecart?cid=<%=cart.getId() %>" >Remove</a></td>
-		<td><a href="Order.jsp?productname=<%=product.getProductname()%>&productsize=<%=product.getSize()%>&productprice=<%=product.getPrice()%>">order</a></td><br><br>
+		<td>${obj.id}</td>
+		<td>${obj.product.productname}</td>
+		<td>${obj.product.size}</td>
+		<td>${obj.product.price}</td>			
+		<td><a href="OrderProductConformation?productname=${obj.product.productname}&productsize=${obj.product.size}&productprice=${obj.product.price}">order</a> </td> <br><br> 
+		<td><a href="Deletecart?cartid=${obj.id}" >Remove</a></td> 
 		</tr>		
-	<% } %>
+		</c:forEach>
+
 </table>
 </body>
 </html>

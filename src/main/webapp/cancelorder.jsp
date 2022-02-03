@@ -2,6 +2,7 @@
 <%@page import="com.pizza.dao.OrderDaoImpl"%>
 <%@page import="com.pizza.model.Order"%>
 <%@page import="com.pizza.model.User"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -61,7 +62,7 @@ li a:hover:not(.active) {
   background-color: #04AA6D;
 }
 .order{
-	 background-image: url("Images/showorder.jpg");
+	 background-image: url("Assets/Images/showorder.jpg");
     background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -72,23 +73,21 @@ li a:hover:not(.active) {
 <table align="center">
 <h1>MyOrders</h1>
 <ul>  
-<li><a href="Showproducts.jsp">Home</a></li>
-  <li> <a href="Showorder.jsp">MyOrders</a></li>
+<li><a href="showproducts.jsp">Home</a></li>
+  <li> <a href="showorder.jsp">MyOrders</a></li>
   <li><a href="showcart.jsp">Mycart</a></li>
-  <li> <a href="Userdetails.jsp">Account</a></li>
-  <li><a href="Walletrecharge.jsp">RechargeWallet</a></li>
-  <li style="float:right"><a href="Userlogin.jsp">Logout</a></li>
+  <li> <a href="userdetails.jsp">Account</a></li>
+  <li><a href="walletrecharge.jsp">RechargeWallet</a></li>
+  <li style="float:right"><a href="userlogin.jsp">Logout</a></li>
   <li><a href="contect.jsp">Contact</a></li>
 </ul><br><br><br><br>	
-	<%      int orderid=Integer.parseInt(request.getParameter("orderId"));
-			Double price=Double.parseDouble(request.getParameter("amount"));
-	%>
+	
 <form  action="cancel" align="center">
 	<div align="center">
 	<label for="name" >Order Id</label>
-	<input type="number" name="id" value=<%=orderid %>  readonly> <br><br>
+	<input type="number" name="id" value="${OrderId}"  readonly> <br><br>
 	<label for="amount">Refund Amount</label>
-	<input type="number" name="refund" value=<%=price %> readonly>
+	<input type="number" name="refund" value="${Amount}" readonly>
 	<button type="submit" class="btn btn-primary">Cancel Order</button>
 	</div>
 </form>

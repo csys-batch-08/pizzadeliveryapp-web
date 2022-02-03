@@ -1,9 +1,7 @@
 package com.pizza.controller;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,18 +9,24 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-@WebServlet("/most")
+
+import com.pizza.dao.OrderDaoImpl;
+import com.pizza.dao.UserDaoImpl;
+import com.pizza.model.Order;
+import com.pizza.model.Product;
+import com.pizza.model.User;
+@WebServlet("/cancel")
 
 /**
- * Servlet implementation class mostsaledproduct
+ * Servlet implementation class cancelorder
  */
-public class mostsaledproduct extends HttpServlet {
+public class CancelOrderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public mostsaledproduct() {
+    public CancelOrderServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,31 +36,37 @@ public class mostsaledproduct extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doPost(request, response);
-	}
+	doPost(request,response);
+	}	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		//doGet(request, response);
+        HttpSession session=request.getSession();	
+       
+		int orderid=Integer.parseInt(request.getParameter("id"));	
 		
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		try {
-			Date fromdate = sdf.parse(request.getParameter("fromDate"));
-			System.out.println(fromdate);
-			Date todate =  sdf.parse(request.getParameter("toDate"));
-			System.out.println(todate);
-			HttpSession session = request.getSession();			
-			session.setAttribute("fromDate", fromdate);
-			session.setAttribute("toDate", todate);
-			
-			response.sendRedirect("mostsuccessproduct.jsp");
+		Double price=Double.parseDouble(request.getParameter("refund"));
+		
+		User user=(User) session.getAttribute("user");
+	
+		OrderDaoImpl dao=new OrderDaoImpl();	
+		UserDaoImpl userdao=new UserDaoImpl();
+		userdao.updateuserWallet(user, price);
+		dao.ordercancel(orderid);
+		user.setWallet(user.getWallet()+price);		
+		session.setAttribute("user", user);
+		
+		
+		List<Order> orderlist=dao.showorder(user);
+		session.setAttribute("orderList", orderlist);
+		
+		response.sendRedirect("showorder.jsp");
+		
 
-		} catch (ParseException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 	}
 
 }

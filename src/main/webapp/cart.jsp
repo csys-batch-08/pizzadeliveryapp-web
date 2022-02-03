@@ -1,6 +1,8 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.pizza.dao.UserDaoImpl"%>
 <%@page import="com.pizza.model.User"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
+
 <%@page import="java.util.List"%>
 <%@page import="com.pizza.model.Product"%>
 <%@page import="com.pizza.dao.ProductDaoImpl"%>
@@ -45,7 +47,7 @@ li a:hover:not(.active) {
   background-color: #04AA6D;
 }
 .cart{
-	 background-image: url("Images/cart.jpg");
+	 background-image: url("Assets/Images/cart.jpg");
     background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -55,40 +57,26 @@ li a:hover:not(.active) {
 <body align="center" class="cart">
 		<h1>Add To Cart</h1>
 	<ul>	
-<li><a href="Showproducts.jsp">Home</a></li>
-  <li> <a href="Showorder.jsp">MyOrders</a></li>
+<li><a href="showproducts.jsp">Home</a></li>
+  <li> <a href="showorder.jsp">MyOrders</a></li>
   <li><a href="showcart.jsp">Mycart</a></li>
-  <li> <a href="Userdetails.jsp">Account</a></li>
-  <li><a href="Walletrecharge.jsp">RechargeWallet</a></li>
-  <li style="float:right"><a href="Userlogin.jsp">Logout</a></li>
+  <li> <a href="userdetails.jsp">Account</a></li>
+  <li><a href="walletrecharge.jsp">RechargeWallet</a></li>
+  <li style="float:right"><a href="userlogin.jsp">Logout</a></li>
   <li><a href="contect.jsp">Contact</a></li>
 </ul><br><br><br><br>
 <form action="cart" method="post">
-	<% 	
-	User user=(User) session.getAttribute("user");		
-	UserDaoImpl userdao=new UserDaoImpl();
-	int id=userdao.finduserid(user);
-	
-	ProductDaoImpl productdao=new ProductDaoImpl();	
-	List<Product> productList=productdao.showProduct();	
 
-	String pname=request.getParameter("productname");
-	String psize=request.getParameter("productsize");
-	Double price=Double.parseDouble(request.getParameter("productprice"));
-	Product product=new Product(pname,psize,price);		
-	session.setAttribute("productid", product);			
-      
-    %>	   
-  	<div>		
+  	<div>		 	
 		<label for="productid">product name :</label>
-		<input type="text" name="productid" value="<%=product.getProductname() %>" readonly><br><br>
+		<input type="text" name="productid" value="${pname}" readonly><br><br>
 		<label for="productid">product size :</label>
-		<input type="text" name="productid" value="<%=product.getSize() %>" readonly><br><br>   
+		<input type="text" name="productid" value="${psize}" readonly><br><br>   
 		<label for="productid">product price :</label>
-		<input type="text" name="productid" value="<%=product.getPrice() %>" readonly><br><br>        
+		<input type="text" name="productid" value="${pprice}" readonly><br><br>        
         <button onclick="demo()">add to cart</button>  &nbsp &nbsp &nbsp &nbsp 
         <button type="reset">RESET</button>      
-        </div>        
+   </div>        
  </form>
 </body>
 </html> 

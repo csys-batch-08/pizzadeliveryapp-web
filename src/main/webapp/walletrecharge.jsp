@@ -2,6 +2,7 @@
 <%@page import="com.pizza.model.User"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -42,7 +43,7 @@ li a:hover:not(.active) {
         }
         
    .recharge{
-	 background-image: url("Images/money.jpg");
+	 background-image: url("Assets/Images/money.jpg");
      background-repeat: no-repeat;
   	 background-attachment: fixed;
  	 background-size: cover;
@@ -51,30 +52,31 @@ li a:hover:not(.active) {
 </head>
 <body class="recharge">
 
- <%String notfound=(String)session.getAttribute("invalidBalance");
+  <%String notfound=(String)session.getAttribute("invalidBalance");
         if(notfound !=null){
         	%>
         	<h2 align="center"><%=notfound %></h2>
         	<%session.removeAttribute("invalidBalance");%>
-       <% } %>    
+       <% } %> 
+       
+      <%--  <c:if test="${lowbalance!=null}">
+        <h1 align="center">${lowbalance}</h1>
+        </c:if> --%>
 <form action="recharge" method="post" align="center">
 	<h1>Recharge Your Wallet</h1>
 
 <ul>  
-<li><a href="Showproducts.jsp">Home</a></li>
-  <li> <a href="Showorder.jsp">MyOrders</a></li>
+<li><a href="showproducts.jsp">Home</a></li>
+  <li> <a href="showorder.jsp">MyOrders</a></li>
   <li><a href="showcart.jsp">Mycart</a></li>
-  <li> <a href="Userdetails.jsp">Account</a></li>
-  <li><a href="Walletrecharge.jsp">RechargeWallet</a></li>
-  <li style="float:right"><a href="Userlogin.jsp">Logout</a></li>
+  <li> <a href="userdetails.jsp">Account</a></li>
+  <li><a href="walletrecharge.jsp">RechargeWallet</a></li>
+  <li style="float:right"><a href="userlogin.jsp">Logout</a></li>
   <li><a href="contect.jsp">Contact</a></li>
 </ul><br><br><br><br>
 
-<%		User user=(User) session.getAttribute("user");
-		UserDaoImpl dao=new UserDaoImpl();
-		%>
 		<label for="name"> user name :</label>
-		<input type="text" name="userid" value="<%=user.getUsername()%>" readonly><br><br> 
+		<input type="text" name="userid" value="${user.username}" readonly><br><br> 
  		<label for="wallet">amount</label>
  		<input type="number" name="recharge" min="100"><br><br>
  		<button  type="submit">UPDATE</button> 		 

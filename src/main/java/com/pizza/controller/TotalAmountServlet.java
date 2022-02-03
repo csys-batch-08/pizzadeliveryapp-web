@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.pizza.dao.OrderDaoImpl;
 @WebServlet("/total")
 /**
  * Servlet implementation class TotalAmountServlet
@@ -49,9 +51,11 @@ public class TotalAmountServlet extends HttpServlet {
 			Date todate = (Date) sdf.parse(request.getParameter("toDate"));
 			System.out.println(todate);
 			HttpSession session = request.getSession();			
-			session.setAttribute("fromDate", fromdate);
-			session.setAttribute("toDate", todate);
 			
+			OrderDaoImpl orderdao= new OrderDaoImpl();
+ 			Double price=orderdao.TotalAmount(fromdate, todate);
+ 			session.setAttribute("totalprize", price);
+ 			
 			response.sendRedirect("totalamountsales.jsp");
 
 		} catch (ParseException e) {

@@ -147,12 +147,12 @@ body {
 <body>
 <h1 align="center">Contect Us</h1>
 <ul>  
-<li><a href="Showproducts.jsp">Home</a></li>
-  <li> <a href="Showorder.jsp?orderId=0">MyOrders</a></li>
+<li><a href="showproducts.jsp">Home</a></li>
+  <li> <a href="showorder.jsp?orderId=0">MyOrders</a></li>
   <li><a href="showcart.jsp">Mycart</a></li>  
-  <li> <a href="Userdetails.jsp">Account</a></li>
-  <li><a href="Walletrecharge.jsp">RechargeWallet</a></li>   
-  <li style="float:right"><a href="Userlogin.jsp">Logout</a></li>
+  <li> <a href="userdetails.jsp">Account</a></li>
+  <li><a href="walletrecharge.jsp">RechargeWallet</a></li>   
+  <li style="float:right"><a href="userlogin.jsp">Logout</a></li>
   <li><a href="contect.jsp">Contact</a></li>
 </ul><br>
   <div class="wrapper">
@@ -164,7 +164,7 @@ body {
       <textarea class="message formEntry" placeholder="Message" required></textarea>
       <input type="checkbox" class="termsConditions" value="Term">
       <label style="color: grey" for="terms"> I Accept the <span style="color: #0e3721">Terms of Use</span> & <span style="color: #0e3721">Privacy Policy</span>.</label><br>
-      <a href="Showproducts.jsp"><button class="submit formEntry" onclick="thanks()">Submit</button></a>
+      <a href="showproducts.jsp"><button class="submit formEntry" onclick="thanks()">Submit</button></a>
     </form>
   </div>
  

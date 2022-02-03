@@ -1,5 +1,6 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.pizza.dao.UserDaoImpl"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@page import="com.pizza.model.User"%>
 <%@page import="com.pizza.model.Product"%>
 <%@page import="com.pizza.dao.ProductDaoImpl"%>
@@ -45,52 +46,33 @@ li a:hover:not(.active) {
   background-color: #04AA6D;
 }
 .order{
-	 background-image: url("Images/showorder.jpg");
+	 background-image: url("Assets/Images/showorder.jpg");
     background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
 }
 </style>
 </head>
-<body onmouseover="check()"  align="center" class="order">
-
-	 <%String notfound=(String)request.getAttribute("invalidBalance");
-        if(notfound !=null){
-        	%>
-        	<h2><%=notfound %></h2>        	        	
-        	<%} %>
+<body onmouseover="check()"  align="center" class="order">	
+       	
+<c:remove var="inactive" scope="session" />
+        	
 <h1>Buy Your snacks</h1>
 <ul>
-<li><a href="Showproducts.jsp">Home</a></li>
-  <li> <a href="Showorder.jsp">MyOrders</a></li>
+<li><a href="showproducts.jsp">Home</a></li>
+  <li> <a href="showorder.jsp">MyOrders</a></li>
   <li><a href="showcart.jsp">Mycart</a></li>  
-  <li> <a href="Userdetails.jsp">Account</a></li>
-  <li><a href="Walletrecharge.jsp">RechargeWallet</a></li>
-  <li style="float:right"><a href="Userlogin.jsp">Logout</a></li>
-  <li><a href="Contect.jsp">Contact</a></li>
+  <li> <a href="userdetails.jsp">Account</a></li>
+  <li><a href="walletrecharge.jsp">RechargeWallet</a></li>
+  <li style="float:right"><a href="userlogin.jsp">Logout</a></li>
+  <li><a href="contect.jsp">Contact</a></li>
 </ul><br><br><br><br>
 
 <form action="order" align="center">
-	<% 	
-	User user=(User) session.getAttribute("user");		
-	UserDaoImpl userdao=new UserDaoImpl();
-	int id=userdao.finduserid(user);
-	
-	ProductDaoImpl productdao=new ProductDaoImpl();	
-	List<Product> productList=productdao.showProduct();	
-
-	String pname=request.getParameter("productname");
-	String psize=request.getParameter("productsize");
-	Double price=Double.parseDouble(request.getParameter("productprice"));
-	Product product=new Product(pname,psize,price);		
-	
-	Product pro=productdao.findProductId(product);
-	session.setAttribute("productid", product);	
-	
-    %>	  
+  
   	<div> 
 		<label for="productid">product name :</label>
-		<input type="text" name="productid" value="<%=product.getProductname() %>" readonly><br><br>
+		<input type="text" name="productid" value="${pname}" readonly><br><br>
 		
 		<label for="name">quantity:</label>
         <input type="text" name="qty" id="quantity" pattern="[1-9]{1}"><br><br> 
@@ -107,7 +89,7 @@ function check(){
 	var count=document.getElementById("quantity").value;
 	var totalPrice=document.getElementById("price");
 	console.log(count)
-	totalPrice.value=count * <%=product.getPrice() %>;
+	totalPrice.value=count * ${pprice};
 	console.log(totalPrice.value);	
 }
 </script>

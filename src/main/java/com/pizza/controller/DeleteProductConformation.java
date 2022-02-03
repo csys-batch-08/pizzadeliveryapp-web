@@ -41,7 +41,7 @@ public class DeleteProductConformation extends HttpServlet {
 		 int productid=Integer.parseInt(request.getParameter("Pid"));  		 
 		 session.setAttribute("id", productid);	
 		 
-		 response.sendRedirect("Deleteproduct.jsp");
+		 response.sendRedirect("deleteproduct.jsp");
 	}
 
 }

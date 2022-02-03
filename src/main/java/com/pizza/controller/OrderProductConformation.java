@@ -1,8 +1,6 @@
 package com.pizza.controller;
 
 import java.io.IOException;
-import java.util.List;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,22 +8,19 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-// import org.apache.catalina.connector.Response;
-
-import com.pizza.dao.UserDaoImpl;
-import com.pizza.model.User;
-@WebServlet("/inactive")
+import com.pizza.model.Product;
 
 /**
- * Servlet implementation class InactiveServlet
+ * Servlet implementation class OrderProductConformation
  */
-public class InactiveServlet extends HttpServlet {
+@WebServlet("/OrderProductConformation")
+public class OrderProductConformation extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InactiveServlet() {
+    public OrderProductConformation() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,6 +31,7 @@ public class InactiveServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doPost(request, response);
+		
 	}
 
 	/**
@@ -43,24 +39,21 @@ public class InactiveServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session=request.getSession();
-
-		String email=request.getParameter("id");
-		System.out.println("email id"+email);
 		
-		User user=new User("",0,email,"", "", 0,"");
-		UserDaoImpl dao=new UserDaoImpl();	
-		boolean b=dao.inactive(email);
+		HttpSession session=request.getSession();	 
+		 
+	   	String name=request.getParameter("productname");
+		 session.setAttribute("pname", name);	
+		 String size=request.getParameter("productsize");
+		 session.setAttribute("psize", size);		 
+		 Double price=Double.parseDouble(request.getParameter("productprice"));  		 
+		 session.setAttribute("pprice", price);	
+		 
+		 Product product=new Product(name,size,price);		
+		 session.setAttribute("products", product);		 
+	 
+		 response.sendRedirect("order.jsp");
 		
-		List<User> userlist=dao.showuser();
-		session.setAttribute("userList", userlist);
-		
-		if(b == false) {			
-			response.sendRedirect("inactive.jsp");
-		}
-		else {
-		response.sendRedirect("adddeleteupdate.jsp");		
-		}
 	}
 
 }

@@ -1,5 +1,6 @@
 <%@page import="com.pizza.dao.UserDaoImpl"%>
 <%@page import="com.pizza.model.User"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.sql.ResultSet"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -59,7 +60,7 @@ li a:hover:not(.active) {
   background-color: #04AA6D;
 }
 .main{
-	background-image: url("Images/main.gif");
+	background-image: url("Assets/Images/main.gif");
     background-repeat: no-repeat;
   	background-attachment: fixed;
   	background-size: cover;
@@ -82,43 +83,32 @@ span:hover {
  </style>
 </head>
 <body style="background-color:lightgreen;" align="center" class="main"> 
-<h1 style="color:white;" align="center"><img src="Images\logopizza.png" width="150px" height="100px">PizzaHut</h1>
-
-<% 
-	Product product=new Product();
-	User user=new User();
-	User userdetails=(User) session.getAttribute("user");		
-	UserDaoImpl userdao=new UserDaoImpl();
-	int id=userdao.finduserid(user); 
-%>
+<h1 style="color:white;" align="center"><img src="Assets\Images\logopizza.png" width="150px" height="100px">PizzaHut</h1>
 <ul>  
-<li><a href="Showproducts.jsp">Home</a></li>
-  <li> <a href="Showorder.jsp?orderId=0">MyOrders</a></li>
+<li><a href="showproducts.jsp">Home</a></li>
+  <li> <a href="showorder.jsp?orderId=0">MyOrders</a></li>
   <li><a href="showcart.jsp">Mycart</a></li>  
-  <li> <a href="Userdetails.jsp">Account</a></li>
-  <li><a href="Walletrecharge.jsp">RechargeWallet</a></li>   
-  <li style="float:right"><a href="Userlogin.jsp">Logout</a></li>
+  <li> <a href="userdetails.jsp">Account</a></li>
+  <li><a href="walletrecharge.jsp">RechargeWallet</a></li>   
+  <li style="float:right"><a href="userlogin.jsp">Logout</a></li>
   <li><a href="contect.jsp">Contact</a></li>
 </ul>
 
 <div id="searchbar">
-<form action="search.jsp" >
-<input type="text" name="search" placeholder="Search" required><button class="btn btn-primary" type="submit">search</button>
-  </form> </div><br><br><br>
-<%  ProductDaoImpl dao=new ProductDaoImpl();
-List<Product> list=dao.showProduct();
-for(int i=0;i<list.size();i++) {
-	product=list.get(i);			
-	session.setAttribute("product", product);		
-		%>
+<form action="SearchProductServlet" > 
+<input type="text" name="search" placeholder="Search" required> &nbsp<button class="btn btn-primary" type="submit">&#128269;</button>
+  </form> 
+  
+  </div><br><br><br>
+		<c:forEach items="${productlist}" var="obj">
 		<div align="center">
-	<span class="bounce_button"><img src="<%= product.getProductname()%>.jpg" alt="img" width=300px height=175px class="bounce"></span><br>
-		<b style="color:white;"><%= product.getProductname()%> </b>&nbsp &nbsp
-		<b style="color:white;"><%=product.getSize()%></b>   &nbsp &nbsp &nbsp
-		<b style="color:white;"><%=product.getPrice() %></b><br> <br>	&nbsp &nbsp 
-	  	<a href="Cart.jsp?productname=<%=product.getProductname()%>&productsize=<%=product.getSize()%>&productprice=<%=product.getPrice()%>"><button class="btn btn-primary"> cart</button></a>    &nbsp &nbsp &nbsp		
-		<a href="Order.jsp?productname=<%=product.getProductname()%>&productsize=<%=product.getSize()%>&productprice=<%=product.getPrice()%>"><button class="btn btn-primary">order</button></a>   <br><br><br><br>
+	<span class="bounce_button"><img src="Assets\Images\<c:out value="${obj.productname}"></c:out>.jpg" alt="img" width=300px height=175px class="bounce"></span><br>
+		<b style="color:white;"><c:out value="${obj.productname}"></c:out></b>&nbsp &nbsp
+		<b style="color:white;"><c:out value="${obj.size}"></c:out></b>   &nbsp &nbsp &nbsp
+		<b style="color:white;"><c:out value="${obj.price}"></c:out> Rs</b><br> <br>	&nbsp &nbsp 
+ 	  	<a href="AddCartProductConformation?productname=${obj.productname}&productsize=${obj.size}&productprice=${obj.price}"><button class="btn btn-primary">cart</button></a>   &nbsp &nbsp &nbsp		
+ 		<a href="OrderProductConformation?productname=${obj.productname}&productsize=${obj.size}&productprice=${obj.price}"><button class="btn btn-primary">order</button></a>   <br><br><br><br> 
 		</div>
-		<% } %>				
+		</c:forEach>
 </body>
 </html>

@@ -38,6 +38,6 @@ public class UserRegisterServlet extends HttpServlet{
 			User user=new User(firstname,phonenumber,email,address, password, 0,"");
 			UserDaoImpl userdao=new UserDaoImpl();
 			userdao.insert(user);
-				resp.sendRedirect("Userlogin.jsp");
+				resp.sendRedirect("userlogin.jsp");
 		}
 }

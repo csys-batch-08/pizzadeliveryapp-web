@@ -2,6 +2,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.pizza.dao.OrderDaoImpl"%>
 <%@page import="java.util.Date"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -44,24 +45,19 @@ li a:hover:not(.active) {
 </style>
 </head>
 <body class="total">
-
 <h1 align="center">Lowset Sold Product</h1>
 <ul>  
-<li><a href="AddDeleteUpdate.jsp">Home</a></li>
- <li style="float:right"><a href="Userlogin.jsp">Logout</a></li>
+<li><a href="adddeleteupdate.jsp">Home</a></li>
+ <li style="float:right"><a href="userlogin.jsp">Logout</a></li>
 </ul><br><br><br>
-		<% Date fromdate=(Date)session.getAttribute("fromDate");
-		Date todate=(Date)session.getAttribute("toDate");
-		OrderDaoImpl orderdao= new OrderDaoImpl();
-		 Product product=orderdao.lowestsaledproduct(fromdate, todate);
-	 %>
-	 <form align="center">
+	 <form align="center">	  
 	 <label for="name">Product Name</label> 
-	 <input type="text" name="name" value="<%=product.getProductname() %>" readonly><br><br>
+	 <input type="text" name="name" value="${Product.productname}" readonly><br><br>
 	 <label for="size">Product Size</label>
-	 <input type="text" name="size" value="<%=product.getSize() %>" readonly><br><br>
+	 <input type="text" name="size" value="${Product.size}" readonly><br><br>
 	 <label for="prize " name="prize">Total Prize </label>
-	 <input type="number" name="prize" value="<%=product.getPrice() %>" readonly>
+	 <input type="number" name="prize" value="${Product.price}" readonly>
+	
    	</form>
 </body>
 </html>

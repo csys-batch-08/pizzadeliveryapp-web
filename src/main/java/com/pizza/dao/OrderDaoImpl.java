@@ -25,11 +25,12 @@ public class OrderDaoImpl implements OrderDao{
 		String orderlist = "select order_id,user_id,product_id,quantity,total_prize,order_date,status from orders where user_id="+userId+" order by order_id desc " ;
 		ConnectionUtill con = new ConnectionUtill();
 		Connection c = con.getDbconnection();
-		Statement stmt;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null ;
 		Order order = null;
 		try {
-			stmt = c.createStatement();
-			ResultSet rs = stmt.executeQuery(orderlist);
+			pstmt = c.prepareStatement(orderlist);
+			 rs = pstmt.executeQuery();
 			UserDaoImpl userdao = new UserDaoImpl();
 			ProductDaoImpl productdao = new ProductDaoImpl();
 			while (rs.next()) {
@@ -44,6 +45,9 @@ public class OrderDaoImpl implements OrderDao{
 			// TODO Auto-generated catch block
 			e.printStackTrace();  
 		}
+		finally {
+			ConnectionUtill.close(c, pstmt ,rs);
+		}
 		return orderList;
 	}
 	public int delete(int deleteid) {
@@ -51,7 +55,7 @@ public class OrderDaoImpl implements OrderDao{
 		Connection c = con.getDbconnection();
 		// int productid=findProductId(proId, size);
 		String deleteQuery = "delete from Order where order_id=?";
-		PreparedStatement pstmt;
+		PreparedStatement pstmt = null;
 		int prod1d = 0;
 		try {
 			pstmt = c.prepareStatement(deleteQuery);
@@ -63,6 +67,9 @@ public class OrderDaoImpl implements OrderDao{
 			e.printStackTrace();
 			System.out.println("error in query");
 		}
+		finally {
+			ConnectionUtill.close(c, pstmt ,null);
+		}
 		return prod1d;
 	}
 
@@ -70,17 +77,21 @@ public class OrderDaoImpl implements OrderDao{
 		ConnectionUtill con = new ConnectionUtill();
 		Connection c = con.getDbconnection();
 		String findid = "select order_id,user_id,product_id,quantity,total_prize,order_date,status from orders where order_id='" + id + "'";
-		Statement stmt = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null ;
 		Order orderid = null;
 		try {
-			stmt = c.createStatement();
-			ResultSet rs = stmt.executeQuery(findid);
+			pstmt = c.prepareStatement(findid);
+			 rs = pstmt.executeQuery();
 			while (rs.next()) {
 				orderid = new Order();
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		finally {
+			ConnectionUtill.close(c, pstmt ,rs);
 		}
 		return orderid;
 	}
@@ -89,18 +100,21 @@ public ResultSet orderdetails(int id) {
 	ConnectionUtill con = new ConnectionUtill();
 	Connection c = con.getDbconnection();
 	String findid = "select order_id,user_id,product_id,quantity,total_prize,order_date,status from orders where user_id='" + id + "'";
-	Statement stmt = null;
+	PreparedStatement pstmt = null;
 	Order orderid = null;
 	ResultSet rs=null;
 	try {
-		stmt = c.createStatement();
-		 rs = stmt.executeQuery(findid);
+		pstmt = c.prepareStatement(findid);
+		 rs = pstmt.executeQuery(findid);
 		while (rs.next()) {
 			orderid = new Order();
 		}
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
+	}
+	finally {
+		ConnectionUtill.close(c, pstmt ,rs);
 	}
 	return rs;
 }
@@ -114,11 +128,12 @@ public int orderproduct(Order orders) {
 	PreparedStatement pstmt = null;	
 	double wallet=0;
 	int order1 = 0;
+	PreparedStatement stmt = null;
 	ResultSet rs = null;
 	UserDaoImpl userdao = new UserDaoImpl();
 	int userid = userdao.finduserid(orders.getUser());
 	try {
-		PreparedStatement stmt=c.prepareStatement(query2);		
+		 stmt=c.prepareStatement(query2);		
 		stmt.setInt(1, userid);
 		 rs = stmt.executeQuery();			
 		if(rs.next()) {
@@ -144,7 +159,11 @@ public int orderproduct(Order orders) {
 		e.printStackTrace();
 		System.out.println("sql error");
 	}
+	finally {
+		ConnectionUtill.close(c, stmt ,rs);
 	}
+	}
+	
 	return order1;
 }
 
@@ -152,16 +171,19 @@ public boolean ordercancel(int orderid) {
 	ConnectionUtill con = new ConnectionUtill();
 	Connection c = con.getDbconnection();
 	String cancel="update orders set status='canceled' where order_id='"+orderid+"'";
-	Statement stmt;
+	PreparedStatement pstmt = null;	
 	boolean b=false;	
 	try {
-		 stmt=c.createStatement();
-		b=stmt.executeUpdate(cancel) >0;
+		pstmt = c.prepareStatement(cancel);	
+		b=pstmt.executeUpdate() >0;
 		System.out.println("cancelorder");
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 		System.out.println("error in query");
+	}
+	finally {
+		ConnectionUtill.close(c, pstmt ,null);
 	}
 	return b;
 	}
@@ -174,7 +196,7 @@ public Double TotalAmount(Date fromDate,Date toDate) {
 	System.out.println("total price");
 	PreparedStatement pstmt=null;
 	double price = 0;
-	ResultSet rs;
+	ResultSet rs = null;
 	try {
 		pstmt = c.prepareStatement (Query);
 		pstmt.setDate(1, new java.sql.Date(fromDate.getTime()));
@@ -187,6 +209,9 @@ public Double TotalAmount(Date fromDate,Date toDate) {
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
+	}
+	finally {
+		ConnectionUtill.close(c, pstmt ,rs);
 	}
 	return price;	
 }
@@ -217,6 +242,9 @@ public Product mostsaledproduct(Date fromDate,Date toDate) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+	finally {
+		ConnectionUtill.close(c, pstmt ,rs);
+	}
 	return product;
 }    
 
@@ -244,6 +272,9 @@ public Product lowestsaledproduct(Date fromDate,Date toDate) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+	finally {
+		ConnectionUtill.close(c, pstmt ,rs);
+	}
 	return product;
 } 
 	public User activeuser(Date fromDate,Date toDate) {
@@ -265,6 +296,9 @@ public Product lowestsaledproduct(Date fromDate,Date toDate) {
 		// TODO Auto-generated catch block
 		e.printStackTrace();
 	}
+	finally {
+		ConnectionUtill.close(c, pstmt ,rs);
+	}
 	return user;
 }
 	
@@ -272,16 +306,19 @@ public Product lowestsaledproduct(Date fromDate,Date toDate) {
 		ConnectionUtill con = new ConnectionUtill();
 		Connection c = con.getDbconnection();
 		String cancel="update orders set status='delivered' where order_id='"+orderid+"'";
-		Statement stmt;
+		PreparedStatement pstmt=null;
 		boolean b=false;	
 		try {
-			 stmt=c.createStatement();
-			b=stmt.executeUpdate(cancel) >0;
+			pstmt = c.prepareStatement (cancel);
+			b=pstmt.executeUpdate() >0;
 			System.out.println("cancelorder");
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("error in query");
+		}
+		finally {
+			ConnectionUtill.close(c, pstmt ,null);
 		}
 		return b;
 		}

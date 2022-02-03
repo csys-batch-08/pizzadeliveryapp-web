@@ -10,22 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-// import org.apache.catalina.connector.Response;
-
-import com.pizza.dao.UserDaoImpl;
-import com.pizza.model.User;
-@WebServlet("/inactive")
+import com.pizza.dao.ProductDaoImpl;
+import com.pizza.model.Product;
 
 /**
- * Servlet implementation class InactiveServlet
+ * Servlet implementation class SearchProductServlet
  */
-public class InactiveServlet extends HttpServlet {
+@WebServlet("/SearchProductServlet")
+public class SearchProductServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InactiveServlet() {
+    public SearchProductServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,24 +41,15 @@ public class InactiveServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		HttpSession session=request.getSession();
+		HttpSession session=request.getSession();	
+		
+		ProductDaoImpl dao=new ProductDaoImpl();
+		String search= request.getParameter("search");
+		List<Product> list=dao.productsearch(search);
+		session.setAttribute("ProductList", list);
+		
+		 response.sendRedirect("search.jsp");
 
-		String email=request.getParameter("id");
-		System.out.println("email id"+email);
-		
-		User user=new User("",0,email,"", "", 0,"");
-		UserDaoImpl dao=new UserDaoImpl();	
-		boolean b=dao.inactive(email);
-		
-		List<User> userlist=dao.showuser();
-		session.setAttribute("userList", userlist);
-		
-		if(b == false) {			
-			response.sendRedirect("inactive.jsp");
-		}
-		else {
-		response.sendRedirect("adddeleteupdate.jsp");		
-		}
 	}
 
 }

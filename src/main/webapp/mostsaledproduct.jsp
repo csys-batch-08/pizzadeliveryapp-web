@@ -63,8 +63,8 @@ li a:hover:not(.active) {
 <h1 align="center">Enter The Date</h1>
 
 <ul>  
-<li><a href="AddDeleteUpdate.jsp">Home</a></li>
- <li style="float:right"><a href="Userlogin.jsp">Logout</a></li>
+<li><a href="adddeleteupdate.jsp">Home</a></li>
+ <li style="float:right"><a href="userlogin.jsp">Logout</a></li>
 </ul><br><br>
 
 <form action="most" align="center" class="login">

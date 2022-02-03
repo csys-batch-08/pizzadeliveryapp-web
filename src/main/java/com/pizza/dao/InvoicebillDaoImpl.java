@@ -15,42 +15,46 @@ import com.pizza.model.User;
 //import com.dao.ConnectionUtill;
 import com.pizza.utill.ConnectionUtill;
 
-public class InvoicebillDaoImpl implements InvoicebillDao{
-		
+public class InvoicebillDaoImpl implements InvoicebillDao {
+
 	public ResultSet showBill(User user) {
-		
 		String showQuery = "select u.user_name,u.phonenumber,u.email,u.address,o.product_id,o.quantity,o.total_prize,o.order_date from users u join orders o on u.user_id=o.user_id";
-		ConnectionUtill con=new ConnectionUtill();
-		Connection c=con.getDbconnection();
-		ResultSet rs=null;
+		ConnectionUtill con = new ConnectionUtill();
+		Connection c = con.getDbconnection();
+		PreparedStatement pstmt = null ;
+		ResultSet rs = null;
 		try {
-			Statement stmt = c.createStatement();
-			 rs = stmt.executeQuery(showQuery);			
+			 pstmt = c.prepareStatement(showQuery);
+			rs = pstmt.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		finally {
+			ConnectionUtill.close(c, pstmt ,rs);
+		}
 		return rs;
 	}
-	
-	public int insert(Invoicebill invoice) {
 
+	public int insert(Invoicebill invoice) {
 		String insertQuery = "insert into bills (order_id,Delivery_date,user_id) values (?,sysdate+?,?)";
-		ConnectionUtill con=new ConnectionUtill();
-		Connection c=con.getDbconnection();
-		int i =0;
+		ConnectionUtill con = new ConnectionUtill();
+		Connection c = con.getDbconnection();
+		int i = 0;
+		PreparedStatement pstmt = null;
 		try {
-			PreparedStatement pstmt = c.prepareStatement(insertQuery);			
-			i= pstmt.executeUpdate();
+			 pstmt = c.prepareStatement(insertQuery);
+			i = pstmt.executeUpdate();
 			System.out.println(i + "inserted");
 
-	} catch (Exception e) {
-		// TODO Auto-generated catch block
-		e.printStackTrace();
-	}
-		
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			ConnectionUtill.close(c, pstmt ,null);
+		}
 		return i;
 	}
-	
-	
+
 }

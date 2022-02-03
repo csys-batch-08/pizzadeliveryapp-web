@@ -39,8 +39,8 @@ li a:hover:not(.active) {
 <body style="background-color:orange;">
 		<h3 align="center">Delete Product</h3>
 <ul>  
-<li><a href="AddDeleteUpdate.jsp">Home</a></li>
- <li style="float:right"><a href="Userlogin.jsp">Logout</a></li>
+<li><a href="adddeleteupdate.jsp">Home</a></li>
+ <li style="float:right"><a href="userlogin.jsp">Logout</a></li>
 </ul><br><br><br><br>
 
 <form align="center" action="inactive"> 

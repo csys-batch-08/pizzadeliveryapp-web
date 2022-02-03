@@ -8,11 +8,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel ="icon" href="Images/logopizza.png"; >
+<link rel ="icon" href="Assets/Images/logopizza.png"; >
 <meta charset="ISO-8859-1">
 <title>AddUpdateDelete</title>
-<style>
-	
+<style>	
 ul {
   list-style-type: none;
   margin: 0;
@@ -20,11 +19,9 @@ ul {
   overflow: hidden;
   background-color: #333;
 }
-
 li {
   float: left;
 }
-
 li a {
   display: block;
   color: white;
@@ -32,11 +29,9 @@ li a {
   padding: 14px 16px;
   text-decoration: none;
 }
-
 li a:hover:not(.active) {
   background-color: #111;
 }
-
 .active {
   background-color: lightblue;
 }
@@ -46,13 +41,11 @@ li a:hover:not(.active) {
             height: 60px;
             border: 1px solid black;
         }
-
         td {
         height:20px;
             text-align: center;
             border: 1px solid black;
-        }
-   
+        }   
 table {
              position: absolute;
              left:125px;  
@@ -63,16 +56,15 @@ table {
         }
 .add{
 position: absolute;
-bottom: 30px;
+bottom: 500px;
 left:650px;
 }
 .admin{
-		background: linear-gradient(110deg, gray 50%, white 50%);
+		background: linear-gradient(110deg, gray 55%, white 50%);
 }
 .hh{
 	color : white;
 }
-
 .close{
 	height: 100%;
 	width: 0;
@@ -116,18 +108,17 @@ th{
 </head>
 <body class="admin"> 
 <center>
-
 <h1 class="hh">Admin</h1>
 
 </center>
 <ul class="nav navbar-nav">
-<li class="active"><a href="AddDeleteUpdate.jsp">Home</a></li>
+<li class="active"><a href="adddeleteupdate.jsp">Home</a></li>
 <li><a href="userlist.jsp">Users List</a></li>
-<li style="float:right"><a href="Userlogin.jsp">Logout</a></li>
+<li style="float:right"><a href="userlogin.jsp">Logout</a></li>
 </ul><br>
 
 <div id="sales" class="close">
-<a href="javascript:void(0)" class="closebtn" onclick="closenav()">X</a>
+<a href="javascript:void(0)" class="closebtn" onclick="closenav()">&#10006</a>
 <a href="totalamount.jsp"> Total Sales</a><br><br>
 <a href="mostsaledproduct.jsp">Most Purchased Product</a><br><br>
 <a href="lowestsaled.jsp">Lowest Purchased Product</a><br><br>
@@ -140,27 +131,27 @@ th{
 
 	<table align="center" border="5">
 	<tr>	
-		<th>Product id</th>	
-		<th>Product name</th>
-		<th>Product size</th>
-		<th>Product price</th>
-		<th>Delete Products</th>	
+		<th>Product Id</th>	
+		<th>Product Name</th>
+		<th>Product Size</th>
+		<th>Product Price</th>
+		<th>Product Status</th>	
 		<th>Update Products</th>
 	</tr>		    		
-		<c:forEach items="${ productlist}" var="obj">	
+		<c:forEach items="${productList}" var="obj">	
 		<tr>
-		<td><c:out value="${obj.productId}"></c:out></td>	
+		<td><c:out value="${obj.productId }"></c:out></td>	
 		<td><c:out value="${obj.productname }"></c:out></td>	
 		<td><c:out value="${obj.size }"></c:out></td>
-		<td><c:out value="${obj.price }"></c:out></td>		
-		<td><a href="DeleteProductConformation?Pid=${obj.productId}">DELETE </a></td>
-		<td><a href="Updateproduct.jsp?Pid=${obj.productId}">UPDATE </a></td>		 
+		<td><c:out value="${obj.price }"></c:out></td>	
+		<td><c:out value="${obj.status }"></c:out></td>	
+		<td><a href="UpdateProductConformation?Pid=${obj.productId}&productname=${obj.productname}&productsize=${obj.size}&productprice=${obj.price}&productstatus=${obj.status}">UPDATE </a></td>		 
 		</tr>
 		</c:forEach>
 		</table><br><br><br><br><br><br> 
 		</form> 
 	<div class="add" align="center">
-			<a href="Addproduct.jsp"><button class="btn btn-primary">Add Product </button></a>
+			<a href="addproduct.jsp"><button class="btn btn-primary">Add Product </button></a>
 			</div>
 
 <script>

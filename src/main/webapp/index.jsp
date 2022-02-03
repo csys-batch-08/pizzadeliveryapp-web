@@ -12,7 +12,7 @@
             display: inline-block;
         }
  .dummySky {
-  background-image: url("Images/login.jpg");
+  background-image: url("Assets/Images/login.jpg");
     background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -39,7 +39,7 @@ a:hover{
 </style>
 </head>
 <body align="center" class="dummySky">                                                                              
-<h1 style="color:white;" align="center"><img src="Images\logopizza.png" width="150px" height="100px">PizzaHut</h1>
+<h1 style="color:white;" align="center"><img src="Assets\Images\logopizza.png" width="150px" height="100px">PizzaHut</h1>
 <form action="Sample" class="login" align="center"><br><br>
                                                           
         <h3>CREATE YOUR OWN ACCOUNT</h3><br>
@@ -59,7 +59,7 @@ a:hover{
         <input type="password" name="password" placeholder="password" pattern="[A-Za-z0-9]+[@][A-Za-z0-9]*"  required><br><br>
         
         <button type="submit">SUBMIT</button> &nbsp &nbsp &nbsp &nbsp &nbsp
-        <a href="Userlogin.jsp">Already Have Account</a>
+        <a href="userlogin.jsp">Already Have Account</a>
 </form>
 </body>
 </html>

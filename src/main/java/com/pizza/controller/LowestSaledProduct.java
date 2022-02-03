@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,18 +12,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebServlet("/purchase")
+import com.pizza.dao.OrderDaoImpl;
+import com.pizza.model.Product;
+@WebServlet("/low")
 
 /**
- * Servlet implementation class Mostpurchaseduser
+ * Servlet implementation class LowestSaledProduct
  */
-public class Mostpurchaseduser extends HttpServlet {
+public class LowestSaledProduct extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Mostpurchaseduser() {
+    public LowestSaledProduct() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,7 +36,6 @@ public class Mostpurchaseduser extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doPost(request, response);
-		
 	}
 
 	/**
@@ -41,6 +43,7 @@ public class Mostpurchaseduser extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 		
@@ -49,10 +52,12 @@ public class Mostpurchaseduser extends HttpServlet {
 			Date todate =  sdf.parse(request.getParameter("toDate"));
 			System.out.println(todate);
 			HttpSession session = request.getSession();			
-			session.setAttribute("fromDate", fromdate);
-			session.setAttribute("toDate", todate);		
-			
-			response.sendRedirect("Mostpurchaseuser.jsp");
+		   	OrderDaoImpl orderdao= new OrderDaoImpl();
+			Product product=orderdao.lowestsaledproduct(fromdate, todate);
+			session.setAttribute("Product", product);
+			System.out.println(product);
+			 
+			response.sendRedirect("lowestsaledproduct.jsp");
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

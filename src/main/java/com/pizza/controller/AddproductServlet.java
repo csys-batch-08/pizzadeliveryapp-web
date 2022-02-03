@@ -1,6 +1,7 @@
 package com.pizza.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -44,18 +45,21 @@ public class AddproductServlet extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub		
+		HttpSession session=request.getSession();
+		
 		String productname=request.getParameter("name");
 		String productsize=request.getParameter("size");	
 		Double productprice=Double.parseDouble(request.getParameter("price"));
 		Product product=new Product(productname,productsize,productprice);
 		ProductDaoImpl dao=new ProductDaoImpl();
 		dao.insertproduct(product);
-		response.sendRedirect("AddDeleteUpdate.jsp");
+		
+		List<Product> adminlist=dao.adiminshowProduct();
+		session.setAttribute("productList", adminlist);
+		
+		response.sendRedirect("adddeleteupdate.jsp");
 
-//		int productid=dao.findProductId(product);
-//		HttpSession session=request.getSession();
-//		session.setAttribute("product_id", productid);	
-//		System.out.println(productid);
+        
 	}
 
 }

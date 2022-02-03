@@ -64,9 +64,9 @@ li a:hover:not(.active) {
 <h3>User List</h3>
 </center>
 <ul>
-<li><a href="AddDeleteUpdate.jsp">Home</a></li>
+<li><a href="adddeleteupdate.jsp">Home</a></li>
 <li><a href="userlist.jsp">Users List</a></li>
-<li style="float:right"><a href="Userlogin.jsp">Logout</a></li>
+<li style="float:right"><a href="userlogin.jsp">Logout</a></li>
 </ul><br><br><br><br>
 <table>
 	<tr>

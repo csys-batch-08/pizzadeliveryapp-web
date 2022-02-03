@@ -1,6 +1,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.pizza.dao.UserDaoImpl"%>
 <%@page import="com.pizza.model.User"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.List"%>
 <%@page import="com.pizza.dao.OrderDaoImpl"%>
 <%@page import="com.pizza.model.Order"%>
@@ -61,7 +62,7 @@ li a:hover:not(.active) {
   background-color: #04AA6D;
 }
 .order{
-	 background-image: url("Images/showorder.jpg");
+	 background-image: url("Assets/Images/showorder.jpg");
     background-repeat: no-repeat;
   background-attachment: fixed;
   background-size: cover;
@@ -71,33 +72,28 @@ li a:hover:not(.active) {
 <body align="center" class="order">
 <h1 align="center"><b>Bill</b></h1>
 <ul>  
-<li><a href="Showproducts.jsp">Home</a></li>
-  <li> <a href="Showorder.jsp">MyOrders</a></li>
+<li><a href="showproducts.jsp">Home</a></li>
+  <li> <a href="showorder.jsp">MyOrders</a></li>
   <li><a href="showcart.jsp">Mycart</a></li>
-  <li> <a href="Userdetails.jsp">Account</a></li>
-  <li><a href="Walletrecharge.jsp">RechargeWallet</a></li>
+  <li> <a href="userdetails.jsp">Account</a></li>
+  <li><a href="walletrecharge.jsp">RechargeWallet</a></li>
   <li style="float:right"><a href="Userlogin.jsp">Logout</a></li>
-  <li><a href="Contect.jsp">Contact</a></li>
+  <li><a href="contect.jsp">Contact</a></li>
 </ul><br><br><br><br>
-			
-		<%		
-		int id=Integer.parseInt(request.getParameter("orderid"));
-		String name=request.getParameter("name");
-		String size=request.getParameter("size");
-		int qty=Integer.parseInt(request.getParameter("quantity"));
-		Double price=Double.parseDouble(request.getParameter("price"));
-		%>
+		
 		<form action="bills">
 		<table>
 		<tr>
-		<td><input type="number" name="id" value="<%=id %>" readonly></td>
-			<td><%=name %></td>
-			<td><%=size %></td>
-			<td><%=qty %></td>
-			<td><%=price %></td>
+		<td><input type="number" name="id" value="${Oid}" readonly></td>
+			<td>${productname}</td>
+			<td>${productsize}</td>
+			<td>${quantity}</td>
+			<td>${productprice}</td>
 		</tr>
-		</table>	<br>
-		<button type="submit" class="btn btn-primary">Take</button>
+		</table><br><br><br>
+		<div align="center">
+		<button type="submit" class="btn btn-primary" >Take</button>
+		</div>
 	</form>
  </body>
 </html>

@@ -1,5 +1,6 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.pizza.dao.OrderDaoImpl"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -38,17 +39,13 @@ li a:hover:not(.active) {
 </head>
 <body class="total">
 <ul>  
-<li><a href="AddDeleteUpdate.jsp">Home</a></li>
- <li style="float:right"><a href="Userlogin.jsp">Logout</a></li>
+<li><a href="adddeleteupdate.jsp">Home</a></li>
+ <li style="float:right"><a href="userlogin.jsp">Logout</a></li>
 </ul><br><br><br>
-		<% Date fromdate=(Date)session.getAttribute("fromDate");
-			Date todate=(Date)session.getAttribute("toDate");
-			OrderDaoImpl orderdao= new OrderDaoImpl();
- 			Double price=orderdao.TotalAmount(fromdate, todate);
-	 %>
+
 	 <form align="center">
 	 <label for="totalprice">Total Sold Rupess</label> <br><br>
-	 <input type="number" name="money" value="<%= price%>" readonly>
+	 <input type="number" name="money" value="${totalprize}" readonly>
 	</form>
  
 </body>
