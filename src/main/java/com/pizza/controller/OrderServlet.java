@@ -1,13 +1,10 @@
 package com.pizza.controller;
 
 import java.io.IOException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
+
 import java.util.List;
 
 import javax.servlet.ServletException;
-import javax.servlet.ServletRequest;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,6 +25,11 @@ import com.pizza.model.User;
  */
 public class OrderServlet extends HttpServlet {
            
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession();
@@ -48,7 +50,6 @@ public class OrderServlet extends HttpServlet {
 		session.setAttribute("price",productprice);				
 				OrderDaoImpl orderdao=new OrderDaoImpl();
 				Order order=new Order(user,pro,quantity,productprice,null);
-				System.out.println(order);
 				int i=orderdao.orderproduct(order);			
 				dao.update(productprice,user.getEmail());			
 				List<Order> orderlist=orderdao.showorder(user);

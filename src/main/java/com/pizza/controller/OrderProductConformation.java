@@ -16,6 +16,11 @@ import com.pizza.model.Product;
 @WebServlet("/OrderProductConformation")
 public class OrderProductConformation extends HttpServlet {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		

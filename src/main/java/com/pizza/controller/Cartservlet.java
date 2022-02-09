@@ -11,10 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.pizza.dao.CartDaoImpl;
-import com.pizza.dao.OrderDaoImpl;
-import com.pizza.dao.UserDaoImpl;
 import com.pizza.model.Cart;
-import com.pizza.model.Order;
 import com.pizza.model.Product;
 import com.pizza.model.User;
 @WebServlet("/cart")
@@ -22,6 +19,11 @@ import com.pizza.model.User;
  * Servlet implementation class Cartservlet
  */
 public class Cartservlet extends HttpServlet {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

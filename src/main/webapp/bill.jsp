@@ -67,10 +67,17 @@ li a:hover:not(.active) {
   background-attachment: fixed;
   background-size: cover;
 }
+.hh{
+  text-align: center;
+}
+.take{
+	  text-align: center;
+	
+}
 </style>
 </head>
 <body align="center" class="order">
-<h1 align="center"><b>Bill</b></h1>
+<h1 class="hh">Bill</h1>
 <ul>  
 <li><a href="showproducts.jsp">Home</a></li>
   <li> <a href="showorder.jsp">MyOrders</a></li>
@@ -92,7 +99,7 @@ li a:hover:not(.active) {
 		</tr>
 		</table><br><br><br>
 		
-		<div align="center">
+		<div class="take">
 		<button type="submit" class="btn btn-primary" >Take</button>
 		</div>
 	</form>

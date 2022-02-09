@@ -1,6 +1,5 @@
 package com.pizza.dao;
 
-import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,7 +9,6 @@ import java.util.List;
 
 import com.pizza.Interface.CartDao;
 import com.pizza.model.Cart;
-import com.pizza.model.Order;
 import com.pizza.model.Product;
 import com.pizza.model.User;
 import com.pizza.utill.ConnectionUtill;
@@ -33,11 +31,9 @@ public class CartDaoImpl implements CartDao {
 			pstmt.setInt(3, carts.getQuantity());
 			pstmt.setDouble(4, carts.getPrice());
 			cart1 = pstmt.executeUpdate();
-			System.out.println("added to cart suuccessfully");
 		} catch (SQLException e) {
 			// catch the exception and get that message
 			e.printStackTrace();
-			System.out.println("Value not Setted in the query");
 		} finally {
 			ConnectionUtill.close(c, pstmt, null);
 		}
@@ -58,7 +54,6 @@ public class CartDaoImpl implements CartDao {
 			rs = pstmt.executeQuery();
 			UserDaoImpl userdao = new UserDaoImpl();
 			ProductDaoImpl productdao = new ProductDaoImpl();
-			OrderDaoImpl orderdao = new OrderDaoImpl();
 			while (rs.next()) {
 				User user1 = userdao.findid(rs.getInt(2));
 				Product product = productdao.findid(rs.getInt(3));
@@ -66,7 +61,6 @@ public class CartDaoImpl implements CartDao {
 				cartList.add(cart);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			ConnectionUtill.close(c, pstmt, rs);
@@ -84,11 +78,8 @@ public class CartDaoImpl implements CartDao {
 			pstmt = c.prepareStatement(deleteQuery);
 			pstmt.setInt(1, deleteid);
 			prod1d = pstmt.executeUpdate();
-			System.out.println("delete");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("error in query");
 		} finally {
 			ConnectionUtill.close(c, pstmt, null);
 		}

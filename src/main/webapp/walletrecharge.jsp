@@ -8,56 +8,14 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Wallet Recharge</title>
-<style>
-
- ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
-
-li {
-
-  float: left;
-  
-}
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-li a:hover:not(.active) {
-  background-color: #111;
-}
-
-.active {
-  background-color: #04AA6D;
-}
-       label{
-            width:130px;
-            display: inline-block;
-        }
-        
-   .recharge{
-	 background-image: url("Assets/Images/money.jpg");
-     background-repeat: no-repeat;
-  	 background-attachment: fixed;
- 	 background-size: cover;
-}
-</style>
+<link rel="stylesheet" type="text/css" href="Assets/css/rechargewallet.css">
 </head>
 <body class="recharge">
 
         <c:if test="${invalidBalance!=null}">
-        <h1 align="center">${invalidBalance}</h1>
+        <h1 class="hh">${invalidBalance}</h1>
         </c:if>   
-<form action="recharge" method="post" align="center">
+<form action="recharge" method="post">
 	<h1>Recharge Your Wallet</h1>
 
 <ul>  

@@ -5,7 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>        
-     <link rel ="icon" href="Images/logopizza.png"; >
+     <link rel ="icon" href="Images/logopizza.png";>
     
 <!DOCTYPE html>
 <html>
@@ -22,9 +22,9 @@
 <li><a href="adddeleteupdate.jsp">Home</a></li>
  <li style="float:right"><a href="userlogin.jsp">Logout</a></li>
 </ul><br><br><br><br>
-<form align="center" action="addproduct" method="post">
+<form action="addproduct" method="post">
 	<div>	
-	 <label for="name">Product Name :</label>
+		<label for="name">Product Name :</label>
         <input type="text" name="name"><br><br>
         <label for="size">Product Size :</label> 
         <input type="text" name="size"><br><br>
@@ -37,7 +37,7 @@
       	<div class="center">
             	</div>
       		<c:if test="${sameproduct !=null}">
-			<h3 align="center">${sameproduct}</h3>
+			<h3>${sameproduct}</h3>
 		</c:if>
 		<c:remove var="sameproduct" scope="session"/>
       <script type="text/javascript">

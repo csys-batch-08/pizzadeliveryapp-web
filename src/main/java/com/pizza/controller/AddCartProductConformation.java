@@ -15,21 +15,22 @@ import com.pizza.model.Product;
  */
 @WebServlet("/AddCartProductConformation")
 public class AddCartProductConformation extends HttpServlet {
-	
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		HttpSession session=request.getSession();	 
-		 
-	   	String name=request.getParameter("productname");
-		 session.setAttribute("pname", name);	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
+		HttpSession session=request.getSession(); 	 		 
+   	   	 String name=request.getParameter("productname");
+		 session.setAttribute("pname", name);
 		 String size=request.getParameter("productsize");
 		 session.setAttribute("psize", size);		 
 		 Double price=Double.parseDouble(request.getParameter("productprice"));  		 
 		 session.setAttribute("pprice", price);	
 		 Product product=new Product(name,size,price);		
-		 session.setAttribute("products", product);		 
-	 
-		 response.sendRedirect("cart.jsp");
+		 session.setAttribute("products", product);		 	 
+		 response.sendRedirect("cart.jsp");  
 	}
-
 }

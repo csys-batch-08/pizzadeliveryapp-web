@@ -1,7 +1,5 @@
 package com.pizza.dao;
 
-import java.sql.Statement;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.Connection;
@@ -10,14 +8,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import com.pizza.Interface.UserDao;
-import com.pizza.model.Product;
 import com.pizza.model.User;
 import com.pizza.utill.ConnectionUtill;
 
 public class UserDaoImpl implements UserDao {
 	public List<User> showuser() {
 		List<User> userlist = new ArrayList<User>();
-		String userquery = "select 	user_id,user_name,phonenumber,email,address,wallet,password,role from users";
+		String userquery = "select user_id,user_name,phonenumber,email,address,wallet,password,role from users";
 		ConnectionUtill con = new ConnectionUtill();
 		Connection c = con.getDbconnection();
 		PreparedStatement pstmt = null;
@@ -33,7 +30,6 @@ public class UserDaoImpl implements UserDao {
 				userlist.add(users);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			ConnectionUtill.close(c, pstmt, rs);
@@ -54,11 +50,8 @@ public class UserDaoImpl implements UserDao {
 			pstmt.setString(4, users.getAddress());
 			pstmt.setString(5, users.getPassword());
 			pstmt.executeUpdate();
-
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-
 		} finally {
 			ConnectionUtill.close(c, pstmt, null);
 		}
@@ -72,16 +65,12 @@ public class UserDaoImpl implements UserDao {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		try {
-
 			pstmt = c.prepareStatement(updateQuery);
 			pstmt.setDouble(1, user.getWallet());
 			pstmt.setString(2, user.getEmail());
 			result = pstmt.executeUpdate();
-
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-
 		} finally {
 			ConnectionUtill.close(c, pstmt, null);
 		}
@@ -96,7 +85,6 @@ public class UserDaoImpl implements UserDao {
 		ResultSet rs = null;
 		PreparedStatement pstmt = null;
 		boolean flag = false;
-
 		try {
 			pstmt = c.prepareStatement(query);
 			pstmt.setString(1, email);
@@ -109,9 +97,7 @@ public class UserDaoImpl implements UserDao {
 				user.setUserid(rs.getInt(1));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			// System.out.println("statement error");
 		} finally {
 			ConnectionUtill.close(c, pstmt, rs);
 		}
@@ -133,7 +119,6 @@ public class UserDaoImpl implements UserDao {
 				userid = rs.getInt(1);
 			}
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} finally {
 			ConnectionUtill.close(c, pstmt, rs);
@@ -157,7 +142,6 @@ public class UserDaoImpl implements UserDao {
 						rs.getDouble(6), rs.getString(8));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			ConnectionUtill.close(c, pstmt, rs);
@@ -181,7 +165,6 @@ public class UserDaoImpl implements UserDao {
 						rs.getDouble(6), rs.getString(8));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			ConnectionUtill.close(c, pstmt, rs);
@@ -206,7 +189,6 @@ public class UserDaoImpl implements UserDao {
 			prodid = pstmt.executeUpdate();
 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 
 		} finally {
@@ -231,7 +213,6 @@ public class UserDaoImpl implements UserDao {
 				useremail = rs.getString(1);
 			}
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} finally {
 			ConnectionUtill.close(c, pstmt, rs);
@@ -242,12 +223,11 @@ public class UserDaoImpl implements UserDao {
 	public int updateuserWallet(User user, double amount) {
 		ConnectionUtill con = new ConnectionUtill();
 		Connection c = con.getDbconnection();
-		String Query = "update users set wallet=wallet+? where email=?";
+		String recharge = "update users set wallet=wallet+? where email=?";
 		PreparedStatement pstmt = null;
 		int i = 0;
 		try {
-			System.out.println(user.getWallet());
-			pstmt = c.prepareStatement(Query);
+			pstmt = c.prepareStatement(recharge);
 			pstmt.setDouble(1, amount);
 			pstmt.setString(2, user.getEmail());
 			i = pstmt.executeUpdate();
@@ -280,13 +260,9 @@ public class UserDaoImpl implements UserDao {
 				pstmt11.setDouble(1, wallet);
 				pstmt11.setString(2, useremail);
 				well = pstmt11.executeUpdate();
-			} else {
-				System.out.println("low balance");
-			}
+			} 
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("error in query");
 		} finally {
 			ConnectionUtill.close(c, pstmt1, rs);
 		}
@@ -303,9 +279,7 @@ public class UserDaoImpl implements UserDao {
 			pstmt = c.prepareStatement(inactive);
 			b = pstmt.executeUpdate() > 0;
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("error in query");
 		} finally {
 			ConnectionUtill.close(c, pstmt, null);
 		}

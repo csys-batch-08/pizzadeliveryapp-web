@@ -1,6 +1,5 @@
 package com.pizza.dao;
 
-import java.sql.Statement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,10 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.pizza.Interface.ProductDao;
-import com.pizza.model.Admin;
 import com.pizza.model.Product;
-import com.pizza.model.User;
-//import com.dao.ConnectionUtill;
 import com.pizza.utill.ConnectionUtill;
 
 public class ProductDaoImpl implements ProductDao {
@@ -34,8 +30,6 @@ public class ProductDaoImpl implements ProductDao {
 				productsList.add(products);
 			}
 		} catch (SQLException e) {
-			System.out.println("error on query");
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			ConnectionUtill.close(c, pstmt, rs);
@@ -60,8 +54,6 @@ public class ProductDaoImpl implements ProductDao {
 				productsList.add(products);
 			}
 		} catch (SQLException e) {
-			System.out.println("error on query");
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			ConnectionUtill.close(c, pstmt, rs);
@@ -82,12 +74,8 @@ public class ProductDaoImpl implements ProductDao {
 			pstmt.setString(2, products.getSize());
 			pstmt.setDouble(3, products.getPrice());
 			i = pstmt.executeUpdate();
-			System.out.println(i + "row inserted");
-			
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("Value not Setted in the query");
 		} finally {
 			ConnectionUtill.close(c, pstmt, null);
 		}
@@ -108,11 +96,8 @@ public class ProductDaoImpl implements ProductDao {
 			pstmt.setString(4, status);
 			pstmt.setInt(5, productid);
 			prodid = pstmt.executeUpdate();
-			System.out.println("updated");
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
-			System.out.println("error in query");
 		} finally {
 			ConnectionUtill.close(c, pstmt, null);
 		}
@@ -124,7 +109,6 @@ public class ProductDaoImpl implements ProductDao {
 		ConnectionUtill con = new ConnectionUtill();
 		Connection c = con.getDbconnection();
 		PreparedStatement pstmt = null;
-		int proId = 0;
 		ResultSet rs = null;
 		Product product2 = null;
 		try {
@@ -136,7 +120,6 @@ public class ProductDaoImpl implements ProductDao {
 				product2 = new Product(rs.getInt(1), product.getProductname(), product.getSize(), rs.getDouble(2));
 			}
 		} catch (SQLException e1) {
-			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		} finally {
 			ConnectionUtill.close(c, pstmt, rs);
@@ -153,16 +136,13 @@ public class ProductDaoImpl implements ProductDao {
 		ResultSet rs = null;
 		try {
 			pstmt = c.prepareStatement(findProductQuery);
-
 			pstmt.setString(1, proname);
 			pstmt.setString(2, prosize);
-
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				product2 = new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			ConnectionUtill.close(c, pstmt, rs);
@@ -184,7 +164,6 @@ public class ProductDaoImpl implements ProductDao {
 				productid1 = new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			ConnectionUtill.close(c, pstmt, rs);
@@ -195,24 +174,20 @@ public class ProductDaoImpl implements ProductDao {
 	public List<Product> productsearch(String search) {
 		List<Product> productsList = new ArrayList<Product>();
 		String query = "select product_id,product_name,product_size,price from products where product_name like '"
-				+ search + "%' and status='Available'";
+					+ search + "%' and status='Available'";
 		ConnectionUtill con = new ConnectionUtill();
 		Connection c = con.getDbconnection();
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		Product products;
-		System.out.println("hi guys");
-		System.out.println(query);
 		try {
 			pstmt = c.prepareStatement(query);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				products = new Product(rs.getString(2), rs.getString(3), rs.getDouble(4));
 				productsList.add(products);
-				System.out.println("search" + productsList);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} finally {
 			ConnectionUtill.close(c, pstmt, rs);

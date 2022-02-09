@@ -13,7 +13,6 @@ import javax.servlet.http.HttpSession;
 import com.pizza.dao.OrderDaoImpl;
 import com.pizza.dao.UserDaoImpl;
 import com.pizza.model.Order;
-import com.pizza.model.Product;
 import com.pizza.model.User;
 @WebServlet("/cancel")
 
@@ -21,6 +20,11 @@ import com.pizza.model.User;
  * Servlet implementation class cancelorder
  */
 public class CancelOrderServlet extends HttpServlet {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

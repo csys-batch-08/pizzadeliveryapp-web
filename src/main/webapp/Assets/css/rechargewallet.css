@@ -1,9 +1,6 @@
 @charset "ISO-8859-1";
- label{
-            width:130px;
-            display: inline-block;
-        }
-	  ul {
+
+ ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -12,7 +9,9 @@
 }
 
 li {
+
   float: left;
+  
 }
 
 li a {
@@ -30,18 +29,20 @@ li a:hover:not(.active) {
 .active {
   background-color: #04AA6D;
 }
-.total {
-	background-image: url("../Images/adminback2.jpg");
-	background-repeat: no-repeat;
-	background-attachment: fixed;
-	background-size: cover;
-}
-.center{
-	text-align: center;
+       label{
+            width:130px;
+            display: inline-block;
+        }
+        
+   .recharge{
+	 background-image: url("../Images/money.jpg");
+     background-repeat: no-repeat;
+  	 background-attachment: fixed;
+ 	 background-size: cover;
 }
 .hh{
-	text-align: center;
+	  text-align: center;
 }
-h3{
-text-align: center;
+form{
+display: inline-block;
 }

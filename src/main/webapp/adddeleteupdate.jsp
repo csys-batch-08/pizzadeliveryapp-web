@@ -24,7 +24,7 @@
 </ul><br>
 
 <div id="sales" class="close">
-<a href="javascript:void(0)" class="closebtn" onclick="closenav()">&#10006</a>
+<a href="javascript:void(0)" class="closebtn" onclick="closenav()">&#10006;</a>
 <a href="totalamount.jsp"> Total Sales</a><br><br>
 <a href="mostsaledproduct.jsp">Most Purchased Product</a><br><br>
 <a href="lowestsaled.jsp">Lowest Purchased Product</a><br><br>
@@ -33,7 +33,7 @@
 
 <span style="font-size: 30px;cursor: pointer;" onclick="opennave()">Sales</span>
 
-<form align="center" method="post">
+<form method="post">
 
 	<table align="center" border="5">
 	<tr>	
@@ -59,10 +59,6 @@
 	<div class="add">
 			<a href="addproduct.jsp"><button class="btn btn-primary">Add Product </button></a>
 			</div>
-			
-		
-			
-
 <script>
 function opennave() {
 	document.getElementById("sales").style.width="250px";

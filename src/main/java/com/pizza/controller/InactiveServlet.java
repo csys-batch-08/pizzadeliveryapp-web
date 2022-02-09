@@ -14,31 +14,36 @@ import javax.servlet.http.HttpSession;
 
 import com.pizza.dao.UserDaoImpl;
 import com.pizza.model.User;
+
 @WebServlet("/inactive")
 
 /**
  * Servlet implementation class InactiveServlet
  */
 public class InactiveServlet extends HttpServlet {
-	
-	@Override
-	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session=request.getSession();
 
-		String email=request.getParameter("id");
-		
-		UserDaoImpl dao=new UserDaoImpl();	
-		boolean b=dao.inactive(email);
-		
-		List<User> userlist=dao.showuser();
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Override
+	protected void service(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		HttpSession session = request.getSession();
+
+		String email = request.getParameter("id");
+
+		UserDaoImpl dao = new UserDaoImpl();
+		boolean b = dao.inactive(email);
+
+		List<User> userlist = dao.showuser();
 		session.setAttribute("userList", userlist);
-		
-		if(b == false) {			
+
+		if (!b) {
 			response.sendRedirect("inactive.jsp");
-		}
-		else {
-		response.sendRedirect("adddeleteupdate.jsp");		
+		} else {
+			response.sendRedirect("adddeleteupdate.jsp");
 		}
 	}
-
 }

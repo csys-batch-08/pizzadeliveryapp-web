@@ -11,17 +11,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.pizza.dao.ProductDaoImpl;
-import com.pizza.dao.UserDaoImpl;
 import com.pizza.exception.SameProductException;
-import com.pizza.model.Admin;
 import com.pizza.model.Product;
-import com.pizza.model.User;
 @WebServlet("/addproduct")
 /**
  * Servlet implementation class AddproductServlet
  */
 public class AddproductServlet extends HttpServlet {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession();

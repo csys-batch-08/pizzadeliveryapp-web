@@ -28,11 +28,7 @@
         <button onclick="demo()">UPDATE</button>
         <button type="reset">RESET</button>
         <a href="AddDeleteUpdate.jsp">BACK</a>
-        <script>
-function demo() {
-alert("product updated successfully");
-}
-</script>
+
  </form>
 </body>
 </html>

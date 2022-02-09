@@ -20,6 +20,11 @@ import com.pizza.model.User;
  */
 public class Deliverdorder extends HttpServlet {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -29,7 +34,6 @@ public class Deliverdorder extends HttpServlet {
 			
 	       
 			int orderid=Integer.parseInt(request.getParameter("id"));	
-			Order order=new Order(orderid,null,null,0,0.0,null,null);
 			OrderDaoImpl dao=new OrderDaoImpl();				
 			dao.orderdelivered(orderid);
 			
