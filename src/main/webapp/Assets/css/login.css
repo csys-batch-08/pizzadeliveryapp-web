@@ -49,8 +49,16 @@ input {
 		rgb(254, 155, 26) 60%);
 	border-radius: 0.4em;
 }
-
 .exception {
 	color: white !important;
 	font-family: comic sans;
+	text-align: center;
+}
+h1{
+	color: white !important;
+	text-align: center;
+}
+h3{
+	color: white !important;
+	text-align: center;
 }

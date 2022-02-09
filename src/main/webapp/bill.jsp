@@ -8,75 +8,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Invoice Bill</title>
-<style type="text/css">
-th{
-             color: black;
-        }
-
-        td {
-                    border: 10px solid gray;
-                    height: 60px;
-                     background-color: white;
-                    text-align: center;
-        }
-        
-table {
-             position: absolute;
-             left:125px;  
-             top:200px;      
-            width: 80%;
-            border-collapse: collapse;           
-            border-top: none;
-        }
-           ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  background-color: #333;
-}
-
-li {
-  float: left;
-}
-
-li a {
-  display: block;
-  color: white;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-li a:hover:not(.active) {
-  background-color: #111;
-}
-
-.active {
-  background-color: #04AA6D;
-}
-.order{
-	 background-image: url("Assets/Images/showorder.jpg");
-    background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-}
-.hh{
-  text-align: center;
-}
-.take{
-	  text-align: center;
-	
-}
-</style>
+<link rel="stylesheet" type="text/css" href="Assets/css/bill.css">
 </head>
-<body align="center" class="order">
+<body  class="order">
 <h1 class="hh">Bill</h1>
 <ul>  
 <li><a href="showproducts.jsp">Home</a></li>

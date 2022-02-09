@@ -2,7 +2,7 @@
     pageEncoding="ISO-8859-1"%>
     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>Inactive</title>
@@ -40,10 +40,13 @@ li a:hover:not(.active) {
 	background-attachment: fixed;
 	background-size: cover;
 }
+h1{
+  text-align: center;
+}
 </style>
 </head>
 <body class="total">
-		<h1 align="center">Inactive User</h1>
+		<h1>Inactive User</h1>
 <ul>  
 <li><a href="adddeleteupdate.jsp">Home</a></li>
  <li style="float:right"><a href="userlogin.jsp">Logout</a></li>

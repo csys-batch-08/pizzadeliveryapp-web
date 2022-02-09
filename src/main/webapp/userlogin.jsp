@@ -1,36 +1,29 @@
-
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-<link rel="icon" href="Images/logopizza.png"; >
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script 	src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+ <link rel="icon" href="Images/logopizza.png"; >
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>LOGIN</title>
 <link rel="stylesheet" type="text/css" href="Assets/css/login.css">
-
 </head>
 <body class="dummySty">
 
 	<div class="exception">
 		<c:if test="${notfound !=null}">
-			<h3 align="center">${notfound}</h3>
+			<h3>${notfound}</h3>
 		</c:if>
 		<c:if test="${Inactiveuser !=null}">
-			<h3 align="center">${Inactiveuser}</h3>
-		</c:if>
-		
-		
+			<h3>${Inactiveuser}</h3>
+		</c:if>		
 	</div>
-	<h1 style="color: white;" align="center">
-		<img src="Assets\Images\logopizza.png" width="150px" height="100px">PizzaHut
+	<h1>
+		<img src="Assets\Images\logopizza.png" width="150px" height="100px"> PizzaHut
 	</h1>
 	<br>
-	<form action="Login" align="center" class="login" method="post">
+	<form action="Login"  class="login" method="post">
 		<div class="log">
 			<h3>Login</h3>
 		</div>
@@ -42,7 +35,7 @@
 		<br>
 		<button class="btn btn-primary" type="submit">Login</button>
 		
-		&nbsp &nbsp &nbsp <a href="index.jsp">I'm New Here</a>
+		&nbsp; &nbsp; &nbsp; <a href="index.jsp">I'm New Here</a>
 	</form>
 </body>
 </html>

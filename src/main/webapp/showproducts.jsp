@@ -10,7 +10,7 @@
         <%@page import=" com.pizza.dao.ProductDaoImpl"%>
         <%@page import="com.pizza.model.Product"%>  
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="ISO-8859-1">
 <title>PRODUCTS</title>
