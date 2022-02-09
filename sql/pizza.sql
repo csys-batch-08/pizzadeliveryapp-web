@@ -8,29 +8,14 @@ create table users
     type varchar2(32) default 'user',
     wallet int default 5000,
     password varchar2(32) not null); 
-commit;
+
+select user_id from users where email='vicky@gmail.com';
 
 select * from users;
 
-update users set wallet=wallet-260 where email='ram@gmail.com';
-select * from users where email='hari@gmail.com' and password='Hari@123';
-delete from users where user_id=63;
-rollback;
-select *  from users ;
+select *  from users;
 
-drop table products CASCADE CONSTRAINTS;
-
---admins table
-create table admins(
-admin_email varchar2(50) unique,
-admin_name varchar2(32) not null,
-password varchar2(12) not null);
-
-insert into admins values('harivignesh@ghmail.com','hari','hari@123');
-
-COMMIT;
-
-select * from admins;
+select user_id,user_name,phonenumber,email,address,wallet,password,role from users where email='vicky@gmail.com' and password='Hari@123';
 
 drop table products CASCADE CONSTRAINTS;
 
@@ -39,33 +24,13 @@ create table products
 (product_id int GENERATED ALWAYS AS IDENTITY START WITH 501 primary key,
 product_name varchar2(32) not null,
 product_size varchar2(32) not null,
-price int not null);  
+price int not null,
+status varchar2(32) default 'Available');  
 
-insert into products(product_name,product_size,price)values('chicken','large',240);
 
 insert into products(product_name,product_size,price)values('corn','large',60);
 
-commit;
-select *from products;
-desc products;
-
 select * from products;
-
-drop table employees CASCADE CONSTRAINTS;
-
-drop table products CASCADE CONSTRAINTS;
-
-----order_items table
---create table orders_items
---(item_id int GENERATED ALWAYS AS IDENTITY START WITH 10001 primary key,
---product_id int not null,
---quantity int not null,
---unit_price int not null, 
---FOREIGN KEY (product_id) REFERENCES products(product_id));
---
---select * from orders_items;
---
---drop table orders_items;
 
 --order table 
 create table orders(order_id int GENERATED ALWAYS AS IDENTITY START WITH 1001 primary key,
@@ -90,22 +55,11 @@ total_prize int not null,
 FOREIGN key (product_id) REFERENCES products(product_id),
 FOREIGN key(user_id) REFERENCES users(user_id)); 
 
+select product_id,product_name,product_size,price from products where product_name like 'fatboy%' where status='unAvailable';
+
 select * from cart;
 
 drop table orders CASCADE CONSTRAINTS;
-
---employee
-create table employees
-(emp_name varchar2(32) not null,
-email varchar2(32) unique not null,
-phone_number int unique,
-password varchar2(32) not null);  
-
-select * from employees;
-
-drop table employees;
-
-insert into employees values('hari','harivignesh4299@gmail.com',9994578532,'Vicky@1234');
 
 --invoice bill
 create table bills(bill_id int GENERATED ALWAYS AS IDENTITY START WITH 5001 primary key,
@@ -119,26 +73,26 @@ FOREIGN key (product_id) REFERENCES products(product_id),
 FOREIGN key(order_id) REFERENCES orders(order_id)); 
 
 commit;
+
 select * from users;
 select * from products;
 select * from orders;
 select * from cart;
 select * from bills;
+
 select user_id,user_name,phonenumber,email,address,wallet,password,role from users;
 
 select u.user_name,u.phonenumber,u.email,u.address,o.product_id,o.quantity,o.total_prize,o.order_date from users u join orders o on u.user_id=o.user_id;
 
 select users.user_name,users.phonenumber,users.email,orders.product_id,orders.quantity,orders.total_prize,orders.order_date from users join orders on users.user_id = orders.user_id;
 
-select * from bills;
-
-desc users;
+select product_id,product_name,product_size,price from products where status='Avilable' and product_name like 'f%' ;
 
 select * from users where email='vicky@gmail.com' and password='Hari@123';
 
-drop table bills CASCADE CONSTRAINTS;
+drop table products CASCADE CONSTRAINTS;
 
-update users set wallet=wallet-3440 where email='vicky@gmail.com';
+update users set wallet=wallet+90 where email='vicky@gmail.com';
 
 commit;
 
@@ -154,7 +108,9 @@ update users set wallet=wallet-12100 where user_id=2;
 select * from orders  where user_id=3;
 
 
-select * from products where product_name like 'c%';
+select * from products where product_name like 'c%' ;
+
+select product_id,product_name,product_size,price,status from products where status='Avilable' order by product_name;
 
 select product_name,products.product_size from products join orders on  products.product_id=;
 
