@@ -1,10 +1,10 @@
 package com.pizza.exception;
 
 public class UserNotFound extends Exception{
-	@Override
+@Override
 public String getMessage() {
 
-	return "Username or password in currect";			
+	return "Username or password incorrect";			
 }	
 	
 }

@@ -71,13 +71,7 @@ li a:hover:not(.active) {
 </head>
 <body style="background-color:lightgreen;" align="center" class="main"> 
 <h1 style="color:white;" align="center"><img src="Assets\Images\logopizza.png" width="150px" height="100px">PizzaHut</h1>
-<% 
-	Product product=new Product();
-	User user=new User();
-	User userdetails=(User) session.getAttribute("user");		
-	UserDaoImpl userdao=new UserDaoImpl();
-	int id=userdao.finduserid(user); 
-%>
+
 <ul>  
 <li><a href="showproducts.jsp">Home</a></li>
   <li> <a href="showorder.jsp?orderId=0">MyOrders</a></li>
@@ -87,7 +81,6 @@ li a:hover:not(.active) {
   <li style="float:right"><a href="userlogin.jsp">Logout</a></li>
   <li><a href="contect.jsp">Contact</a></li>
 </ul><br><br><br><br>
-
 
 		<c:forEach items="${ProductList}" var="obj">
 		<div align="center">

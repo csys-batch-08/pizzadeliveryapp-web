@@ -6,41 +6,11 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>REGISTER</title>
-<style>
- label{
-            width:130px;
-            display: inline-block;
-        }
- .dummySky {
-  background-image: url("Assets/Images/login.jpg");
-    background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover;
-}
-a:hover{
-            text-decoration:none;
-            background-color: white;   
-        }
-        .login{
-    font-family: 'Ubuntu', 'Lato', sans-serif;
-    font-weight: 400;
-    /* Size and position */
-    width: 700px;
-    position: relative;
-    margin: 60px auto 30px;
-    padding : 10px;
-    overflow: hidden;
-	font-color : white;
-    /* Styles */
-	background: linear-gradient(110deg, rgb(255,202,0) 60%,rgb(214,15,54) 60%);    border-radius: 0.4em;
-    box-shadow: 
-        0 16px 10px -8px rgba(0, 0, 0, 0.6);
-}
-</style>
+<link rel="stylesheet" type="text/css" href="Assets/css/index.css">
 </head>
 <body align="center" class="dummySky">                                                                              
 <h1 style="color:white;" align="center"><img src="Assets\Images\logopizza.png" width="150px" height="100px">PizzaHut</h1>
-<form action="Sample" class="login" align="center"><br><br>
+<form action="Sample" class="login" align="center" method="post"><br><br>
                                                           
         <h3>CREATE YOUR OWN ACCOUNT</h3><br>
         <label for="NAME">FIRST NAME :</label>      &nbsp &nbsp &nbsp &nbsp &nbsp

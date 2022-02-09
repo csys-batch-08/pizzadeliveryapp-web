@@ -19,7 +19,7 @@ public class ProductDaoImpl implements ProductDao {
 
 	public List<Product> showProduct() {
 		List<Product> productsList = new ArrayList<Product>();
-		String prod = "select product_id,product_name,product_size,price,status from products where status='Avilable' order by product_name";
+		String prod = "select product_id,product_name,product_size,price,status from products where status='Available' order by product_name";
 		ConnectionUtill con = new ConnectionUtill();
 		Connection c = con.getDbconnection();
 		Product products = null;
@@ -42,7 +42,7 @@ public class ProductDaoImpl implements ProductDao {
 		}
 		return productsList;
 	}
-	
+
 	public List<Product> adiminshowProduct() {
 		List<Product> productsList = new ArrayList<Product>();
 		String prod = "select product_id,product_name,product_size,price,status from products  order by product_name";
@@ -68,19 +68,22 @@ public class ProductDaoImpl implements ProductDao {
 		}
 		return productsList;
 	}
+
 	public int insertproduct(Product products) {
 		ConnectionUtill con = new ConnectionUtill();
 		String query = "insert into products(product_name,product_size,price)values(?,?,?)";
 		Connection c = con.getDbconnection();
 		PreparedStatement pstmt = null;
 		int i = 0;
-		try {
+		try {			
+			
 			pstmt = c.prepareStatement(query);
 			pstmt.setString(1, products.getProductname());
 			pstmt.setString(2, products.getSize());
 			pstmt.setDouble(3, products.getPrice());
 			i = pstmt.executeUpdate();
 			System.out.println(i + "row inserted");
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -192,7 +195,7 @@ public class ProductDaoImpl implements ProductDao {
 	public List<Product> productsearch(String search) {
 		List<Product> productsList = new ArrayList<Product>();
 		String query = "select product_id,product_name,product_size,price from products where product_name like '"
-				+ search + "%'";
+				+ search + "%' and status='Available'";
 		ConnectionUtill con = new ConnectionUtill();
 		Connection c = con.getDbconnection();
 		PreparedStatement pstmt = null;

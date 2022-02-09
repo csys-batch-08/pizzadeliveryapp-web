@@ -34,16 +34,22 @@ li a:hover:not(.active) {
 .active {
   background-color: #04AA6D;
 }
+.total {
+	background-image: url("Assets/Images/adminback2.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
 </style>
 </head>
-<body style="background-color:orange;">
-		<h3 align="center">Delete Product</h3>
+<body class="total">
+		<h1 align="center">Inactive User</h1>
 <ul>  
 <li><a href="adddeleteupdate.jsp">Home</a></li>
  <li style="float:right"><a href="userlogin.jsp">Logout</a></li>
 </ul><br><br><br><br>
 
-<form align="center" action="inactive"> 
+<form align="center" action="inactive" method="post"> 
 	<div>	
 	 <label for="name">User</label>
         <input type="text" name="id" value="${email}" readonly><br><br> 

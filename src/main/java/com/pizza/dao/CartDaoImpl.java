@@ -20,7 +20,6 @@ public class CartDaoImpl implements CartDao {
 		ConnectionUtill con = new ConnectionUtill();
 		Connection c = con.getDbconnection();
 		String cartQuery = "insert into cart(user_id,product_id,quantity,total_prize) values(?,?,?,?)";
-		System.out.println("cart dao");
 		PreparedStatement pstmt = null;
 		int cart1 = 0;
 		try {
@@ -39,9 +38,8 @@ public class CartDaoImpl implements CartDao {
 			// catch the exception and get that message
 			e.printStackTrace();
 			System.out.println("Value not Setted in the query");
-		}
-		finally {
-			ConnectionUtill.close(c, pstmt ,null);
+		} finally {
+			ConnectionUtill.close(c, pstmt, null);
 		}
 		return cart1;
 	}
@@ -54,10 +52,10 @@ public class CartDaoImpl implements CartDao {
 		ConnectionUtill con = new ConnectionUtill();
 		Connection c = con.getDbconnection();
 		PreparedStatement pstmt = null;
-		ResultSet rs = null ;
+		ResultSet rs = null;
 		try {
 			pstmt = c.prepareStatement(query);
-			 rs = pstmt.executeQuery();
+			rs = pstmt.executeQuery();
 			UserDaoImpl userdao = new UserDaoImpl();
 			ProductDaoImpl productdao = new ProductDaoImpl();
 			OrderDaoImpl orderdao = new OrderDaoImpl();
@@ -66,16 +64,13 @@ public class CartDaoImpl implements CartDao {
 				Product product = productdao.findid(rs.getInt(3));
 				Cart cart = new Cart(rs.getInt(1), user1, product, rs.getInt(4), rs.getDouble(5));
 				cartList.add(cart);
-				System.out.println("cartlist" + cartList);
-				System.out.println("cart" + cart);
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		} finally {
+			ConnectionUtill.close(c, pstmt, rs);
 		}
-		finally {
-	    ConnectionUtill.close(c, pstmt ,rs);
-        }
 		return cartList;
 	}
 
@@ -94,10 +89,9 @@ public class CartDaoImpl implements CartDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.out.println("error in query");
+		} finally {
+			ConnectionUtill.close(c, pstmt, null);
 		}
-		finally {
-		    ConnectionUtill.close(c, pstmt ,null);
-	            }
 		return prod1d;
 	}
 

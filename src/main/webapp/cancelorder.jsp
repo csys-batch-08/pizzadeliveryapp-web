@@ -82,7 +82,7 @@ li a:hover:not(.active) {
   <li><a href="contect.jsp">Contact</a></li>
 </ul><br><br><br><br>	
 	
-<form  action="cancel" align="center">
+<form  action="cancel" align="center" method="post">
 	<div align="center">
 	<label for="name" >Order Id</label>
 	<input type="number" name="id" value="${OrderId}"  readonly> <br><br>

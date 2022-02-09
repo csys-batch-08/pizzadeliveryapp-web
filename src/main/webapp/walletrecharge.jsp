@@ -10,7 +10,7 @@
 <title>Wallet Recharge</title>
 <style>
 
-	   ul {
+ ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
@@ -19,7 +19,9 @@
 }
 
 li {
+
   float: left;
+  
 }
 
 li a {
@@ -52,16 +54,9 @@ li a:hover:not(.active) {
 </head>
 <body class="recharge">
 
-  <%String notfound=(String)session.getAttribute("invalidBalance");
-        if(notfound !=null){
-        	%>
-        	<h2 align="center"><%=notfound %></h2>
-        	<%session.removeAttribute("invalidBalance");%>
-       <% } %> 
-       
-      <%--  <c:if test="${lowbalance!=null}">
-        <h1 align="center">${lowbalance}</h1>
-        </c:if> --%>
+        <c:if test="${invalidBalance!=null}">
+        <h1 align="center">${invalidBalance}</h1>
+        </c:if>   
 <form action="recharge" method="post" align="center">
 	<h1>Recharge Your Wallet</h1>
 

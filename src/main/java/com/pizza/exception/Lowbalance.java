@@ -5,6 +5,5 @@ public class Lowbalance  extends Exception{
 public String getMessage() {
 
 	return "Low Balance in Wallet Please Recharge Here";			
-}	
-	
+}		
 }

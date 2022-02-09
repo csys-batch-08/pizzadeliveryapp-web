@@ -81,7 +81,7 @@ li a:hover:not(.active) {
   <li><a href="contect.jsp">Contact</a></li>
 </ul><br><br><br><br>
 		
-		<form action="bills">
+		<form action="bills" method="post">
 		<table>
 		<tr>
 		<td><input type="number" name="id" value="${Oid}" readonly></td>
@@ -91,6 +91,7 @@ li a:hover:not(.active) {
 			<td>${productprice}</td>
 		</tr>
 		</table><br><br><br>
+		
 		<div align="center">
 		<button type="submit" class="btn btn-primary" >Take</button>
 		</div>

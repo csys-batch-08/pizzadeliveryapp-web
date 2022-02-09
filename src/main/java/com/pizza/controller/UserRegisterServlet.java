@@ -19,22 +19,14 @@ import com.pizza.utill.ConnectionUtill;
 @WebServlet("/Sample")
 public class UserRegisterServlet extends HttpServlet{
 
+	
 		@Override
-		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-			// TODO Auto-generated method stub
-			doPost(req, resp);			
-		}		
-		@Override
-		protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub			
-		//	doGet(req, resp);
-			//Connection c = ConnectionUtill.getDbconnection();
+		protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 			String firstname=req.getParameter("firstname");
 			String email=req.getParameter("email");
 			String address=req.getParameter("address");
 			long phonenumber=Long.parseLong(req.getParameter("phonenumber"));
 			String password=req.getParameter("password");
-		//	User user=new User(firstname,phonenumber,email,address,null,password);
 			User user=new User(firstname,phonenumber,email,address, password, 0,"");
 			UserDaoImpl userdao=new UserDaoImpl();
 			userdao.insert(user);

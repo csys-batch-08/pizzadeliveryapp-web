@@ -74,9 +74,10 @@ li a:hover:not(.active) {
 </style>
 </head>
 <body align="center" class="cart">
+<h1><b>MyCart<b></b></h1>
 <table align="center">
 
-			<h1><b>MyCart<b></b></h1>
+			
 <ul>  
 <li><a href="showproducts.jsp">Home</a></li>
   <li> <a href="showorder.jsp?orderId=0">MyOrders</a></li>
@@ -88,9 +89,9 @@ li a:hover:not(.active) {
 </ul><br><br><br><br>
 	<tr>	
 		<th>Cart Id</th>
-		<th>product name</th>
-		<th>product size</th>
-		<th>product price</th>
+		<th>Product Name</th>
+		<th>Product Size</th>
+		<th>Product Price</th>
 		<th>Order</th>
 		<th>Remove</th>
 	</tr>	
@@ -101,7 +102,7 @@ li a:hover:not(.active) {
 		<td>${obj.product.productname}</td>
 		<td>${obj.product.size}</td>
 		<td>${obj.product.price}</td>			
-		<td><a href="OrderProductConformation?productname=${obj.product.productname}&productsize=${obj.product.size}&productprice=${obj.product.price}">order</a> </td> <br><br> 
+		<td><a href="OrderProductConformation?productname=${obj.product.productname}&productsize=${obj.product.size}&productprice=${obj.product.price}">Order</a> </td> <br><br> 
 		<td><a href="Deletecart?cartid=${obj.id}" >Remove</a></td> 
 		</tr>		
 		</c:forEach>

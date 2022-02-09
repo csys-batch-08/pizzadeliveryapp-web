@@ -13,7 +13,7 @@
 </style>
 </head>
 <body>
-	<form align="center" action="updateproduct">
+	<form align="center" action="updateproduct" method="post"> 
 		<h3>change your details</h3>
         <label for="name"> name :</label>
         <input type="text" name="name"><br><br>

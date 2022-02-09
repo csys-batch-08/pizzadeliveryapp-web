@@ -1,0 +1,56 @@
+@charset "ISO-8859-1";
+
+a:hover {
+	text-decoration: none;
+	background-color: white;
+}
+
+label {
+	width: 130px;
+	display: inline-block;
+}
+
+.dummySty {
+	background-image: url("../Images/login.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+.login {
+	font-family: 'Ubuntu', 'Lato', sans-serif;
+	font-weight: 400;
+	/* Size and position */
+	width: 300px;
+	position: relative;
+	margin: 60px auto 30px;
+	padding: 10px;
+	overflow: hidden;
+	color: white;
+	/* Styles */
+	background: linear-gradient(110deg, rgb(254, 155, 26) 60%,
+		rgb(231, 35, 57) 60%);
+	border-radius: 0.4em;
+	box-shadow: 8px 10px 8px rgba(0, 0, 0, 0.6);
+}
+
+label {
+	font-family: comic sans;
+	color: white !important;
+}
+
+input {
+	border-radius: 0.4em;
+}
+
+.log {
+	font-family: sans-serif;
+	background: linear-gradient(110deg, rgb(254, 155, 26) 60%,
+		rgb(254, 155, 26) 60%);
+	border-radius: 0.4em;
+}
+
+.exception {
+	color: white !important;
+	font-family: comic sans;
+}

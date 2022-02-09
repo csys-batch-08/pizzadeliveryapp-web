@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import com.pizza.dao.ProductDaoImpl;
 import com.pizza.dao.UserDaoImpl;
+import com.pizza.exception.SameProductException;
 import com.pizza.model.Admin;
 import com.pizza.model.Product;
 import com.pizza.model.User;
@@ -20,30 +21,8 @@ import com.pizza.model.User;
  * Servlet implementation class AddproductServlet
  */
 public class AddproductServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public AddproductServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-    
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doPost(request, response);
-		
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub		
 		HttpSession session=request.getSession();
 		
@@ -52,14 +31,26 @@ public class AddproductServlet extends HttpServlet {
 		Double productprice=Double.parseDouble(request.getParameter("price"));
 		Product product=new Product(productname,productsize,productprice);
 		ProductDaoImpl dao=new ProductDaoImpl();
-		dao.insertproduct(product);
-		
 		List<Product> adminlist=dao.adiminshowProduct();
-		session.setAttribute("productList", adminlist);
-		
-		response.sendRedirect("adddeleteupdate.jsp");
-
-        
+		try {
+		for(int i=0;i<adminlist.size();i++) 
+		{
+		if(adminlist.get(i).getProductname().equalsIgnoreCase(productname) && adminlist.get(i).getSize().equalsIgnoreCase(productsize)) 
+			{
+	     	dao.insertproduct(product);		
+	    	session.setAttribute("productList", adminlist);		
+		    response.sendRedirect("adddeleteupdate.jsp");
+			}
+			else {
+				throw new SameProductException();
+			     }
+		}
+		}
+		 catch (SameProductException s){
+	    		   session.setAttribute("sameproduct", s.getMessage());
+	        	   response.sendRedirect("addproduct.jsp");
+	    	   }
+	    	
 	}
 
 }

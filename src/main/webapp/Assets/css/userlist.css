@@ -1,0 +1,52 @@
+@charset "ISO-8859-1";
+
+th{
+             background-color: gray;
+             color: black;
+            height: 60px;
+            border: 1px solid black;
+        }
+
+        td {
+        height:20px;
+            text-align: center;
+            border: 1px solid black;
+        }
+        
+table {
+             position: absolute;
+             left:125px;  
+             top:200px;      
+            width: 80%;
+            border-collapse: collapse;           
+            border-top: none;
+        }
+					  ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+.hh{
+	text-align: center;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+.admin{
+		background: linear-gradient(110deg, gray 60%, white 60%);
+}

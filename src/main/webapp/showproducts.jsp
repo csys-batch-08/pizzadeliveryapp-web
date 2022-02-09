@@ -43,7 +43,8 @@ table {
 
 li {
   float: left;
-}
+  color: white;
+   }
 li a {
   display: block;
   color: white;
@@ -93,22 +94,27 @@ span:hover {
   <li style="float:right"><a href="userlogin.jsp">Logout</a></li>
   <li><a href="contect.jsp">Contact</a></li>
 </ul>
-
 <div id="searchbar">
 <form action="SearchProductServlet" > 
-<input type="text" name="search" placeholder="Search" required> &nbsp<button class="btn btn-primary" type="submit">&#128269;</button>
-  </form> 
-  
+<input type="text" name="search" placeholder="Search" required> &nbsp;<button class="btn btn-primary" type="submit">&#128269;</button>
+  </form>
   </div><br><br><br>
-		<c:forEach items="${productlist}" var="obj">
-		<div align="center">
-	<span class="bounce_button"><img src="Assets\Images\<c:out value="${obj.productname}"></c:out>.jpg" alt="img" width=300px height=175px class="bounce"></span><br>
-		<b style="color:white;"><c:out value="${obj.productname}"></c:out></b>&nbsp &nbsp
-		<b style="color:white;"><c:out value="${obj.size}"></c:out></b>   &nbsp &nbsp &nbsp
-		<b style="color:white;"><c:out value="${obj.price}"></c:out> Rs</b><br> <br>	&nbsp &nbsp 
- 	  	<a href="AddCartProductConformation?productname=${obj.productname}&productsize=${obj.size}&productprice=${obj.price}"><button class="btn btn-primary">cart</button></a>   &nbsp &nbsp &nbsp		
- 		<a href="OrderProductConformation?productname=${obj.productname}&productsize=${obj.size}&productprice=${obj.price}"><button class="btn btn-primary">order</button></a>   <br><br><br><br> 
-		</div>
+  <div align="center">
+		<c:forEach items="${productlist}" var="obj">		
+
+	<img src="Assets\Images\<c:out value="${obj.productname}"></c:out>.jpg" alt="img" width=300px height=175px class="bounce"><br>
+		
+		<b style="color:white;"><c:out value="${obj.productname}"></c:out></b> &nbsp; &nbsp;
+		
+		<b style="color:white;"><c:out value="${obj.size}"></c:out></b>   &nbsp; &nbsp; &nbsp;
+		
+		<b style="color:white;"><c:out value="${obj.price}"></c:out> Rs</b><br> <br>	&nbsp; &nbsp; 
+		
+ 	  	<a href="AddCartProductConformation?productname=${obj.productname}&productsize=${obj.size}&productprice=${obj.price}"><button class="btn btn-primary">cart</button></a>   &nbsp; &nbsp; &nbsp;		
+ 		<a href="OrderProductConformation?productname=${obj.productname}&productsize=${obj.size}&productprice=${obj.price}"><button class="btn btn-primary">order</button></a>   <br><br><br><br> 		
+
 		</c:forEach>
+</div>
+
 </body>
 </html>

@@ -82,6 +82,7 @@ public class User {
 		this.type=type;
 	}
 	
+	
 	@Override
 	public String toString() {
 		return "User [userid=" + userid + ", username=" + username + ", phonenumber=" + phonenumber + ", email=" + email

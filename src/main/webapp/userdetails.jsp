@@ -41,10 +41,25 @@ li a:hover:not(.active) {
             width:400px;
             display: inline-block;
         }
+ .myDiv{
+ 	text-align: center;
+ 	display: block;
+ }
+ .back
+ {
+ 	background-image: url("Assets/Images/adminback2.jpg");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+ }
+ 
+.title{
+	text-align: center;
+}
 </style>
 </head>
-<body align="center" style="background-color:pink;">
-<h1>My Details</h1>
+<body class="back">
+<h1 class="title">My Details</h1>
 <ul>  
 <li><a href="showproducts.jsp">Home</a></li>
   <li> <a href="showorder.jsp">MyOrders</a></li>
@@ -54,8 +69,8 @@ li a:hover:not(.active) {
   <li><a href="contect.jsp">Contact</a></li>
   <li style="float:right"><a href="userlogin.jsp">Logout</a></li>
 </ul><br><br>
-	<div class="myDiv" >
-	<h3>NAME - </h3><c:out value="${user.username }"></c:out>
+	<div class="myDiv">
+	<h3>NAME - </h3><c:out value="${user.username}"></c:out>
 	<h3>E-MAIL - </h3><c:out value="${user.email}"></c:out>
 	<h3>PHONENUMBER - </h3><c:out value="${user.phonenumber}"></c:out>
 	<h3>ADDRESS - </h3><c:out value="${user.address}"></c:out>

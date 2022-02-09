@@ -21,17 +21,16 @@ public class InvoicebillDaoImpl implements InvoicebillDao {
 		String showQuery = "select u.user_name,u.phonenumber,u.email,u.address,o.product_id,o.quantity,o.total_prize,o.order_date from users u join orders o on u.user_id=o.user_id";
 		ConnectionUtill con = new ConnectionUtill();
 		Connection c = con.getDbconnection();
-		PreparedStatement pstmt = null ;
+		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
-			 pstmt = c.prepareStatement(showQuery);
+			pstmt = c.prepareStatement(showQuery);
 			rs = pstmt.executeQuery();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		finally {
-			ConnectionUtill.close(c, pstmt ,rs);
+		} finally {
+			ConnectionUtill.close(c, pstmt, rs);
 		}
 		return rs;
 	}
@@ -43,16 +42,15 @@ public class InvoicebillDaoImpl implements InvoicebillDao {
 		int i = 0;
 		PreparedStatement pstmt = null;
 		try {
-			 pstmt = c.prepareStatement(insertQuery);
+			pstmt = c.prepareStatement(insertQuery);
 			i = pstmt.executeUpdate();
 			System.out.println(i + "inserted");
 
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		finally {
-			ConnectionUtill.close(c, pstmt ,null);
+		} finally {
+			ConnectionUtill.close(c, pstmt, null);
 		}
 		return i;
 	}

@@ -1,0 +1,52 @@
+@charset "ISO-8859-1";
+	  ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
+}
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+li a:hover:not(.active) {
+  background-color: #111;
+}
+
+.active {
+  background-color: #04AA6D;
+}
+ label{
+            width:130px;
+            display: inline-block;
+        }       
+ .login{
+    font-family: 'Ubuntu', 'Lato', sans-serif;
+    font-weight: 400;
+    /* Size and position */
+    width: 300px;
+    position: relative;
+    margin: 60px auto 30px;
+    padding : 10px;
+    overflow: hidden;
+	
+    /* Styles */
+	background: linear-gradient(110deg, white 60%,gray 60%);    border-radius: 0.4em;
+    box-shadow: 
+        0 16px 10px -8px rgba(0, 0, 0, 0.6);
+}
+.update{
+		background: linear-gradient(110deg, gray 50%, white 50%);
+}
+.hh{
+	text-align: center;
+}

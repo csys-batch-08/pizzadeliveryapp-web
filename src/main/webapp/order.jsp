@@ -68,7 +68,7 @@ li a:hover:not(.active) {
   <li><a href="contect.jsp">Contact</a></li>
 </ul><br><br><br><br>
 
-<form action="order" align="center">
+<form action="order" align="center" method="post">
   
   	<div> 
 		<label for="productid">product name :</label>

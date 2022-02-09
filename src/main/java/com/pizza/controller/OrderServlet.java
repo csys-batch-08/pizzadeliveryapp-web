@@ -33,10 +33,9 @@ public class OrderServlet extends HttpServlet {
 		HttpSession session=request.getSession();
 		
 		User user=(User) session.getAttribute("user");
-		System.out.println("order user "+ user);		
+
 		
-		ProductDaoImpl productdao=new ProductDaoImpl();
-	
+		ProductDaoImpl productdao=new ProductDaoImpl();	
 		Product product=(Product) session.getAttribute("products");
 		Product pro=productdao.findProductId(product);
 		session.setAttribute("productid",pro);
@@ -54,16 +53,18 @@ public class OrderServlet extends HttpServlet {
 				Order order=new Order(user,pro,quantity,productprice,null);
 				System.out.println(order);
 				int i=orderdao.orderproduct(order);
+				
 				dao.update(productprice,user.getEmail());
 							
-				user.setWallet(user.getWallet()-productprice);
-				session.setAttribute("user", user);
+					
 				
 				List<Order> orderlist=orderdao.showorder(user);
-				session.setAttribute("orderList", orderlist);	
-				
+				session.setAttribute("orderList", orderlist);					
 		         try{
 				if(i>0) {
+					user.setWallet(user.getWallet()-productprice);
+					session.setAttribute("user", user);	
+					
 					response.sendRedirect("showproducts.jsp");
 				}
 				else {		
@@ -72,7 +73,8 @@ public class OrderServlet extends HttpServlet {
 				}
 			catch(Lowbalance l) {
 				session.setAttribute("invalidBalance", l.getMessage());
-				response.sendRedirect("walletrecharge.jsp");			
+				response.sendRedirect("walletrecharge.jsp");	
+				
 		}			
 	}
 }

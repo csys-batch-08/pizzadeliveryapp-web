@@ -36,28 +36,28 @@ table {
 	border-top: none;
 }
 
-ul {
-	list-style-type: none;
-	margin: 0;
-	padding: 0;
-	overflow: hidden;
-	background-color: #333;
+          ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #333;
 }
 
 li {
-	float: left;
+  float: left;
 }
 
 li a {
-	display: block;
-	color: white;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
 }
 
 li a:hover:not(.active) {
-	background-color: #111;
+  background-color: #111;
 }
 
 .active {
@@ -90,12 +90,12 @@ li a:hover:not(.active) {
 		<br>
 		<tr>
 			<th>Order Id</th>
-			<th>product name</th>
-			<th>product size</th>
-			<th>product price</th>
-			<th>quantity</th>
-			<th>date</th>
-			<th>status</th>
+			<th>Product Name</th>
+			<th>Product Size</th>
+			<th>Product Price</th>
+			<th>Quantity</th>
+			<th>Date</th>
+			<th>Status</th>
 			<th>Cancel Order</th>
 			<th>Bill</th>
 		</tr>
@@ -108,11 +108,11 @@ li a:hover:not(.active) {
 				<td>${obj.quantity}</td>
 				<td>${obj.orderdate}</td>
 				<td>${obj.status}</td>
-<%-- 				<c:if test=${obj.status != obj.status.delivered}>
- --%>					<td><a href="BillDeliverdConformation?orderid=${obj.orderid}&name=${obj.product.productname}&size=${obj.product.size}&quantity=${obj.quantity}&price=${obj.price}&date=${obj.orderdate}">bill</a></td>	<br><br>
-					<td><a href="CancelOrderConformation?orderId=${obj.orderid}&amount=${obj.price}">cancel</a></td>
-				
-
+				<td><c:if test="${obj.status == 'pending' }"><a href="BillDeliverdConformation?orderid=${obj.orderid}&name=${obj.product.productname}&size=${obj.product.size}&quantity=${obj.quantity}&price=${obj.price}&date=${obj.orderdate}">bill</a></c:if></td>	<br><br>
+				<td><c:if test="${obj.status == 'pending'}"><a href="CancelOrderConformation?orderId=${obj.orderid}&amount=${obj.price}">cancel</a></c:if></td>
+<%-- 					<td><c:if test="${obj.status == 'delivered'}"><a href="BillDeliverdConformation?orderid=${obj.orderid}&name=${obj.product.productname}&size=${obj.product.size}&quantity=${obj.quantity}&price=${obj.price}&date=${obj.orderdate}">bill</a></c:if></td>	<br><br>
+ --%>					
+	
 			</tr>
 		</c:forEach>
 	</table>
