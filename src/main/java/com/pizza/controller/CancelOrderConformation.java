@@ -14,8 +14,8 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/CancelOrderConformation")
 public class CancelOrderConformation extends HttpServlet {
 	
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	HttpSession session=request.getSession();	 
 		 
 	 int orderid=Integer.parseInt(request.getParameter("orderId"));  

@@ -19,8 +19,8 @@ import com.pizza.model.Product;
 @WebServlet("/SearchProductServlet")
 public class SearchProductServlet extends HttpServlet {
 	
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		HttpSession session=request.getSession();	
 		
 		ProductDaoImpl dao=new ProductDaoImpl();

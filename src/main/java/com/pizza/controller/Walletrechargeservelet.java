@@ -16,11 +16,10 @@ import com.pizza.model.User;
  */
 public class Walletrechargeservelet extends HttpServlet {
 	
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 
 		Double amount=Double.parseDouble(request.getParameter("recharge"));
-		System.out.println(amount);
 		HttpSession session=request.getSession();
 		User user=(User)session.getAttribute("user");
 		
@@ -30,8 +29,7 @@ public class Walletrechargeservelet extends HttpServlet {
      	if(result == 0)
      	{ 
      		user.setWallet(user.getWallet()-amount);
-     	}   
-     	
+     	}       	
      	session.setAttribute("User", user);
 		response.sendRedirect("showproducts.jsp");
 	}

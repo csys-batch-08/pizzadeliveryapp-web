@@ -28,8 +28,8 @@ import com.pizza.model.User;
  */
 public class OrderServlet extends HttpServlet {
            
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		HttpSession session=request.getSession();
 		
 		User user=(User) session.getAttribute("user");
@@ -41,23 +41,16 @@ public class OrderServlet extends HttpServlet {
 		session.setAttribute("productid",pro);
 				
 		int quantity=Integer.parseInt(request.getParameter("qty"));
-		System.out.println(quantity);	
 		
 		Double productprice=Double.parseDouble(request.getParameter("price"));
-		System.out.println(productprice);
 		
 		UserDaoImpl dao=new UserDaoImpl();
-		session.setAttribute("price",productprice);		
-		
+		session.setAttribute("price",productprice);				
 				OrderDaoImpl orderdao=new OrderDaoImpl();
 				Order order=new Order(user,pro,quantity,productprice,null);
 				System.out.println(order);
-				int i=orderdao.orderproduct(order);
-				
-				dao.update(productprice,user.getEmail());
-							
-					
-				
+				int i=orderdao.orderproduct(order);			
+				dao.update(productprice,user.getEmail());			
 				List<Order> orderlist=orderdao.showorder(user);
 				session.setAttribute("orderList", orderlist);					
 		         try{

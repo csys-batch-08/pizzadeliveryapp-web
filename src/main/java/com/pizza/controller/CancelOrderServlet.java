@@ -22,9 +22,9 @@ import com.pizza.model.User;
  */
 public class CancelOrderServlet extends HttpServlet {
 
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
+		
         HttpSession session=request.getSession();	
        
 		int orderid=Integer.parseInt(request.getParameter("id"));	

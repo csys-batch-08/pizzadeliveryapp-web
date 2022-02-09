@@ -14,8 +14,8 @@ import javax.servlet.http.HttpSession;
 @WebServlet("/UpdateProductConformation")
 public class UpdateProductConformation extends HttpServlet {
 	
+		@Override
 		protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub 
 		 HttpSession session=request.getSession();	 
 	   	int productid=Integer.parseInt(request.getParameter("Pid"));  		 
 		 session.setAttribute("id", productid);		

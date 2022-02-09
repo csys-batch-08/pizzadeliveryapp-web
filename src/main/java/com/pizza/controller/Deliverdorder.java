@@ -20,8 +20,8 @@ import com.pizza.model.User;
  */
 public class Deliverdorder extends HttpServlet {
 	
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		
 		 HttpSession session=request.getSession();	
 		 

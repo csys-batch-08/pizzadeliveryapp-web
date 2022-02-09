@@ -22,8 +22,8 @@ import com.pizza.model.User;
  */
 public class AddproductServlet extends HttpServlet {
 	
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub		
 		HttpSession session=request.getSession();
 		
 		String productname=request.getParameter("name");
@@ -32,6 +32,7 @@ public class AddproductServlet extends HttpServlet {
 		Product product=new Product(productname,productsize,productprice);
 		ProductDaoImpl dao=new ProductDaoImpl();
 		List<Product> adminlist=dao.adiminshowProduct();
+		
 		try {
 		for(int i=0;i<adminlist.size();i++) 
 		{

@@ -21,26 +21,22 @@ import com.pizza.model.Product;
  */
 public class MostSaledProductServlet extends HttpServlet {
 	
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			Date fromdate = sdf.parse(request.getParameter("fromDate"));
-			System.out.println(fromdate);
 			Date todate =  sdf.parse(request.getParameter("toDate"));
-			System.out.println(todate);
 			HttpSession session = request.getSession();			
 
 		   	OrderDaoImpl orderdao= new OrderDaoImpl();
 			Product product=orderdao.mostsaledproduct(fromdate, todate);
 			session.setAttribute("Product", product);
-			System.out.println(product);
 			
 			response.sendRedirect("mostsuccessproduct.jsp");
 
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

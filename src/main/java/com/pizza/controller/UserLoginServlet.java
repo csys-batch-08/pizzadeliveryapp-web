@@ -28,19 +28,17 @@ import com.pizza.model.User;
  */
 public class UserLoginServlet extends HttpServlet {
 
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		HttpSession session=request.getSession();
 		
 		String email=request.getParameter("email");		
-		System.out.println(email);
 		
 		String password=request.getParameter("password");
-		System.out.println(password);		
 		UserDaoImpl userdao=new UserDaoImpl();		
 		User user = userdao.validateUser(email, password);	
 		session.setAttribute("user",user);
-		System.out.println(user);
 		ProductDaoImpl dao=new ProductDaoImpl();		
 		try {
 			if(user!=null) 

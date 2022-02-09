@@ -19,16 +19,14 @@ import com.pizza.dao.OrderDaoImpl;
  */
 public class TotalAmountServlet extends HttpServlet {
 
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		//doGet(request, response);
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 		
 			Date fromdate =(Date) sdf.parse(request.getParameter("fromDate"));
-			System.out.println(fromdate);
 			Date todate = (Date) sdf.parse(request.getParameter("toDate"));
-			System.out.println(todate);
 			HttpSession session = request.getSession();			
 			
 			OrderDaoImpl orderdao= new OrderDaoImpl();
@@ -38,7 +36,6 @@ public class TotalAmountServlet extends HttpServlet {
 			response.sendRedirect("totalamountsales.jsp");
 
 		} catch (ParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}

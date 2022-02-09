@@ -14,8 +14,8 @@ import javax.servlet.http.HttpSession;
  */
 @WebServlet("/InactiveUserServlet")
 public class InactiveUserServlet extends HttpServlet {
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		 HttpSession session=request.getSession();	
 		 
 		 String Email=request.getParameter("email"); 

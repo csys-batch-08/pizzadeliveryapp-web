@@ -21,14 +21,12 @@ import com.pizza.model.User;
  */
 public class InactiveServlet extends HttpServlet {
 	
+	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		HttpSession session=request.getSession();
 
 		String email=request.getParameter("id");
-		System.out.println("email id"+email);
 		
-		User user=new User("",0,email,"", "", 0,"");
 		UserDaoImpl dao=new UserDaoImpl();	
 		boolean b=dao.inactive(email);
 		
