@@ -34,7 +34,7 @@ public class OrderProductConformation extends HttpServlet {
 		 session.setAttribute("pprice", price);	
 		 
 		 Product product=new Product(name,size,price);		
-		 session.setAttribute("products", product);		 
+		 request.setAttribute("products", product);		 
 	 
 		 response.sendRedirect("order.jsp");
 		

@@ -43,7 +43,7 @@ public class UserLoginServlet extends HttpServlet {
 		String password=request.getParameter("password");
 		UserDaoImpl userdao=new UserDaoImpl();		
 		User user = userdao.validateUser(email, password);	
-		session.setAttribute("user",user);
+		request.setAttribute("user",user);
 		ProductDaoImpl dao=new ProductDaoImpl();		
 		try {
 			if(user!=null) 
@@ -52,25 +52,25 @@ public class UserLoginServlet extends HttpServlet {
 			{			
 				
 			List<Product> adminlist=dao.adiminshowProduct();
-			session.setAttribute("productList", adminlist); 
+			request.setAttribute("productList", adminlist); 
 		                                                   
 			List<User> userlist=userdao.showuser();
-			session.setAttribute("userList", userlist);
+			request.setAttribute("userList", userlist);
 			response.sendRedirect("adddeleteupdate.jsp");
 	   	}	
 		else if(user.getType().equals("user")) 
 		{			  
 			
 			List<Product> list=dao.showProduct();
-			session.setAttribute("productlist", list);
+			request.setAttribute("productlist", list);
 			
 			OrderDaoImpl orderdao=new OrderDaoImpl();
 			List<Order> orderlist=orderdao.showorder(user);
-			session.setAttribute("orderList", orderlist);
+			request.setAttribute("orderList", orderlist);
 			
 			CartDaoImpl cartdao=new CartDaoImpl();
 			List<Cart> cartlist=cartdao.showcart(user);
-			session.setAttribute("cartList", cartlist);
+			request.setAttribute("cartList", cartlist);
 			
 			response.sendRedirect("showproducts.jsp");		
 		}

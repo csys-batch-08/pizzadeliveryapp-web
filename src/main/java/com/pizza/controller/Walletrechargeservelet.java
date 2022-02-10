@@ -35,7 +35,7 @@ public class Walletrechargeservelet extends HttpServlet {
      	{ 
      		user.setWallet(user.getWallet()-amount);
      	}       	
-     	session.setAttribute("User", user);
+     	request.setAttribute("User", user);
 		response.sendRedirect("showproducts.jsp");
 	}
 }

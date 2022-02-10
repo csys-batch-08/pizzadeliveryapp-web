@@ -40,7 +40,7 @@ public class OrderServlet extends HttpServlet {
 		ProductDaoImpl productdao=new ProductDaoImpl();	
 		Product product=(Product) session.getAttribute("products");
 		Product pro=productdao.findProductId(product);
-		session.setAttribute("productid",pro);
+		request.setAttribute("productid",pro);
 				
 		int quantity=Integer.parseInt(request.getParameter("qty"));
 		
@@ -53,12 +53,11 @@ public class OrderServlet extends HttpServlet {
 				int i=orderdao.orderproduct(order);			
 				dao.update(productprice,user.getEmail());			
 				List<Order> orderlist=orderdao.showorder(user);
-				session.setAttribute("orderList", orderlist);					
+				request.setAttribute("orderList", orderlist);					
 		         try{
 				if(i>0) {
 					user.setWallet(user.getWallet()-productprice);
-					session.setAttribute("user", user);	
-					
+					request.setAttribute("user", user);						
 					response.sendRedirect("showproducts.jsp");
 				}
 				else {		

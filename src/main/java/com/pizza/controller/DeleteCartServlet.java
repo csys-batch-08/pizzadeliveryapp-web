@@ -32,12 +32,11 @@ public class DeleteCartServlet extends HttpServlet {
 		User user=(User) session.getAttribute("user");
 		
 		int cartid=Integer.parseInt(request.getParameter("cartid"));		
-		System.out.println("id"+cartid);
 		
 		CartDaoImpl dao=new CartDaoImpl();
 		dao.delete(cartid);
 		List<Cart> cartlist=dao.showcart(user);
-		session.setAttribute("cartList", cartlist);
+		request.setAttribute("cartList", cartlist);
 		response.sendRedirect("showcart.jsp");
 	}
 
