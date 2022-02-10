@@ -22,7 +22,7 @@
 	<br>
 	<br>
 	<form align="center" method="post">
-		<label for="name">Product Name</label> <input type="text" name="name" value="${Product.productname}" readonly><br>
+		<label for="name">Product Name</label> <input type="text" name="name" value="${Product.productName}" readonly><br>
 		<br> 
 		<label for="size">Product Size</label> 
 		<input type="text" name="size" value="${Product.size}" readonly><br>

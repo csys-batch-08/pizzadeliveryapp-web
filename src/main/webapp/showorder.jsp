@@ -101,15 +101,15 @@ li a:hover:not(.active) {
 		</tr>
 		<c:forEach items="${orderList}" var="obj">
 			<tr>
-				<td>${obj.orderid}</td>
-				<td>${obj.product.productname}</td>
+				<td>${obj.orderId}</td>
+				<td>${obj.product.productName}</td>
 				<td>${obj.product.size}</td>
-				<td>${obj.price}</td>
+				<td>${obj.price} Rs</td>
 				<td>${obj.quantity}</td>
-				<td>${obj.orderdate}</td>
+				<td>${obj.orderDate}</td>
 				<td>${obj.status}</td>
-				<td><c:if test="${obj.status == 'pending' }"><a href="BillDeliverdConformation?orderid=${obj.orderid}&name=${obj.product.productname}&size=${obj.product.size}&quantity=${obj.quantity}&price=${obj.price}&date=${obj.orderdate}">bill</a></c:if></td>	<br><br>
-				<td><c:if test="${obj.status == 'pending'}"><a href="CancelOrderConformation?orderId=${obj.orderid}&amount=${obj.price}">cancel</a></c:if></td>
+				<td><c:if test="${obj.status == 'pending' }"><a href="BillDeliverdConformation?orderid=${obj.orderId}&name=${obj.product.productName}&size=${obj.product.size}&quantity=${obj.quantity}&price=${obj.price}&date=${obj.orderDate}">bill</a></c:if></td>	<br><br>
+				<td><c:if test="${obj.status == 'pending'}"><a href="CancelOrderConformation?orderId=${obj.orderId}&amount=${obj.price}">cancel</a></c:if></td>
 <%-- 					<td><c:if test="${obj.status == 'delivered'}"><a href="BillDeliverdConformation?orderid=${obj.orderid}&name=${obj.product.productname}&size=${obj.product.size}&quantity=${obj.quantity}&price=${obj.price}&date=${obj.orderdate}">bill</a></c:if></td>	<br><br>
  --%>					
 	

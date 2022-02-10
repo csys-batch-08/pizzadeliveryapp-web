@@ -70,7 +70,7 @@ public class ProductDaoImpl implements ProductDao {
 		try {			
 			
 			pstmt = c.prepareStatement(query);
-			pstmt.setString(1, products.getProductname());
+			pstmt.setString(1, products.getProductName());
 			pstmt.setString(2, products.getSize());
 			pstmt.setDouble(3, products.getPrice());
 			i = pstmt.executeUpdate();
@@ -113,11 +113,11 @@ public class ProductDaoImpl implements ProductDao {
 		Product product2 = null;
 		try {
 			pstmt = c.prepareStatement(query);
-			pstmt.setString(1, product.getProductname());
+			pstmt.setString(1, product.getProductName());
 			pstmt.setString(2, product.getSize());
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				product2 = new Product(rs.getInt(1), product.getProductname(), product.getSize(), rs.getDouble(2));
+				product2 = new Product(rs.getInt(1), product.getProductName(), product.getSize(), rs.getDouble(2));
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();

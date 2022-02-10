@@ -99,10 +99,10 @@ li a:hover:not(.active) {
 		<c:forEach items="${cartList}" var="obj">
 		<tr>
 		<td>${obj.id}</td>
-		<td>${obj.product.productname}</td>
+		<td>${obj.product.productName}</td>
 		<td>${obj.product.size}</td>
 		<td>${obj.product.price}</td>			
-		<td><a href="OrderProductConformation?productname=${obj.product.productname}&productsize=${obj.product.size}&productprice=${obj.product.price}">Order</a> </td> <br><br> 
+		<td><a href="OrderProductConformation?productname=${obj.product.productName}&productsize=${obj.product.size}&productprice=${obj.product.price}">Order</a> </td> <br><br> 
 		<td><a href="Deletecart?cartid=${obj.id}" >Remove</a></td> 
 		</tr>		
 		</c:forEach>

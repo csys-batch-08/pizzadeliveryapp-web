@@ -18,7 +18,7 @@ public class OrderDaoImpl implements OrderDao {
 	public List<Order> showorder(User user) {
 		List<Order> orderList = new ArrayList<Order>();
 		String orderlist = "select order_id,user_id,product_id,quantity,total_prize,order_date,status from orders where user_id="
-				+ user.getUserid() + " order by order_id desc ";
+				+ user.getUserId() + " order by order_id desc ";
 		ConnectionUtill con = new ConnectionUtill();
 		Connection c = con.getDbconnection();
 		PreparedStatement pstmt = null;

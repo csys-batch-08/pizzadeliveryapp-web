@@ -17,7 +17,6 @@
 
   <li style="float:right"><a href="userlogin.jsp">Logout</a></li>
 </ul><br><br><br><br>
-	
 
       <form  align="center" class="login" action="updateproduct"> 
 		<label for="id">product id :</label>

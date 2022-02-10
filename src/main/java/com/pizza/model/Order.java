@@ -4,12 +4,12 @@ import java.util.Date;
 import java.util.Objects;
 
 public class Order {
-		private int orderid; 
+		private int orderId; 
 		private User user;
 		private Product product;
 		private int quantity;
 		private Double price;
-		private Date orderdate;
+		private Date orderDate;
 		private String status;
 		
 		
@@ -20,11 +20,11 @@ public class Order {
 		public void setStatus(String status) {
 			this.status = status;
 		}
-		public int getOrderid() {
-			return orderid;
+		public int getOrderId() {
+			return orderId;
 		}
-		public void setOrderid(int orderid) {
-			this.orderid = orderid;
+		public void setOrderId(int orderId) {
+			this.orderId = orderId;
 		}
 		public User getUser() {
 			return user;
@@ -50,11 +50,11 @@ public class Order {
 		public void setPrice(Double price) {
 			this.price = price;
 		}
-		public Date getOrderdate() {
-			return orderdate;
+		public Date getOrderDate() {
+			return orderDate;
 		}
-		public void setOrderdate(Date orderdate) {
-			this.orderdate = orderdate;
+		public void setOrderDate(Date orderDate) {
+			this.orderDate = orderDate;
 		}
 		public Order(User user, Product product, int quantity, Double price, java.util.Date orderdate2) {
 			super();
@@ -62,22 +62,22 @@ public class Order {
 			this.product = product;
 			this.quantity = quantity;
 			this.price = price;
-			this.orderdate = orderdate2;
+			this.orderDate = orderdate2;
 		}
 		public Order() {
 			super();
 		}
 		
 		
-		public Order(int orderid, User user, Product product, int quantity, Double price, Date orderdate,
+		public Order(int orderId, User user, Product product, int quantity, Double price, Date orderDate,
 				String status) {
 			super();
-			this.orderid = orderid;
+			this.orderId = orderId;
 			this.user = user;
 			this.product = product;
 			this.quantity = quantity;
 			this.price = price;
-			this.orderdate = orderdate;
+			this.orderDate = orderDate;
 			this.status = status;
 		}
 		public Order(User user, Product product, int quantity, Double price, java.util.Date orderdate2,String status) {
@@ -86,18 +86,18 @@ public class Order {
 			this.product = product;
 			this.quantity = quantity;
 			this.price = price;
-			this.orderdate = orderdate2;
+			this.orderDate = orderdate2;
 			this.status=status;
 		}
 
 		@Override
 		public String toString() {
 			return "Order \nuser=" + user + ", \nproduct=" + product + ", \nquantity=" + quantity + ", price=" + price
-					+ ", orderdate=" + orderdate + "]";
+					+ ", orderdate=" + orderDate + "]";
 		}
 		@Override
 		public int hashCode() {
-			return Objects.hash(orderdate, price, product, quantity, user);
+			return Objects.hash(orderDate, price, product, quantity, user);
 		}
 		@Override
 		public boolean equals(Object obj) {
@@ -108,7 +108,7 @@ public class Order {
 			if (getClass() != obj.getClass())
 				return false;
 			Order other = (Order) obj;
-			return Objects.equals(orderdate, other.orderdate) && Objects.equals(price, other.price)
+			return Objects.equals(orderDate, other.orderDate) && Objects.equals(price, other.price)
 					&& Objects.equals(product, other.product) && quantity == other.quantity
 					&& Objects.equals(user, other.user);
 		}

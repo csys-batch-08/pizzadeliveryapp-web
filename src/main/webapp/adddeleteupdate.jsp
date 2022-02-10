@@ -47,11 +47,11 @@
 		<c:forEach items="${productList}" var="obj">	
 		<tr> 
 		<td><c:out value="${obj.productId }"></c:out></td>	
-		<td><c:out value="${obj.productname }"></c:out></td>	
+		<td><c:out value="${obj.productName }"></c:out></td>	
 		<td><c:out value="${obj.size }"></c:out></td>
 		<td><c:out value="${obj.price }"></c:out></td>	
 		<td><c:out value="${obj.status }"></c:out></td>	
-		<td><a href="UpdateProductConformation?Pid=${obj.productId}&productname=${obj.productname}&productsize=${obj.size}&productprice=${obj.price}&productstatus=${obj.status}">UPDATE </a></td>		 
+		<td><a href="UpdateProductConformation?Pid=${obj.productId}&productname=${obj.productName}&productsize=${obj.size}&productprice=${obj.price}&productstatus=${obj.status}">UPDATE </a></td>		 
 		</tr>
 		</c:forEach>
 		</table><br><br><br><br><br><br> 

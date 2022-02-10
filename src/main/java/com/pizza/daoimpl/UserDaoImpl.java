@@ -26,7 +26,7 @@ public class UserDaoImpl implements UserDao {
 			while (rs.next()) {
 				users = new User(rs.getString(2), rs.getLong(3), rs.getString(4), rs.getString(5), rs.getString(7),
 						rs.getDouble(6), rs.getString(8));
-				users.setUserid(rs.getInt(1));
+				users.setUserId(rs.getInt(1));
 				userlist.add(users);
 			}
 		} catch (SQLException e) {
@@ -44,8 +44,8 @@ public class UserDaoImpl implements UserDao {
 		PreparedStatement pstmt = null;
 		try {
 			pstmt = c.prepareStatement(query);
-			pstmt.setString(1, users.getUsername());
-			pstmt.setLong(2, users.getPhonenumber());
+			pstmt.setString(1, users.getUserName());
+			pstmt.setLong(2, users.getPhoneNumber());
 			pstmt.setString(3, users.getEmail());
 			pstmt.setString(4, users.getAddress());
 			pstmt.setString(5, users.getPassword());
@@ -94,7 +94,7 @@ public class UserDaoImpl implements UserDao {
 			if (rs.next()) {
 				user = new User(rs.getString(2), rs.getLong(3), rs.getString(4), rs.getString(5), rs.getString(7),
 						rs.getDouble(6), rs.getString(8));
-				user.setUserid(rs.getInt(1));
+				user.setUserId(rs.getInt(1));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

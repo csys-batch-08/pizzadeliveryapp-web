@@ -28,7 +28,7 @@
 </ul><br><br><br><br>
 <form action="recharge" method="post">
 		<label for="name"> user name :</label>
-		<input type="text" name="userid" value="${user.username}" readonly><br><br> 
+		<input type="text" name="userid" value="${user.userName}" readonly><br><br> 
  		<label for="wallet">amount</label>
  		<input type="number" name="recharge" min="100"><br><br>
  		<button  type="submit">UPDATE</button> 		 

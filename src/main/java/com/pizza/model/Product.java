@@ -5,7 +5,7 @@ import java.util.Objects;
 public class Product {
 	
 	private int productId;
-	private String productname;
+	private String productName;
 	private String size;
 	private Double price;
 	private String status;
@@ -23,11 +23,11 @@ public class Product {
 	public void setProductId(int productId) {
 		this.productId = productId;
 	}
-	public String getProductname() {
-		return productname;
+	public String getProductName() {
+		return productName;
 	}
-	public void setProductname(String productname) {
-		this.productname = productname;
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 	public String getSize() {
 		return size;
@@ -43,24 +43,24 @@ public class Product {
 	}
 	
 	
-	public Product(int productId, String productname, String size, Double price) {
+	public Product(int productId, String productName, String size, Double price) {
 		super();
 		this.productId = productId;
-		this.productname = productname;
+		this.productName = productName;
 		this.size = size;
 		this.price = price;
 	}
-	public Product(String productname,String size,Double price) {
+	public Product(String productName,String size,Double price) {
 		super();
-		this.productname = productname;
+		this.productName = productName;
 		this.size = size;
 		this.price = price;
 	}
 	
-	public Product(int productId, String productname, String size, Double price, String status) {
+	public Product(int productId, String productName, String size, Double price, String status) {
 		super();
 		this.productId = productId;
-		this.productname = productname;
+		this.productName = productName;
 		this.size = size;
 		this.price = price;
 		this.status = status;
@@ -74,12 +74,12 @@ public class Product {
 	
 	@Override
 	public String toString() {
-		return "Product [productId=" + productId + ", productname=" + productname + ", size=" + size + ", price="
+		return "Product [productId=" + productId + ", productname=" + productName + ", size=" + size + ", price="
 				+ price + ", status=" + status + "]";
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(price, productId, productname, size, status);
+		return Objects.hash(price, productId, productName, size, status);
 	}
 	
 
@@ -93,7 +93,7 @@ public class Product {
 			return false;
 		Product other = (Product) obj;
 		return Objects.equals(price, other.price) && productId == other.productId
-				&& Objects.equals(productname, other.productname) && Objects.equals(size, other.size)
+				&& Objects.equals(productName, other.productName) && Objects.equals(size, other.size)
 				&& Objects.equals(status, other.status);
 	}
 	

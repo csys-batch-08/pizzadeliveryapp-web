@@ -39,9 +39,9 @@
 		<c:forEach items="${userList}" var="obj">
 			<tr>
 
-				<td><c:out value="${obj.username }"></c:out></td>
+				<td><c:out value="${obj.userName }"></c:out></td>
 				<td><c:out value="${obj.email }"></c:out></td>
-				<td><c:out value="${obj.phonenumber }"></c:out></td>
+				<td><c:out value="${obj.phoneNumber }"></c:out></td>
 				<td><c:out value="${obj.address }"></c:out></td>
 				<td><c:out value="${obj.type}"></c:out></td>
 				<td><a href="InactiveUserServlet?email=${obj.email}">Inactive</a></td>

@@ -70,9 +70,9 @@ li a:hover:not(.active) {
   <li style="float:right"><a href="userlogin.jsp">Logout</a></li>
 </ul><br><br>
 	<div class="myDiv">
-	<h3>NAME - </h3><c:out value="${user.username}"></c:out>
+	<h3>NAME - </h3><c:out value="${user.userName}"></c:out>
 	<h3>E-MAIL - </h3><c:out value="${user.email}"></c:out>
-	<h3>PHONENUMBER - </h3><c:out value="${user.phonenumber}"></c:out>
+	<h3>PHONENUMBER - </h3><c:out value="${user.phoneNumber}"></c:out>
 	<h3>ADDRESS - </h3><c:out value="${user.address}"></c:out>
 	<h3>PASSWORD - </h3><c:out value="${user.password}"></c:out>
 	<h3>WALLET - </h3><c:out value="${user.wallet}"></c:out>Rs

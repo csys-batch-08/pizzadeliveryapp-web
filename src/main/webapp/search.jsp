@@ -90,11 +90,11 @@ strong{
 		<c:forEach items="${ProductList}" var="obj">
 		<div align="center">
 	<span class="bounce_button"><img src="Assets\Images\<c:out value="${obj.productname}"></c:out>.jpg" alt="img" width=300px height=175px class="bounce"></span><br>
-	<strong> <c:out value="${obj.productname}"></c:out>&nbsp; &nbsp;
+	<strong> <c:out value="${obj.productName}"></c:out>&nbsp; &nbsp;
 		<c:out value="${obj.size}"></c:out>   &nbsp; &nbsp; &nbsp;
 		<c:out value="${obj.price}"></c:out><br> <br></strong>	&nbsp; &nbsp; 
- 	  	<a href="AddCartProductConformation?productname=${obj.productname}&productsize=${obj.size}&productprice=${obj.price}"><button class="btn btn-primary">cart</button></a>   &nbsp; &nbsp; &nbsp;		
- 		<a href="OrderProductConformation?productname=${obj.productname}&productsize=${obj.size}&productprice=${obj.price}"><button class="btn btn-primary">order</button></a>   <br><br><br><br> 
+ 	  	<a href="AddCartProductConformation?productname=${obj.productName}&productsize=${obj.size}&productprice=${obj.price}"><button class="btn btn-primary">cart</button></a>   &nbsp; &nbsp; &nbsp;		
+ 		<a href="OrderProductConformation?productname=${obj.productName}&productsize=${obj.size}&productprice=${obj.price}"><button class="btn btn-primary">order</button></a>   <br><br><br><br> 
 		</div>
 		</c:forEach>					
 </body>

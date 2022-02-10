@@ -1,9 +1,9 @@
 package com.pizza.model;
 
 public class User {
-	private int userid;
-	private String username;
-	private long phonenumber;
+	private int userId;
+	private String userName;
+	private long phoneNumber;
 	private String email;
 	private String address;
 	private Double wallet;
@@ -16,23 +16,23 @@ public class User {
 	public void setType(String type) {
 		this.type = type;
 	}
-	public int getUserid() {
-		return userid;
+	public int getUserId() {
+		return userId;
 	}
-	public void setUserid(int userid) {
-		this.userid = userid;
+	public void setUserId(int userId) {
+		this.userId = userId;
 	}
-	public String getUsername() {
-		return username;
+	public String getUserName() {
+		return userName;
 	}
-	public void setUsername(String username) {
-		this.username = username;
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
-	public long getPhonenumber() {
-		return phonenumber;
+	public long getPhoneNumber() {
+		return phoneNumber;
 	}
-	public void setPhonenumber(long phonenumber) {
-		this.phonenumber = phonenumber;
+	public void setPhoneNumber(long phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 	public String getEmail() {
 		return email;
@@ -62,14 +62,14 @@ public class User {
 		super();
 	}
 	
-	public User(int userid) {
-		this.userid=userid;
+	public User(int userId) {
+		this.userId=userId;
 	}
 	
 	
-	public User(String username, long phonenumber, String email, String address,  String password,double wallet,String type) {
-		this.username = username;
-		this.phonenumber = phonenumber;
+	public User(String userName, long phoneNumber, String email, String address,  String password,double wallet,String type) {
+		this.userName = userName;
+		this.phoneNumber = phoneNumber;
 		this.email = email;
 		this.address = address;
 		this.wallet = wallet;
@@ -80,7 +80,7 @@ public class User {
 	
 	@Override
 	public String toString() {
-		return "User [userid=" + userid + ", username=" + username + ", phonenumber=" + phonenumber + ", email=" + email
+		return "User [userId=" + userId + ", userName=" + userName + ", phoneNumber=" + phoneNumber + ", email=" + email
 				+ ", address=" + address + ", wallet=" + wallet + ", password=" + password + ", type=" + type + "]";
 	}	
 }
