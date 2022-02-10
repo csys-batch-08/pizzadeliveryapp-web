@@ -9,6 +9,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<title>Most Purchased User</title>
 <link rel="stylesheet" type="text/css" href="Assets/css/mostsoledproduct.css">
 </head>
 <body class="background">

@@ -65,12 +65,17 @@ li a:hover:not(.active) {
   	background-attachment: fixed;
   	background-size: cover;
 }
-.h1{
+h1{
+ color: white;
+  text-align: center;
+}
+strong{
+ color: white;
 }
     </style>
 </head>
-<body style="background-color:lightgreen;" align="center" class="main"> 
-<h1 style="color:white;" align="center"><img src="Assets\Images\logopizza.png" width="150px" height="100px">PizzaHut</h1>
+<body align="center" class="main"> 
+<h1><img src="Assets\Images\logopizza.png" alt="logo.png" width="150px" height="100px">PizzaHut</h1>
 
 <ul>  
 <li><a href="showproducts.jsp">Home</a></li>
@@ -85,10 +90,10 @@ li a:hover:not(.active) {
 		<c:forEach items="${ProductList}" var="obj">
 		<div align="center">
 	<span class="bounce_button"><img src="Assets\Images\<c:out value="${obj.productname}"></c:out>.jpg" alt="img" width=300px height=175px class="bounce"></span><br>
-		<b style="color:white;"><c:out value="${obj.productname}"></c:out></b>&nbsp &nbsp
-		<b style="color:white;"><c:out value="${obj.size}"></c:out></b>   &nbsp &nbsp &nbsp
-		<b style="color:white;"><c:out value="${obj.price}"></c:out></b><br> <br>	&nbsp &nbsp 
- 	  	<a href="AddCartProductConformation?productname=${obj.productname}&productsize=${obj.size}&productprice=${obj.price}"><button class="btn btn-primary">cart</button></a>   &nbsp &nbsp &nbsp		
+	<strong> <c:out value="${obj.productname}"></c:out>&nbsp; &nbsp;
+		<c:out value="${obj.size}"></c:out>   &nbsp; &nbsp; &nbsp;
+		<c:out value="${obj.price}"></c:out><br> <br></strong>	&nbsp; &nbsp; 
+ 	  	<a href="AddCartProductConformation?productname=${obj.productname}&productsize=${obj.size}&productprice=${obj.price}"><button class="btn btn-primary">cart</button></a>   &nbsp; &nbsp; &nbsp;		
  		<a href="OrderProductConformation?productname=${obj.productname}&productsize=${obj.size}&productprice=${obj.price}"><button class="btn btn-primary">order</button></a>   <br><br><br><br> 
 		</div>
 		</c:forEach>					

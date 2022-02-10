@@ -28,3 +28,7 @@ a:hover{
     box-shadow: 
         0 16px 10px -8px rgba(0, 0, 0, 0.6);
 }
+h1{
+color : white;
+text-align: center;	
+}

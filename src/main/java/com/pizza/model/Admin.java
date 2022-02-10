@@ -3,54 +3,51 @@ package com.pizza.model;
 import java.util.Objects;
 
 public class Admin {
-	private String adminemail;
-	private String adminname;
+	private String adminEmail;
+	private String adminName;
 	private String password;
 
-	public String getAdminemail() {
-		return adminemail;
+	public String getadminEmail() {
+		return adminEmail;
 	}
 
-	public void setAdminemail(String adminemail) {
-		this.adminemail = adminemail;
+	public void setadminEmail(String adminEmail) {
+		this.adminEmail = adminEmail;
 	}
 
-	public String getAdminname() {
-		return adminname;
+	public String getadminName() {
+		return adminName;
 	}
 
-	public void setAdminname(String adminname) {
-		this.adminname = adminname;
+	public void setadminName(String adminName) {
+		this.adminName = adminName;
 	}
 
 	public String getPassword() {
 		return password;
 	}
 
-//	public void setPassword(String password) {
-//		this.password = password;
-//	}
+
 
 	public Admin() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public Admin(String adminemail, String adminname, String password) {
+	public Admin(String adminEmail, String adminName, String password) {
 		super();
-		this.adminemail = adminemail;
-		this.adminname = adminname;
+		this.adminEmail = adminEmail;
+		this.adminName = adminName;
 		this.password = password;
 	}
 
 	@Override
 	public String toString() {
-		return "Admin [adminemail=" + adminemail + ", adminname=" + adminname + ", password=" + password + "]";
+		return "Admin [adminEmail=" + adminEmail + ", adminName=" + adminName + ", password=" + password + "]";
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(adminemail, adminname, password);
+		return Objects.hash(adminEmail, adminName, password);
 	}
 
 	@Override
@@ -62,7 +59,7 @@ public class Admin {
 		if (getClass() != obj.getClass())
 			return false;
 		Admin other = (Admin) obj;
-		return Objects.equals(adminemail, other.adminemail) && Objects.equals(adminname, other.adminname)
+		return Objects.equals(adminEmail, other.adminEmail) && Objects.equals(adminName, other.adminName)
 				&& Objects.equals(password, other.password);
 	}
 

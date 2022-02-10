@@ -3,8 +3,6 @@ package com.pizza.model;
 import java.util.Date;
 import java.util.Objects;
 
-import com.pizza.model.Product;
-
 public class Order {
 		private int orderid; 
 		private User user;
@@ -68,7 +66,6 @@ public class Order {
 		}
 		public Order() {
 			super();
-			// TODO Auto-generated constructor stub
 		}
 		
 		

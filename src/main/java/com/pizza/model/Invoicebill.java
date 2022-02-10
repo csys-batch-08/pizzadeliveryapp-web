@@ -2,11 +2,10 @@ package com.pizza.model;
 
 import java.util.Objects;
 
-import com.pizza.model.Order;
-
 public class Invoicebill {
 	private Order order;
 	private User user;
+	
 	public Order getOrder() {
 		return order;
 	}
@@ -21,7 +20,6 @@ public class Invoicebill {
 	}
 	public Invoicebill() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public Invoicebill(Order order, User user) {
 		super();

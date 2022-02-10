@@ -1,6 +1,5 @@
 package com.pizza.model;
 
-import java.sql.Date;
 import java.util.Objects;
 
 public class Product {
@@ -68,10 +67,8 @@ public class Product {
 	}
 	public Product() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	public Product(int productid2) {
-		// TODO Auto-generated constructor stub
 	}
 	
 	

@@ -80,11 +80,17 @@ span:hover {
   animation-name: bounce;
   -moz-animation-name: bounce;
 }
-
+.hh{
+ color: white;
+  text-align: center;
+}
+strong{
+color: white;
+}
  </style>
 </head>
 <body style="background-color:lightgreen;" align="center" class="main"> 
-<h1 style="color:white;" align="center"><img src="Assets\Images\logopizza.png" width="150px" height="100px">PizzaHut</h1>
+<h1  class="hh"><img src="Assets\Images\logopizza.png" alt="logo.png" width="150px" height="100px">PizzaHut</h1>
 <ul>  
 <li><a href="showproducts.jsp">Home</a></li>
   <li> <a href="showorder.jsp?orderId=0">MyOrders</a></li>
@@ -99,16 +105,16 @@ span:hover {
 <input type="text" name="search" placeholder="Search" required> &nbsp;<button class="btn btn-primary" type="submit">&#128269;</button>
   </form>
   </div><br><br><br>
-  <div align="center">
+  <div align="center" class="product">
 		<c:forEach items="${productlist}" var="obj">		
 
 	<img src="Assets\Images\<c:out value="${obj.productname}"></c:out>.jpg" alt="img" width=300px height=175px class="bounce"><br>
 		
-		<b style="color:white;"><c:out value="${obj.productname}"></c:out></b> &nbsp; &nbsp;
+	<strong>	<c:out value="${obj.productname}"></c:out> &nbsp; &nbsp;
 		
-		<b style="color:white;"><c:out value="${obj.size}"></c:out></b>   &nbsp; &nbsp; &nbsp;
+		<c:out value="${obj.size}"></c:out>   &nbsp; &nbsp; &nbsp;
 		
-		<b style="color:white;"><c:out value="${obj.price}"></c:out> Rs</b><br> <br>	&nbsp; &nbsp; 
+		<c:out value="${obj.price}"></c:out> Rs<br> <br> </strong> &nbsp; &nbsp; 
 		
  	  	<a href="AddCartProductConformation?productname=${obj.productname}&productsize=${obj.size}&productprice=${obj.price}"><button class="btn btn-primary">cart</button></a>   &nbsp; &nbsp; &nbsp;		
  		<a href="OrderProductConformation?productname=${obj.productname}&productsize=${obj.size}&productprice=${obj.price}"><button class="btn btn-primary">order</button></a>   <br><br><br><br> 		

@@ -30,11 +30,11 @@
 		<form action="bills" method="post">
 		<table>
 		<tr>
-		<td><input type="number" name="id" value="${Oid}" readonly></td>
-			<td>${productname}</td>
-			<td>${productsize}</td>
-			<td>${quantity}</td>
-			<td>${productprice}</td>
+		<th><input type="number" name="id" value="${Oid}" readonly></th>
+			<th>${productname}</th>
+			<th>${productsize}</th>
+			<th>${quantity}</th>
+			<th>${productprice}</th>
 		</tr>
 		</table><br><br><br>
 		

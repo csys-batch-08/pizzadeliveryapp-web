@@ -126,10 +126,9 @@ body {
   border-top: 5px solid #0e3750;
   border-radius: 0%;
 }
-
 @keyframes bounce {
   0% {
-    tranform: translate(0, 4px);
+    transform: translate(0, 4px);
   }
   50% {
     transform: translate(0, 8px);

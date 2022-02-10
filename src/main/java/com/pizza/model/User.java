@@ -1,7 +1,5 @@
 package com.pizza.model;
 
-import java.util.Objects;
-
 public class User {
 	private int userid;
 	private String username;
@@ -62,17 +60,14 @@ public class User {
 	}
 	public User() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 	
 	public User(int userid) {
-		// TODO Auto-generated constructor stub
 		this.userid=userid;
 	}
 	
 	
 	public User(String username, long phonenumber, String email, String address,  String password,double wallet,String type) {
-		// TODO Auto-generated constructor stub
 		this.username = username;
 		this.phonenumber = phonenumber;
 		this.email = email;
@@ -87,10 +82,5 @@ public class User {
 	public String toString() {
 		return "User [userid=" + userid + ", username=" + username + ", phonenumber=" + phonenumber + ", email=" + email
 				+ ", address=" + address + ", wallet=" + wallet + ", password=" + password + ", type=" + type + "]";
-	}
-
-	
-
-	
-	
+	}	
 }

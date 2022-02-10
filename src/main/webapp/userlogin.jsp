@@ -20,7 +20,7 @@
 		</c:if>		
 	</div>
 	<h1>
-		<img src="Assets\Images\logopizza.png" width="150px" height="100px"> PizzaHut
+		<img src="Assets\Images\logopizza.png" alt="logo.png" width="150px" height="100px"> PizzaHut
 	</h1>
 	<br>
 	<form action="Login"  class="login" method="post">

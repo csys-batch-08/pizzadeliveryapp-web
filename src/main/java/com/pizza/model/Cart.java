@@ -2,11 +2,8 @@ package com.pizza.model;
 
 import java.util.Objects;
 
-import com.pizza.model.Product;
-
 public class Cart {
 	private int id;
-
 	private User user;
 	private Product product;
 	private int quantity;

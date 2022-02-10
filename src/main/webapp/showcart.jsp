@@ -74,8 +74,7 @@ li a:hover:not(.active) {
 </style>
 </head>
 <body align="center" class="cart">
-<h1><b>MyCart<b></b></h1>
-<table align="center">
+<h1>MyCart</h1>
 
 			
 <ul>  
@@ -87,7 +86,8 @@ li a:hover:not(.active) {
   <li style="float:right"><a href="userlogin.jsp">Logout</a></li>
   <li><a href="contect.jsp">Contact</a></li>
 </ul><br><br><br><br>
-	<tr>	
+<table>
+	<tr>
 		<th>Cart Id</th>
 		<th>Product Name</th>
 		<th>Product Size</th>

@@ -10,7 +10,7 @@
 <link rel="stylesheet" type="text/css" href="Assets/css/index.css">
 </head>
 <body align="center" class="dummySky">                                                                              
-<h1 style="color:white;" align="center"><img src="Assets\Images\logopizza.png" width="150px" height="100px">PizzaHut</h1>
+<h1><img src="Assets\Images\logopizza.png" alt="logo.png" width="150px" height="100px">PizzaHut</h1>
 <form action="Sample" class="login" align="center" method="post"><br><br>
                                                           
         <h3>CREATE YOUR OWN ACCOUNT</h3><br>
