@@ -30,7 +30,7 @@ public class AddCartProductConformation extends HttpServlet {
 		 Double price=Double.parseDouble(request.getParameter("productprice"));  		 
 		 session.setAttribute("pprice", price);	
 		 Product product=new Product(name,size,price);		
-		 session.setAttribute("products", product);		 	 
+		 request.setAttribute("products", product);		 	 
 		 response.sendRedirect("cart.jsp");  
 	}
 }

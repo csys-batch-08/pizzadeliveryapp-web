@@ -74,7 +74,7 @@ li a:hover:not(.active) {
 		<input type="text" name="productid" value="${psize}" readonly><br><br>   
 		<label for="productid">product price :</label>
 		<input type="text" name="productid" value="${pprice}" readonly><br><br>        
-        <button onclick="demo()">add to cart</button>  &nbsp &nbsp &nbsp &nbsp 
+        <button onclick="demo()">add to cart</button>  &nbsp; &nbsp; &nbsp; &nbsp; 
         <button type="reset">RESET</button>      
    </div>        
  </form>
