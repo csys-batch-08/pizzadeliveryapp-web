@@ -1,6 +1,8 @@
 package com.pizza.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,9 +36,12 @@ public class OrderProductConformation extends HttpServlet {
 		 session.setAttribute("pprice", price);	
 		 
 		 Product product=new Product(name,size,price);		
-		 request.setAttribute("products", product);		 
+		 session.setAttribute("products", product);		 
 	 
-		 response.sendRedirect("order.jsp");
+	//	 response.sendRedirect("order.jsp");
+		 
+		 RequestDispatcher dispatcher=request.getRequestDispatcher("order.jsp");
+			dispatcher.forward(request, response);	
 		
 	}
 

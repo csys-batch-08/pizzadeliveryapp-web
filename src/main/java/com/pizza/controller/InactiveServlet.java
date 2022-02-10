@@ -37,7 +37,7 @@ public class InactiveServlet extends HttpServlet {
 		boolean b = dao.inactive(email);
 
 		List<User> userlist = dao.showuser();
-		request.setAttribute("userList", userlist);
+		session.setAttribute("userList", userlist);
 
 		if (!b) {
 			response.sendRedirect("inactive.jsp");

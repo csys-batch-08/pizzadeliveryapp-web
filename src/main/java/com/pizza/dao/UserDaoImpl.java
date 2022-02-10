@@ -175,7 +175,7 @@ public class UserDaoImpl implements UserDao {
 	public int updateduser(String name, String email, long pnumber, String address, String password, int userid) {
 		ConnectionUtill con = new ConnectionUtill();
 		Connection c = con.getDbconnection();
-		String updateQuery = "update users set user_name=?,email=?,phonenumber=?,address=?,password where user_id=?";
+		String updateQuery = "update users set user_name=?,email=?,phonenumber=?,address=?,password=? where user_id=?";
 		int prodid = 0;
 		PreparedStatement pstmt = null;
 		try {
@@ -240,23 +240,15 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	public double update(Double wallet, String useremail) {
-		ConnectionUtill con = new ConnectionUtill();
-		Connection c = con.getDbconnection();
-		String select = "select wallet from users where email=?";
+		Connection c = ConnectionUtill.getDbconnection();
 		String updateQuery = "update users set wallet=wallet-? where email=?";
-		double well = 0;
-		ResultSet rs = null;
-		PreparedStatement pstmt1 = null;
-		double wallet1 = 0;
-		try {
-			pstmt1 = c.prepareStatement(select);
-			pstmt1.setString(1, useremail);
-			rs = pstmt1.executeQuery();
-			while (rs.next()) {
-				wallet1 = rs.getDouble(1);
-			}
+		UserDaoImpl userdao=new UserDaoImpl();
+		Double wallet1=userdao.wallet(useremail);
+		PreparedStatement pstmt11=null;
+		int well = 0;		
+		try {	
 			if (wallet1 > wallet) {
-				PreparedStatement pstmt11 = c.prepareStatement(updateQuery);
+				 pstmt11 = c.prepareStatement(updateQuery);
 				pstmt11.setDouble(1, wallet);
 				pstmt11.setString(2, useremail);
 				well = pstmt11.executeUpdate();
@@ -264,11 +256,31 @@ public class UserDaoImpl implements UserDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtill.close(c, pstmt1, rs);
+			ConnectionUtill.close(c, pstmt11, null);
 		}
 		return well;
+	}	
+	public Double wallet(String email) {
+		Connection c = ConnectionUtill.getDbconnection();
+		String query2 = "select wallet from users where email=?";
+		PreparedStatement stmt = null;
+		double wallet = 0;
+		ResultSet rs = null;
+		try {
+			stmt = c.prepareStatement(query2);
+			stmt.setString(1, email);
+			rs = stmt.executeQuery();
+			if (rs.next()) {
+				wallet = rs.getDouble(1);
+			}
+		} catch (SQLException e1) {
+			e1.printStackTrace();
+		}
+		finally {
+			ConnectionUtill.close(c, stmt, rs);
+		}
+		return wallet;
 	}
-
 	public boolean inactive(String email) {
 		ConnectionUtill con = new ConnectionUtill();
 		Connection c = con.getDbconnection();

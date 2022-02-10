@@ -41,7 +41,7 @@ public class AddproductServlet extends HttpServlet {
 		if(adminlist.get(i).getProductname().equalsIgnoreCase(productname) && adminlist.get(i).getSize().equalsIgnoreCase(productsize)) 
 			{
 	     	dao.insertproduct(product);		
-	    	request.setAttribute("productList", adminlist);		
+	    	session.setAttribute("productList", adminlist);		
 		    response.sendRedirect("adddeleteupdate.jsp");
 			}
 			else {

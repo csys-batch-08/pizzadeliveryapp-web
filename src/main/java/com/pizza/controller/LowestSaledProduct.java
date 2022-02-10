@@ -37,7 +37,7 @@ public class LowestSaledProduct extends HttpServlet {
 			HttpSession session = request.getSession();			
 		   	OrderDaoImpl orderdao= new OrderDaoImpl();
 			Product product=orderdao.lowestsaledproduct(fromdate, todate);
-			request.setAttribute("Product", product);
+			session.setAttribute("Product", product);
 			 
 			response.sendRedirect("lowestsaledproduct.jsp");
 		} catch (ParseException e) {

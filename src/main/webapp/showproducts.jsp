@@ -106,10 +106,8 @@ color: white;
   </form>
   </div><br><br><br>
   <div align="center" class="product">
-		<c:forEach items="${productlist}" var="obj">		
-
+		<c:forEach items="${productlist}"  var="obj">		
 	<img src="Assets\Images\<c:out value="${obj.productname}"></c:out>.jpg" alt="img" width=300px height=175px class="bounce"><br>
-		
 	<strong>	<c:out value="${obj.productname}"></c:out> &nbsp; &nbsp;
 		
 		<c:out value="${obj.size}"></c:out>   &nbsp; &nbsp; &nbsp;
@@ -118,7 +116,6 @@ color: white;
 		
  	  	<a href="AddCartProductConformation?productname=${obj.productname}&productsize=${obj.size}&productprice=${obj.price}"><button class="btn btn-primary">cart</button></a>   &nbsp; &nbsp; &nbsp;		
  		<a href="OrderProductConformation?productname=${obj.productname}&productsize=${obj.size}&productprice=${obj.price}"><button class="btn btn-primary">order</button></a>   <br><br><br><br> 		
-
 		</c:forEach>
 </div>
 

@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,7 +41,7 @@ public class OrderServlet extends HttpServlet {
 		ProductDaoImpl productdao=new ProductDaoImpl();	
 		Product product=(Product) session.getAttribute("products");
 		Product pro=productdao.findProductId(product);
-		request.setAttribute("productid",pro);
+		session.setAttribute("productid",pro);
 				
 		int quantity=Integer.parseInt(request.getParameter("qty"));
 		
@@ -53,13 +54,14 @@ public class OrderServlet extends HttpServlet {
 				int i=orderdao.orderproduct(order);			
 				dao.update(productprice,user.getEmail());			
 				List<Order> orderlist=orderdao.showorder(user);
-				request.setAttribute("orderList", orderlist);					
+				session.setAttribute("orderList", orderlist);					
 		         try{
 				if(i>0) {
 					user.setWallet(user.getWallet()-productprice);
-					request.setAttribute("user", user);						
-					response.sendRedirect("showproducts.jsp");
-				}
+					session.setAttribute("user", user);								
+					RequestDispatcher dispatcher=request.getRequestDispatcher("showproducts.jsp");
+					dispatcher.forward(request, response);				
+					}
 				else {		
 					throw new Lowbalance();
 		     	}

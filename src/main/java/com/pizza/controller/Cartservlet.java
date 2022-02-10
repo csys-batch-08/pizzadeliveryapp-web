@@ -38,7 +38,7 @@ public class Cartservlet extends HttpServlet {
 	    dao.insertCart(cart);		
 	    CartDaoImpl cartdao=new CartDaoImpl();
 		List<Cart> cartlist=cartdao.showcart(user);
-		request.setAttribute("cartList", cartlist);
+		session.setAttribute("cartList", cartlist);
 		
 		response.sendRedirect("showproducts.jsp");				
 	}

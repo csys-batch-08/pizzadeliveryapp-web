@@ -3,6 +3,7 @@ package com.pizza.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -43,36 +44,35 @@ public class UserLoginServlet extends HttpServlet {
 		String password=request.getParameter("password");
 		UserDaoImpl userdao=new UserDaoImpl();		
 		User user = userdao.validateUser(email, password);	
-		request.setAttribute("user",user);
+		session.setAttribute("user",user);
 		ProductDaoImpl dao=new ProductDaoImpl();		
 		try {
 			if(user!=null) 
 			{
 			if(user.getType().equals("Admin")) 
-			{			
-				
+			{							
 			List<Product> adminlist=dao.adiminshowProduct();
-			request.setAttribute("productList", adminlist); 
+			session.setAttribute("productList", adminlist); 
 		                                                   
 			List<User> userlist=userdao.showuser();
-			request.setAttribute("userList", userlist);
+			session.setAttribute("userList", userlist);
 			response.sendRedirect("adddeleteupdate.jsp");
 	   	}	
 		else if(user.getType().equals("user")) 
-		{			  
-			
+		{			  		
 			List<Product> list=dao.showProduct();
-			request.setAttribute("productlist", list);
+			session.setAttribute("productlist", list);
 			
 			OrderDaoImpl orderdao=new OrderDaoImpl();
 			List<Order> orderlist=orderdao.showorder(user);
-			request.setAttribute("orderList", orderlist);
+			session.setAttribute("orderList", orderlist);
 			
 			CartDaoImpl cartdao=new CartDaoImpl();
 			List<Cart> cartlist=cartdao.showcart(user);
-			request.setAttribute("cartList", cartlist);
+			session.setAttribute("cartList", cartlist);
 			
-			response.sendRedirect("showproducts.jsp");		
+			RequestDispatcher dispatcher=request.getRequestDispatcher("showproducts.jsp");
+			dispatcher.forward(request, response);	
 		}
 			else if(user.getType().equals("Inactive")) 
 			{

@@ -37,7 +37,7 @@ public class MostSaledProductServlet extends HttpServlet {
 
 		   	OrderDaoImpl orderdao= new OrderDaoImpl();
 			Product product=orderdao.mostsaledproduct(fromdate, todate);
-			request.setAttribute("Product", product);
+			session.setAttribute("Product", product);
 			
 			response.sendRedirect("mostsuccessproduct.jsp");
 

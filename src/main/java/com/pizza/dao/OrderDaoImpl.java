@@ -107,15 +107,38 @@ public class OrderDaoImpl implements OrderDao {
 	public int orderproduct(Order orders) {
 		ConnectionUtill con = new ConnectionUtill();
 		Connection c = con.getDbconnection();
-		String query2 = "select wallet from users where user_id=?";
 		String query = "insert into orders(user_id,product_id,quantity,total_prize,order_date)values(?,?,?,?,sysdate)";
 		PreparedStatement pstmt = null;
-		double wallet = 0;
 		int order1 = 0;
-		PreparedStatement stmt = null;
-		ResultSet rs = null;
 		UserDaoImpl userdao = new UserDaoImpl();
 		int userid = userdao.finduserid(orders.getUser());
+		OrderDaoImpl orderdao=new OrderDaoImpl();
+		Double wallet=orderdao.wallet1(userid);
+		try {		
+		if (wallet > orders.getPrice()) {
+				pstmt = c.prepareStatement(query);
+				ProductDaoImpl productdao = new ProductDaoImpl();
+				Product proId = productdao.findProductId(orders.getProduct());
+				pstmt.setInt(1, userid);
+				pstmt.setInt(2, proId.getProductId());
+				pstmt.setInt(3, orders.getQuantity());
+				pstmt.setDouble(4, orders.getPrice());
+				order1 = pstmt.executeUpdate();
+			}
+		}catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				ConnectionUtill.close(c, pstmt, null);
+			
+			}
+		return order1;
+	}
+	public Double wallet1(int userid) {
+		Connection c = ConnectionUtill.getDbconnection();
+		String query2 = "select wallet from users where user_id=?";
+		PreparedStatement stmt = null;
+		double wallet = 0;
+		ResultSet rs = null;
 		try {
 			stmt = c.prepareStatement(query2);
 			stmt.setInt(1, userid);
@@ -126,24 +149,10 @@ public class OrderDaoImpl implements OrderDao {
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		}
-		if (wallet > orders.getPrice()) {
-			try {
-				pstmt = c.prepareStatement(query);
-				ProductDaoImpl productdao = new ProductDaoImpl();
-				Product proId = productdao.findProductId(orders.getProduct());
-				pstmt.setInt(1, userid);
-				pstmt.setInt(2, proId.getProductId());
-				pstmt.setInt(3, orders.getQuantity());
-				pstmt.setDouble(4, orders.getPrice());
-				order1 = pstmt.executeUpdate();
-			} catch (SQLException e) {
-				e.printStackTrace();
-			} finally {
-				ConnectionUtill.close(c, stmt, rs);
-			}
+		finally {
+			ConnectionUtill.close(c, stmt, rs);
 		}
-
-		return order1;
+		return wallet;
 	}
 
 	public boolean ordercancel(int orderid) {

@@ -38,7 +38,7 @@ public class Deliverdorder extends HttpServlet {
 			dao.orderdelivered(orderid);
 			
 			List<Order> orderlist=dao.showorder(user);
-			request.setAttribute("orderList", orderlist);
+			session.setAttribute("orderList", orderlist);
 			
 			response.sendRedirect("showorder.jsp");
 	}

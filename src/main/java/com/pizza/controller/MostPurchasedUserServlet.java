@@ -38,7 +38,7 @@ public class MostPurchasedUserServlet extends HttpServlet {
 
 			OrderDaoImpl orderdao= new OrderDaoImpl();
 			User user=orderdao.activeuser(fromdate, todate);			
-			request.setAttribute("User", user);
+			session.setAttribute("User", user);
 			
 			response.sendRedirect("mostpurchaseuser.jsp");
 		} catch (ParseException e) {

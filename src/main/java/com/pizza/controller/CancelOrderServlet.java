@@ -41,16 +41,14 @@ public class CancelOrderServlet extends HttpServlet {
 		UserDaoImpl userdao=new UserDaoImpl();
 		userdao.updateuserWallet(user, price);
 		dao.ordercancel(orderid);
+		
 		user.setWallet(user.getWallet()+price);		
-		request.setAttribute("user", user);
-		
-		
+		session.setAttribute("user", user);
+				
 		List<Order> orderlist=dao.showorder(user);
-		request.setAttribute("orderList", orderlist);
+		session.setAttribute("orderList", orderlist);
 		
 		response.sendRedirect("showorder.jsp");
-		
-
 	}
 
 }
