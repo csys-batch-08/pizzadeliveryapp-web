@@ -1,6 +1,5 @@
-package com.pizza.Interface;
+package com.pizza.interfaces;
 
-import java.sql.ResultSet;
 import java.util.List;
 
 import com.pizza.model.Product;

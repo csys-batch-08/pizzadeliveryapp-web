@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.pizza.Interface.OrderDao;
+import com.pizza.interfaces.OrderDao;
 import com.pizza.model.Order;
 import com.pizza.model.Product;
 import com.pizza.model.User;

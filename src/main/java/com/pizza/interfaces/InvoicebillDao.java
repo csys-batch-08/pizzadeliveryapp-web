@@ -1,4 +1,4 @@
-package com.pizza.Interface;
+package com.pizza.interfaces;
 
 import java.sql.ResultSet;
 

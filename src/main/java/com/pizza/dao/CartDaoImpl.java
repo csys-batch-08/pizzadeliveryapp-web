@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.pizza.Interface.CartDao;
+import com.pizza.interfaces.CartDao;
 import com.pizza.model.Cart;
 import com.pizza.model.Product;
 import com.pizza.model.User;

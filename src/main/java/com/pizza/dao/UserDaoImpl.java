@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.pizza.Interface.UserDao;
+import com.pizza.interfaces.UserDao;
 import com.pizza.model.User;
 import com.pizza.utill.ConnectionUtill;
 

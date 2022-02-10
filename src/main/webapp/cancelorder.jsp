@@ -70,8 +70,9 @@ li a:hover:not(.active) {
 </style>
 </head>
 <body align="center" class="order">
-<table align="center">
+
 <h1>MyOrders</h1>
+
 <ul>  
 <li><a href="showproducts.jsp">Home</a></li>
   <li> <a href="showorder.jsp">MyOrders</a></li>
@@ -83,14 +84,14 @@ li a:hover:not(.active) {
 </ul><br><br><br><br>	
 	
 <form  action="cancel" align="center" method="post">
-	<div align="center">
+	
 	<label for="name" >Order Id</label>
 	<input type="number" name="id" value="${OrderId}"  readonly> <br><br>
 	<label for="amount">Refund Amount</label>
 	<input type="number" name="refund" value="${Amount}" readonly>
 	<button type="submit" class="btn btn-primary">Cancel Order</button>
-	</div>
+	
 </form>
-</table>			
+			
 </body>
 </html>

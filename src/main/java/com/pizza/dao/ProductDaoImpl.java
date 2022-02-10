@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.pizza.Interface.ProductDao;
+import com.pizza.interfaces.ProductDao;
 import com.pizza.model.Product;
 import com.pizza.utill.ConnectionUtill;
 

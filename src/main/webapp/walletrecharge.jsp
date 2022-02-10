@@ -10,12 +10,11 @@
 <title>Wallet Recharge</title>
 <link rel="stylesheet" type="text/css" href="Assets/css/rechargewallet.css">
 </head>
-<body class="recharge">
+<body align="center" class="recharge">
 
         <c:if test="${invalidBalance!=null}">
         <h1 class="hh">${invalidBalance}</h1>
         </c:if>   
-<form action="recharge" method="post">
 	<h1>Recharge Your Wallet</h1>
 
 <ul>  
@@ -27,7 +26,7 @@
   <li style="float:right"><a href="userlogin.jsp">Logout</a></li>
   <li><a href="contect.jsp">Contact</a></li>
 </ul><br><br><br><br>
-
+<form action="recharge" method="post">
 		<label for="name"> user name :</label>
 		<input type="text" name="userid" value="${user.username}" readonly><br><br> 
  		<label for="wallet">amount</label>

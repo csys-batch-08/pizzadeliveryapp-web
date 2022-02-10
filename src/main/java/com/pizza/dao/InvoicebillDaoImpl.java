@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.pizza.Interface.InvoicebillDao;
+import com.pizza.interfaces.InvoicebillDao;
 import com.pizza.model.Invoicebill;
 import com.pizza.model.User;
 import com.pizza.utill.ConnectionUtill;
