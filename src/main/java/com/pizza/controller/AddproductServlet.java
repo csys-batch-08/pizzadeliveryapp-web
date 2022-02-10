@@ -38,7 +38,7 @@ public class AddproductServlet extends HttpServlet {
 		try {
 		for(int i=0;i<adminlist.size();i++) 
 		{
-		if(adminlist.get(i).getProductname().equalsIgnoreCase(productname) && adminlist.get(i).getSize().equalsIgnoreCase(productsize)) 
+		if(adminlist.get(i).getProductName().equalsIgnoreCase(productname) && adminlist.get(i).getSize().equalsIgnoreCase(productsize)) 
 			{
 	     	dao.insertproduct(product);		
 	    	session.setAttribute("productList", adminlist);		
