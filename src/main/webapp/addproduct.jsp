@@ -1,7 +1,7 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.pizza.model.Product"%>
 <%@page import="java.util.List"%>
-<%@page import="com.pizza.dao.ProductDaoImpl"%>
+<%@page import="com.pizza.daoimpl.ProductDaoImpl"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>        

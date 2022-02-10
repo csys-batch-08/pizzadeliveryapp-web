@@ -1,4 +1,4 @@
-<%@page import="com.pizza.dao.UserDaoImpl"%>
+<%@page import="com.pizza.daoimpl.UserDaoImpl"%>
 <%@page import="com.pizza.model.User"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.sql.ResultSet"%>
@@ -7,7 +7,7 @@
     <%@page import="java.util.List"%>
      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-        <%@page import=" com.pizza.dao.ProductDaoImpl"%>
+        <%@page import="com.pizza.daoimpl.ProductDaoImpl"%>
         <%@page import="com.pizza.model.Product"%>  
 <!DOCTYPE html>
 <html lang="en">

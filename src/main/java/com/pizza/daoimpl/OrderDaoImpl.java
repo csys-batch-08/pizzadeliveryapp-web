@@ -1,4 +1,4 @@
-package com.pizza.dao;
+package com.pizza.daoimpl;
 
 import java.sql.Connection;
 import java.util.Date;
@@ -8,7 +8,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.pizza.interfaces.OrderDao;
+import com.pizza.dao.OrderDao;
 import com.pizza.model.Order;
 import com.pizza.model.Product;
 import com.pizza.model.User;

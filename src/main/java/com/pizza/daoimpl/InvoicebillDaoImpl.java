@@ -1,11 +1,11 @@
-package com.pizza.dao;
+package com.pizza.daoimpl;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.pizza.interfaces.InvoicebillDao;
+import com.pizza.dao.InvoicebillDao;
 import com.pizza.model.Invoicebill;
 import com.pizza.model.User;
 import com.pizza.utill.ConnectionUtill;

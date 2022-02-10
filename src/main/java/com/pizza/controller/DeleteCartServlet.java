@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.pizza.dao.CartDaoImpl;
+import com.pizza.daoimpl.CartDaoImpl;
 import com.pizza.model.Cart;
 import com.pizza.model.User;
 @WebServlet("/removecart")

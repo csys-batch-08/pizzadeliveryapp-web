@@ -1,11 +1,11 @@
 <%@page import="java.sql.ResultSet"%>
-<%@page import="com.pizza.dao.UserDaoImpl"%>
+<%@page import="com.pizza.daoimpl.UserDaoImpl"%>
 <%@page import="com.pizza.model.User"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
 <%@page import="java.util.List"%>
 <%@page import="com.pizza.model.Product"%>
-<%@page import="com.pizza.dao.ProductDaoImpl"%>
+<%@page import="com.pizza.daoimpl.ProductDaoImpl"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>

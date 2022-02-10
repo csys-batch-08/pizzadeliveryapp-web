@@ -1,9 +1,9 @@
-<%@page import="com.pizza.dao.ProductDaoImpl"%>
+<%@page import="com.pizza.daoimpl.ProductDaoImpl"%>
 <%@page import="com.pizza.model.Product"%>
 <%@page import="java.util.List"%>
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 
-<%@page import="com.pizza.dao.CartDaoImpl"%>
+<%@page import="com.pizza.daoimpl.CartDaoImpl"%>
 <%@page import="com.pizza.model.User"%>
 <%@page import="com.pizza.model.Cart"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"

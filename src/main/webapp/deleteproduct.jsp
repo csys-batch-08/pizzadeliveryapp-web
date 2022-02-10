@@ -1,5 +1,5 @@
 <%@page import="java.util.List"%>
-<%@page import="com.pizza.dao.ProductDaoImpl"%>
+<%@page import="com.pizza.daoimpl.ProductDaoImpl"%>
 <%@page import="com.pizza.model.Product"%>
     <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@page import="java.sql.ResultSet"%>

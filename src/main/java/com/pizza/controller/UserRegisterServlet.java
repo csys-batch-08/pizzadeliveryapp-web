@@ -7,10 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
-//import org.apache.catalina.connector.Response;
-
-import com.pizza.dao.UserDaoImpl;
+import com.pizza.daoimpl.UserDaoImpl;
 import com.pizza.model.User;
 import com.pizza.utill.ConnectionUtill;
 @WebServlet("/Sample")

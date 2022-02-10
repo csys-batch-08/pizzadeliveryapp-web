@@ -10,9 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-// import org.apache.catalina.connector.Response;
-
-import com.pizza.dao.UserDaoImpl;
+import com.pizza.daoimpl.UserDaoImpl;
 import com.pizza.model.User;
 
 @WebServlet("/inactive")

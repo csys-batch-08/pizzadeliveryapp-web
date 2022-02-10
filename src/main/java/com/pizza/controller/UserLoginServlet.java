@@ -11,10 +11,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.pizza.dao.CartDaoImpl;
-import com.pizza.dao.OrderDaoImpl;
-import com.pizza.dao.ProductDaoImpl;
-import com.pizza.dao.UserDaoImpl;
+import com.pizza.daoimpl.CartDaoImpl;
+import com.pizza.daoimpl.OrderDaoImpl;
+import com.pizza.daoimpl.ProductDaoImpl;
+import com.pizza.daoimpl.UserDaoImpl;
 import com.pizza.exception.InactiveUserException;
 import com.pizza.exception.UserNotFound;
 import com.pizza.model.Cart;

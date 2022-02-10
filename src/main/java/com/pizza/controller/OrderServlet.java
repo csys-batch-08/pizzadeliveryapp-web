@@ -12,9 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.pizza.dao.OrderDaoImpl;
-import com.pizza.dao.ProductDaoImpl;
-import com.pizza.dao.UserDaoImpl;
+import com.pizza.daoimpl.OrderDaoImpl;
+import com.pizza.daoimpl.ProductDaoImpl;
+import com.pizza.daoimpl.UserDaoImpl;
 import com.pizza.exception.Lowbalance;
 import com.pizza.model.Order;
 import com.pizza.model.Product;

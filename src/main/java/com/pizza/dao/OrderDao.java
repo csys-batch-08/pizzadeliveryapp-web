@@ -1,4 +1,4 @@
-package com.pizza.interfaces;
+package com.pizza.dao;
 
 import java.sql.ResultSet;
 import java.util.Date;

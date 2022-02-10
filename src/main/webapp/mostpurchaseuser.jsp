@@ -1,8 +1,8 @@
 <%@page import="com.pizza.model.User"%>
-<%@page import="com.pizza.dao.UserDaoImpl"%>
+<%@page import="com.pizza.daoimpl.UserDaoImpl"%>
 <%@page import="java.sql.ResultSet"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@page import="com.pizza.dao.OrderDaoImpl"%>
+<%@page import="com.pizza.daoimpl.OrderDaoImpl"%>
 <%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>

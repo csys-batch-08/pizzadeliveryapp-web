@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.pizza.dao.ProductDaoImpl;
+import com.pizza.daoimpl.ProductDaoImpl;
 import com.pizza.model.Product;
 
 /**

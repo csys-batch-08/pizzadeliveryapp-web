@@ -1,4 +1,4 @@
-package com.pizza.dao;
+package com.pizza.daoimpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import com.pizza.interfaces.UserDao;
+import com.pizza.dao.UserDao;
 import com.pizza.model.User;
 import com.pizza.utill.ConnectionUtill;
 
