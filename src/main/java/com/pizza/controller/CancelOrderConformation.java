@@ -1,6 +1,8 @@
 package com.pizza.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,7 +29,8 @@ public class CancelOrderConformation extends HttpServlet {
 	 session.setAttribute("OrderId", orderid);	
 	 double amount=Double.parseDouble(request.getParameter("amount"));
 	 session.setAttribute("Amount", amount);
-	 response.sendRedirect("cancelorder.jsp");
+	 RequestDispatcher dispatcher=request.getRequestDispatcher("cancelorder.jsp");
+		dispatcher.forward(request, response);	
 	}
 
 }

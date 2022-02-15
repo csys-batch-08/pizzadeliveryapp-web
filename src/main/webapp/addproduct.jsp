@@ -13,7 +13,7 @@
 <title> ADD products</title>
 <link rel="stylesheet" type="text/css" href="Assets/css/addproduct.css">
 </head>
-<body class="total">
+<body class="total" align="center">
 
 <h1 class="hh">ADD PRODUCTS</h1>
 

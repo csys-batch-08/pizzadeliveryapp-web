@@ -1,6 +1,8 @@
 package com.pizza.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,7 +39,9 @@ public class UpdateProductConformation extends HttpServlet {
 		 String status=request.getParameter("productstatus");
 		 session.setAttribute("ProductStatus", status);	
 		 
-		 response.sendRedirect("updateproduct.jsp");
+		 RequestDispatcher dispatcher=request.getRequestDispatcher("updateproduct.jsp");
+			dispatcher.forward(request, response);
+
 		 
 	}
 

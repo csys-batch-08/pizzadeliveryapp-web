@@ -1,6 +1,8 @@
 package com.pizza.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,7 +25,8 @@ public class InactiveUserServlet extends HttpServlet {
 		 HttpSession session=request.getSession();	
 		 
 		 String useremail=request.getParameter("email"); 
-   		 session.setAttribute("email", useremail);	   		 
- 	     response.sendRedirect("inactive.jsp");		
+   		 session.setAttribute("email", useremail);
+   		 RequestDispatcher dispatcher=request.getRequestDispatcher("inactive.jsp");
+			dispatcher.forward(request, response);
 	}
 }

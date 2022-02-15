@@ -3,6 +3,7 @@ package com.pizza.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,7 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.pizza.daoimpl.ProductDaoImpl;
-import com.pizza.exception.SameProductException;
 import com.pizza.model.Product;
 @WebServlet("/addproduct")
 /**
@@ -33,27 +33,11 @@ public class AddproductServlet extends HttpServlet {
 		Double productprice=Double.parseDouble(request.getParameter("price"));
 		Product product=new Product(productname,productsize,productprice);
 		ProductDaoImpl dao=new ProductDaoImpl();
-		List<Product> adminlist=dao.adiminshowProduct();
-		
-		try {
-		for(int i=0;i<adminlist.size();i++) 
-		{
-		if(adminlist.get(i).getProductName().equalsIgnoreCase(productname) && adminlist.get(i).getSize().equalsIgnoreCase(productsize)) 
-			{
 	     	dao.insertproduct(product);		
-	    	session.setAttribute("productList", adminlist);		
-		    response.sendRedirect("adddeleteupdate.jsp");
-			}
-			else {
-				throw new SameProductException();
-			     }
-		}
-		}
-		 catch (SameProductException s){
-	    		   session.setAttribute("sameproduct", s.getMessage());
-	        	   response.sendRedirect("addproduct.jsp");
-	    	   }
+			List<Product> adminlist=dao.adiminshowProduct();	
+	    	session.setAttribute("productList", adminlist);	
 	    	
+	    	RequestDispatcher dispatcher=request.getRequestDispatcher("adddeleteupdate.jsp");
+			dispatcher.forward(request, response);	
 	}
-
 }

@@ -3,6 +3,7 @@ package com.pizza.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,7 +41,8 @@ public class Deliverdorder extends HttpServlet {
 			List<Order> orderlist=dao.showorder(user);
 			session.setAttribute("orderList", orderlist);
 			
-			response.sendRedirect("showorder.jsp");
+			 RequestDispatcher dispatcher=request.getRequestDispatcher("showorder.jsp");
+				dispatcher.forward(request, response);
 	}
 
 }

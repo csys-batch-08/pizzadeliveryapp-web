@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -40,7 +42,8 @@ public class MostPurchasedUserServlet extends HttpServlet {
 			User user=orderdao.activeuser(fromdate, todate);			
 			session.setAttribute("User", user);
 			
-			response.sendRedirect("mostpurchaseuser.jsp");
+			 RequestDispatcher dispatcher=request.getRequestDispatcher("mostpurchaseuser.jsp");
+				dispatcher.forward(request, response);
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}

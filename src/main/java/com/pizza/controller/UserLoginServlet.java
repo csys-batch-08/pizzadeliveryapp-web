@@ -45,32 +45,33 @@ public class UserLoginServlet extends HttpServlet {
 		UserDaoImpl userdao=new UserDaoImpl();		
 		User user = userdao.validateUser(email, password);	
 		session.setAttribute("user",user);
-		ProductDaoImpl dao=new ProductDaoImpl();		
+		ProductDaoImpl dao=new ProductDaoImpl();	
+		
+		OrderDaoImpl orderdao=new OrderDaoImpl();
+		List<Order> orderlist=orderdao.showorder(user);
+		session.setAttribute("orderList", orderlist);
+		
+		CartDaoImpl cartdao=new CartDaoImpl();
+		List<Cart> cartlist=cartdao.showcart(user);
+		session.setAttribute("cartList", cartlist);
 		try {
 			if(user!=null) 
 			{
 			if(user.getType().equals("Admin")) 
 			{							
 			List<Product> adminlist=dao.adiminshowProduct();
-			session.setAttribute("productList", adminlist); 
-		                                                   
+			session.setAttribute("productList", adminlist); 		                                                   
 			List<User> userlist=userdao.showuser();
 			session.setAttribute("userList", userlist);
-			response.sendRedirect("adddeleteupdate.jsp");
+			
+			RequestDispatcher dispatcher=request.getRequestDispatcher("adddeleteupdate.jsp");
+			dispatcher.forward(request, response);	
 	   	}	
 		else if(user.getType().equals("user")) 
 		{			  		
 			List<Product> list=dao.showProduct();
 			session.setAttribute("productlist", list);
-			
-			OrderDaoImpl orderdao=new OrderDaoImpl();
-			List<Order> orderlist=orderdao.showorder(user);
-			session.setAttribute("orderList", orderlist);
-			
-			CartDaoImpl cartdao=new CartDaoImpl();
-			List<Cart> cartlist=cartdao.showcart(user);
-			session.setAttribute("cartList", cartlist);
-			
+						
 			RequestDispatcher dispatcher=request.getRequestDispatcher("showproducts.jsp");
 			dispatcher.forward(request, response);	
 		}

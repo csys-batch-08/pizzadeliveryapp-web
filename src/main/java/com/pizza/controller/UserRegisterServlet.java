@@ -1,6 +1,8 @@
 package com.pizza.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -28,6 +30,8 @@ public class UserRegisterServlet extends HttpServlet{
 			User user=new User(firstname,phonenumber,email,address, password, 0,"");
 			UserDaoImpl userdao=new UserDaoImpl();
 			userdao.insert(user);
-				resp.sendRedirect("userlogin.jsp");
+			
+			 RequestDispatcher dispatcher=req.getRequestDispatcher("userlogin.jsp");
+	 			dispatcher.forward(req, resp);
 		}
 }

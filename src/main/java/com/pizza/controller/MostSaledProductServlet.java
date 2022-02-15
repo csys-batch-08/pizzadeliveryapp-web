@@ -5,6 +5,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,7 +40,8 @@ public class MostSaledProductServlet extends HttpServlet {
 			Product product=orderdao.mostsaledproduct(fromdate, todate);
 			session.setAttribute("Product", product);
 			
-			response.sendRedirect("mostsuccessproduct.jsp");
+			 RequestDispatcher dispatcher=request.getRequestDispatcher("mostsuccessproduct.jsp");
+				dispatcher.forward(request, response);
 
 		} catch (ParseException e) {
 			e.printStackTrace();

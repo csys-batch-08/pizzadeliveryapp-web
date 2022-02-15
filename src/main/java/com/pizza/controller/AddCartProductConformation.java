@@ -1,6 +1,8 @@
 package com.pizza.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -29,8 +31,12 @@ public class AddCartProductConformation extends HttpServlet {
 		 session.setAttribute("psize", size);		 
 		 Double price=Double.parseDouble(request.getParameter("productprice"));  		 
 		 session.setAttribute("pprice", price);	
-		 Product product=new Product(name,size,price);		
-		 session.setAttribute("products", product);		 	 
-		 response.sendRedirect("cart.jsp");  
+		 
+		 Product product=new Product(name,size,price);	
+		 
+		 session.setAttribute("products", product);	
+		 
+		 RequestDispatcher dispatcher=request.getRequestDispatcher("cart.jsp");
+			dispatcher.forward(request, response);
 	}
 }

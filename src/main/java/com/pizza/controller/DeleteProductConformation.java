@@ -1,6 +1,8 @@
 package com.pizza.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -26,7 +28,8 @@ public class DeleteProductConformation extends HttpServlet {
 		 int productid=Integer.parseInt(request.getParameter("Pid"));  		 
 		 session.setAttribute("id", productid);	
 		 
-		 response.sendRedirect("deleteproduct.jsp");
+		 RequestDispatcher dispatcher=request.getRequestDispatcher("deleteproduct.jsp");
+			dispatcher.forward(request, response);
 	}
 
 }

@@ -108,7 +108,7 @@ color: white;
   <div align="center" class="product">
 		<c:forEach items="${productlist}"  var="obj">		
 	<img src="Assets\Images\<c:out value="${obj.productName}"></c:out>.jpg" alt="img" width=300px height=175px class="bounce"><br>
-	<strong>	<c:out value="${obj.productname}"></c:out> &nbsp; &nbsp;
+	<strong>	<c:out value="${obj.productName}"></c:out> &nbsp; &nbsp;
 		
 		<c:out value="${obj.size}"></c:out>   &nbsp; &nbsp; &nbsp;
 		

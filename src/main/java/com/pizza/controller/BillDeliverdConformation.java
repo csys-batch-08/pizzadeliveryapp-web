@@ -1,6 +1,8 @@
 package com.pizza.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,7 +41,8 @@ public class BillDeliverdConformation extends HttpServlet {
 			Double pprize=Double.parseDouble(request.getParameter("price"));
 			session.setAttribute("productprice", pprize);
 		    
-			 response.sendRedirect("bill.jsp");
+			RequestDispatcher dispatcher=request.getRequestDispatcher("bill.jsp");
+			dispatcher.forward(request, response);	
 			
 			
 	}

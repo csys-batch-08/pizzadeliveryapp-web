@@ -3,6 +3,7 @@ package com.pizza.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,7 +35,8 @@ public class SearchProductServlet extends HttpServlet {
 		List<Product> list=dao.productsearch(search);
 		session.setAttribute("ProductList", list);
 		
-		 response.sendRedirect("search.jsp");
+		 RequestDispatcher dispatcher=request.getRequestDispatcher("search.jsp");
+			dispatcher.forward(request, response);
 
 	}
 

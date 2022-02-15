@@ -1,6 +1,8 @@
 package com.pizza.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -36,6 +38,8 @@ public class Walletrechargeservelet extends HttpServlet {
      		user.setWallet(user.getWallet()-amount);
      	}       	
      	session.setAttribute("User", user);
-		response.sendRedirect("showproducts.jsp");
+     	
+     	RequestDispatcher dispatcher=request.getRequestDispatcher("showproducts.jsp");
+			dispatcher.forward(request, response);
 	}
 }

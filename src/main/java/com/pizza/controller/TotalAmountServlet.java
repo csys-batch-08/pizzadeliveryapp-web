@@ -5,6 +5,7 @@ import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,7 +39,8 @@ public class TotalAmountServlet extends HttpServlet {
  			Double price=orderdao.TotalAmount(fromdate, todate);
  			session.setAttribute("totalprize", price);
  			
-			response.sendRedirect("totalamountsales.jsp");
+ 			 RequestDispatcher dispatcher=request.getRequestDispatcher("totalamountsales.jsp");
+ 			dispatcher.forward(request, response);
 
 		} catch (ParseException e) {
 			e.printStackTrace();

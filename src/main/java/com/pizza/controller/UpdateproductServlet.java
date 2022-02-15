@@ -3,6 +3,7 @@ package com.pizza.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,7 +40,9 @@ public class UpdateproductServlet extends HttpServlet {
 		List<Product> adminlist=dao.adiminshowProduct();
 		session.setAttribute("productList", adminlist);
 		
-			response.sendRedirect("adddeleteupdate.jsp");
+		 RequestDispatcher dispatcher=request.getRequestDispatcher("adddeleteupdate.jsp");
+			dispatcher.forward(request, response);
+
 	}
 
 }

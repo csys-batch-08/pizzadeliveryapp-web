@@ -3,6 +3,7 @@ package com.pizza.controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,7 +38,9 @@ public class DeleteCartServlet extends HttpServlet {
 		dao.delete(cartid);
 		List<Cart> cartlist=dao.showcart(user);
 		session.setAttribute("cartList", cartlist);
-		response.sendRedirect("showcart.jsp");
+		
+		 RequestDispatcher dispatcher=request.getRequestDispatcher("showcart.jsp");
+			dispatcher.forward(request, response);
 	}
 
 }
