@@ -18,9 +18,9 @@
     
 2. > User Login details 
 
-    *username* : siva@gmail.com
+    *username* : vicky@gmail.com
     
-    *password* : Siva@123
+    *password* : Hari@123
     
  ## User Features
   
