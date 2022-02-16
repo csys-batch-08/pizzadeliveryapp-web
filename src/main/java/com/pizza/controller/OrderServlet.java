@@ -59,7 +59,7 @@ public class OrderServlet extends HttpServlet {
 				if(i>0) {
 					user.setWallet(user.getWallet()-productprice);
 					session.setAttribute("user", user);								
-					RequestDispatcher dispatcher=request.getRequestDispatcher("showproducts.jsp");
+					RequestDispatcher dispatcher=request.getRequestDispatcher("ListProductServlet");
 					dispatcher.forward(request, response);				
 					}
 				else {		

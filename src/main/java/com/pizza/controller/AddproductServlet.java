@@ -49,8 +49,10 @@ public class AddproductServlet extends HttpServlet {
 			int j = dao.insertproduct(product);
 			
 			if (j > 0) {
+				
 				List<Product> adminlist = dao.adiminshowProduct();
 				request.setAttribute("productList", adminlist);
+				
 				RequestDispatcher dispatcher = request.getRequestDispatcher("adddeleteupdate.jsp");
 				dispatcher.forward(request, response);
 			}

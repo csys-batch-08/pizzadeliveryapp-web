@@ -37,8 +37,9 @@ public class UpdateproductServlet extends HttpServlet {
 		
 		dao.updated(productname, productsize, productprice, productstatus, productid);
 		
-		List<Product> adminlist=dao.adiminshowProduct();
-		session.setAttribute("productList", adminlist);
+		List<Product> adminlist=dao.adiminshowProduct();	
+    	request.setAttribute("productList", adminlist);	
+    	
 		
 		 RequestDispatcher dispatcher=request.getRequestDispatcher("adddeleteupdate.jsp");
 			dispatcher.forward(request, response);

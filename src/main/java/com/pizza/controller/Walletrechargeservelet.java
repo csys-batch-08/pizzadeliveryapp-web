@@ -39,7 +39,7 @@ public class Walletrechargeservelet extends HttpServlet {
      	}       	
      	session.setAttribute("User", user);
      	
-     	RequestDispatcher dispatcher=request.getRequestDispatcher("showproducts.jsp");
+     	RequestDispatcher dispatcher=request.getRequestDispatcher("LisrProductServlet");
 			dispatcher.forward(request, response);
 	}
 }

@@ -38,10 +38,11 @@ public class Cartservlet extends HttpServlet {
 		Cart cart=new Cart(user,product,0,0.0);
 	    dao.insertCart(cart);		
 	    CartDaoImpl cartdao=new CartDaoImpl();
+	    
 		List<Cart> cartlist=cartdao.showcart(user);
-		session.setAttribute("cartList", cartlist);
+		request.setAttribute("cartList", cartlist);
 		
-		RequestDispatcher dispatcher=request.getRequestDispatcher("showproducts.jsp");
+		RequestDispatcher dispatcher=request.getRequestDispatcher("ListProductServlet");
 		dispatcher.forward(request, response);	
 	}
 }
