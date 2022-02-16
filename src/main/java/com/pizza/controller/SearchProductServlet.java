@@ -33,7 +33,7 @@ public class SearchProductServlet extends HttpServlet {
 		String search= request.getParameter("search");
 		
 		List<Product> list=dao.productsearch(search);
-		session.setAttribute("ProductList", list);
+		request.setAttribute("ProductList", list);
 		
 		 RequestDispatcher dispatcher=request.getRequestDispatcher("search.jsp");
 			dispatcher.forward(request, response);

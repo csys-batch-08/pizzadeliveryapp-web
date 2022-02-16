@@ -37,7 +37,7 @@ public class DeleteCartServlet extends HttpServlet {
 		CartDaoImpl dao=new CartDaoImpl();
 		dao.delete(cartid);
 		List<Cart> cartlist=dao.showcart(user);
-		session.setAttribute("cartList", cartlist);
+		request.setAttribute("cartList", cartlist);
 		
 		 RequestDispatcher dispatcher=request.getRequestDispatcher("ShowCartServlet");
 			dispatcher.forward(request, response);

@@ -54,7 +54,7 @@ public class OrderServlet extends HttpServlet {
 				int i=orderdao.orderproduct(order);			
 				dao.update(productprice,user.getEmail());			
 				List<Order> orderlist=orderdao.showorder(user);
-				session.setAttribute("orderList", orderlist);					
+				request.setAttribute("orderList", orderlist);					
 		         try{
 				if(i>0) {
 					user.setWallet(user.getWallet()-productprice);

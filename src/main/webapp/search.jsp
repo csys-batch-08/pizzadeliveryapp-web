@@ -87,7 +87,7 @@ strong{
   <li><a href="contect.jsp">Contact</a></li>
 </ul><br><br><br><br>
 
-		<c:forEach items="${ProductList}" var="obj">
+		<c:forEach items="${requestScope.ProductList}" var="obj">
 		<div align="center">
 	<span class="bounce_button"><img src="Assets\Images\<c:out value="${obj.productName}"></c:out>.jpg" alt="img" width=300px height=175px class="bounce"></span><br>
 	<strong> <c:out value="${obj.productName}"></c:out>&nbsp; &nbsp;
