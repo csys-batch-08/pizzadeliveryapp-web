@@ -61,9 +61,9 @@ li a:hover:not(.active) {
 <body class="back">
 <h1 class="title">My Details</h1>
 <ul>  
-<li><a href="showproducts.jsp">Home</a></li>
-  <li> <a href="showorder.jsp">MyOrders</a></li>
-  <li><a href="showcart.jsp">Mycart</a></li>  
+<li><a href="ListProductServlet">Home</a></li>
+  <li> <a href="ShowOrderServlet">MyOrders</a></li>
+  <li><a href="ShowCartServlet">Mycart</a></li>  
   <li> <a href="userdetails.jsp">Account</a></li>
   <li><a href="walletrecharge.jsp">RechargeWallet</a></li>
   <li><a href="contect.jsp">Contact</a></li>

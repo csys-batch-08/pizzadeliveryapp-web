@@ -18,8 +18,8 @@
 <body  class="order">
 <h1 class="hh">Bill</h1>
 <ul>  
-<li><a href="showproducts.jsp">Home</a></li>
-  <li> <a href="showorder.jsp">MyOrders</a></li>
+<li><a href="ListProductServlet">Home</a></li>
+  <li> <a href="ShowOrderServlet">MyOrders</a></li>
   <li><a href="showcart.jsp">Mycart</a></li>
   <li> <a href="userdetails.jsp">Account</a></li>
   <li><a href="walletrecharge.jsp">RechargeWallet</a></li>

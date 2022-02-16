@@ -28,7 +28,7 @@ public class Walletrechargeservelet extends HttpServlet {
 
 		Double amount=Double.parseDouble(request.getParameter("recharge"));
 		HttpSession session=request.getSession();
-		User user=(User)session.getAttribute("user");
+		User user=(User) session.getAttribute("user");
 		
 		user.setWallet(user.getWallet()+amount);
 		UserDaoImpl dao=new UserDaoImpl();

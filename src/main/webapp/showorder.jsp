@@ -76,9 +76,9 @@ li a:hover:not(.active) {
 	<table>
 		<h1>MyOrders</h1>
 		<ul>
-			<li><a href="showproducts.jsp">Home</a></li>
-			<li><a href="showorder.jsp">MyOrders</a></li>
-			<li><a href="showcart.jsp">Mycart</a></li>
+			<li><a href="ListProductServlet">Home</a></li>
+			<li><a href="ShowOrderServlet">MyOrders</a></li>
+			<li><a href="ShowCartServlet">Mycart</a></li>
 			<li><a href="userdetails.jsp">Account</a></li>
 			<li><a href="walletrecharge.jsp">RechargeWallet</a></li>
 			<li style="float: right"><a href="userlogin.jsp">Logout</a></li>
@@ -99,7 +99,7 @@ li a:hover:not(.active) {
 			<th>Cancel Order</th>
 			<th>Bill</th>
 		</tr>
-		<c:forEach items="${orderList}" var="obj">
+		<c:forEach items="${requestScope.orderList}" var="obj">
 			<tr>
 				<td>${obj.orderId}</td>
 				<td>${obj.product.productName}</td>
@@ -108,11 +108,8 @@ li a:hover:not(.active) {
 				<td>${obj.quantity}</td>
 				<td>${obj.orderDate}</td>
 				<td>${obj.status}</td>
-				<td><c:if test="${obj.status == 'pending' }"><a href="BillDeliverdConformation?orderid=${obj.orderId}&name=${obj.product.productName}&size=${obj.product.size}&quantity=${obj.quantity}&price=${obj.price}&date=${obj.orderDate}">bill</a></c:if></td>	<br><br>
+				<td><c:if test="${obj.status == 'pending' }"><a href="BillDeliverdConformation?orderid=${obj.orderId}&name=${obj.product.productName}&size=${obj.product.size}&quantity=${obj.quantity}&price=${obj.price}&date=${obj.orderDate}">bill</a></c:if></td>	<br/><br/>
 				<td><c:if test="${obj.status == 'pending'}"><a href="CancelOrderConformation?orderId=${obj.orderId}&amount=${obj.price}">cancel</a></c:if></td>
-<%-- 					<td><c:if test="${obj.status == 'delivered'}"><a href="BillDeliverdConformation?orderid=${obj.orderid}&name=${obj.product.productname}&size=${obj.product.size}&quantity=${obj.quantity}&price=${obj.price}&date=${obj.orderdate}">bill</a></c:if></td>	<br><br>
- --%>					
-	
 			</tr>
 		</c:forEach>
 	</table>

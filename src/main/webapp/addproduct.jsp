@@ -14,7 +14,9 @@
 <link rel="stylesheet" type="text/css" href="Assets/css/addproduct.css">
 </head>
 <body class="total" align="center">
-
+<c:if test="${notfound !=null}">
+			<h3>${notfound}</h3>
+		</c:if>	
 <h1 class="hh">ADD PRODUCTS</h1>
 
 <ul>  
@@ -22,6 +24,7 @@
  <li style="float:right"><a href="userlogin.jsp">Logout</a></li>
 </ul><br><br><br><br>
 <form action="addproduct" method="post">
+
 	<div>	
 		<label for="name">Product Name :</label>
         <input type="text" name="name"><br><br>

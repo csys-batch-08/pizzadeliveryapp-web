@@ -44,7 +44,7 @@
 		<th>Product Status</th>	
 		<th>Update Products</th>
 	</tr>		    		
-		<c:forEach items="${productList}" var="obj">	
+		<c:forEach items="${requestScope.productList}" var="obj">	
 		<tr> 
 		<td><c:out value="${obj.productId }"></c:out></td>	
 		<td><c:out value="${obj.productName }"></c:out></td>	

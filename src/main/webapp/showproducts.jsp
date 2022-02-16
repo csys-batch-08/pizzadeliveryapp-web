@@ -92,9 +92,9 @@ color: white;
 <body style="background-color:lightgreen;" align="center" class="main"> 
 <h1  class="hh"><img src="Assets\Images\logopizza.png" alt="logo.png" width="150px" height="100px">PizzaHut</h1>
 <ul>  
-<li><a href="showproducts.jsp">Home</a></li>
-  <li> <a href="showorder.jsp?orderId=0">MyOrders</a></li>
-  <li><a href="showcart.jsp">Mycart</a></li>  
+<li><a href="ListProductServlet">Home</a></li>
+  <li> <a href="ShowOrderServlet">MyOrders</a></li>
+  <li><a href="ShowCartServlet">Mycart</a></li>  
   <li> <a href="userdetails.jsp">Account</a></li>
   <li><a href="walletrecharge.jsp">RechargeWallet</a></li>   
   <li style="float:right"><a href="userlogin.jsp">Logout</a></li>
@@ -106,7 +106,7 @@ color: white;
   </form>
   </div><br><br><br>
   <div align="center" class="product">
-		<c:forEach items="${productlist}"  var="obj">		
+		<c:forEach items="${requestScope.productlist}"  var="obj">		
 	<img src="Assets\Images\<c:out value="${obj.productName}"></c:out>.jpg" alt="img" width=300px height=175px class="bounce"><br>
 	<strong>	<c:out value="${obj.productName}"></c:out> &nbsp; &nbsp;
 		

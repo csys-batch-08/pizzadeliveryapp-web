@@ -78,9 +78,9 @@ li a:hover:not(.active) {
 
 			
 <ul>  
-<li><a href="showproducts.jsp">Home</a></li>
-  <li> <a href="showorder.jsp?orderId=0">MyOrders</a></li>
-  <li><a href="showcart.jsp">Mycart</a></li>  
+<li><a href="ListProductServlet">Home</a></li>
+  <li> <a href="ShowOrderServlet?orderId=0">MyOrders</a></li>
+  <li><a href="ShowCartServlet">Mycart</a></li>  
   <li> <a href="userdetails.jsp">Account</a></li>
   <li><a href="walletrecharge.jsp">RechargeWallet</a></li>
   <li style="float:right"><a href="userlogin.jsp">Logout</a></li>

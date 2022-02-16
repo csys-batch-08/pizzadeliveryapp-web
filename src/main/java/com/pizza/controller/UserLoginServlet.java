@@ -3,7 +3,6 @@ package com.pizza.controller;
 import java.io.IOException;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,13 +12,11 @@ import javax.servlet.http.HttpSession;
 
 import com.pizza.daoimpl.CartDaoImpl;
 import com.pizza.daoimpl.OrderDaoImpl;
-import com.pizza.daoimpl.ProductDaoImpl;
 import com.pizza.daoimpl.UserDaoImpl;
 import com.pizza.exception.InactiveUserException;
 import com.pizza.exception.UserNotFound;
 import com.pizza.model.Cart;
 import com.pizza.model.Order;
-import com.pizza.model.Product;
 import com.pizza.model.User;
 
 @WebServlet("/Login")
@@ -44,36 +41,21 @@ public class UserLoginServlet extends HttpServlet {
 		String password=request.getParameter("password");
 		UserDaoImpl userdao=new UserDaoImpl();		
 		User user = userdao.validateUser(email, password);	
-		session.setAttribute("user",user);
-		ProductDaoImpl dao=new ProductDaoImpl();	
 		
-		OrderDaoImpl orderdao=new OrderDaoImpl();
-		List<Order> orderlist=orderdao.showorder(user);
-		session.setAttribute("orderList", orderlist);
 		
-		CartDaoImpl cartdao=new CartDaoImpl();
-		List<Cart> cartlist=cartdao.showcart(user);
-		session.setAttribute("cartList", cartlist);
+		
 		try {
 			if(user!=null) 
 			{
 			if(user.getType().equals("Admin")) 
 			{							
-			List<Product> adminlist=dao.adiminshowProduct();
-			session.setAttribute("productList", adminlist); 		                                                   
-			List<User> userlist=userdao.showuser();
-			session.setAttribute("userList", userlist);
-			
-			RequestDispatcher dispatcher=request.getRequestDispatcher("adddeleteupdate.jsp");
-			dispatcher.forward(request, response);	
-	   	}	
+				response.sendRedirect("AdminProductList");
+	      	}	
 		else if(user.getType().equals("user")) 
-		{			  		
-			List<Product> list=dao.showProduct();
-			session.setAttribute("productlist", list);
-						
-			RequestDispatcher dispatcher=request.getRequestDispatcher("showproducts.jsp");
-			dispatcher.forward(request, response);	
+		{			  				
+			session.setAttribute("user",user);
+			response.sendRedirect("ListProductServlet");
+			
 		}
 			else if(user.getType().equals("Inactive")) 
 			{
@@ -86,7 +68,7 @@ public class UserLoginServlet extends HttpServlet {
      	}
 		}		
 		catch(UserNotFound l) {
-			session.setAttribute("notfound", l.getMessage());
+			session.setAttribute("nouser", l.getMessage());
 			response.sendRedirect("userlogin.jsp");			
 	} catch (InactiveUserException e) {
 		session.setAttribute("Inactiveuser", e.getMessage() );

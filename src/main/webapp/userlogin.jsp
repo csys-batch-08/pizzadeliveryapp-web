@@ -12,8 +12,8 @@
 <body class="dummySty">
 
 	<div class="exception">
-		<c:if test="${notfound !=null}">
-			<h3>${notfound}</h3>
+		<c:if test="${nouser !=null}">
+			<h3>${nouser}</h3>
 		</c:if>
 		<c:if test="${Inactiveuser !=null}">
 			<h3>${Inactiveuser}</h3>
