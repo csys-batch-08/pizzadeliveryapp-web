@@ -11,7 +11,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.pizza.daoimpl.UserDaoImpl;
 import com.pizza.model.User;
-import com.pizza.utill.ConnectionUtill;
 @WebServlet("/Sample")
 public class UserRegisterServlet extends HttpServlet{
 	

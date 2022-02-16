@@ -1,7 +1,6 @@
 package com.pizza.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,13 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.pizza.daoimpl.CartDaoImpl;
-import com.pizza.daoimpl.OrderDaoImpl;
+
 import com.pizza.daoimpl.UserDaoImpl;
 import com.pizza.exception.InactiveUserException;
 import com.pizza.exception.UserNotFound;
-import com.pizza.model.Cart;
-import com.pizza.model.Order;
+
 import com.pizza.model.User;
 
 @WebServlet("/Login")

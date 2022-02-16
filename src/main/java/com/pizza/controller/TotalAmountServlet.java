@@ -31,13 +31,13 @@ public class TotalAmountServlet extends HttpServlet {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 		
-			Date fromdate =(Date) sdf.parse(request.getParameter("fromDate"));
-			Date todate = (Date) sdf.parse(request.getParameter("toDate"));
+			Date fromdate =sdf.parse(request.getParameter("fromDate"));
+			Date todate = sdf.parse(request.getParameter("toDate"));
 			HttpSession session = request.getSession();			
 			
 			OrderDaoImpl orderdao= new OrderDaoImpl();
  			Double price=orderdao.TotalAmount(fromdate, todate);
- 			session.setAttribute("totalprize", price);
+ 			session.setAttribute("totalprize", price);  
  			
  			 RequestDispatcher dispatcher=request.getRequestDispatcher("totalamountsales.jsp");
  			dispatcher.forward(request, response);

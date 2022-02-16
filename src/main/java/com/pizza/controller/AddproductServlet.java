@@ -36,12 +36,12 @@ public class AddproductServlet extends HttpServlet {
 		Double productprice = Double.parseDouble(request.getParameter("price"));
 		ProductDaoImpl dao = new ProductDaoImpl();
 		List<Product> list = dao.adiminshowProduct();
-		boolean flag = false;
+		
 		try {
 			for (int i = 0; i < list.size(); i++) {
 				if (list.get(i).getProductName().equalsIgnoreCase(productname)
 						&& list.get(i).getSize().equalsIgnoreCase(productsize)) {
-					flag = true;
+					
 					throw new SameProductException();
 				}
 			}
@@ -58,10 +58,10 @@ public class AddproductServlet extends HttpServlet {
 			}
 		}
 		catch (SameProductException s) {
-			if (flag) {
+			
 				session.setAttribute("notfound", s.getMessage());
 				response.sendRedirect("addproduct.jsp");
-			}
+			
 		}
 		
 	}

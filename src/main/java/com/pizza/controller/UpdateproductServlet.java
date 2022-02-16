@@ -9,7 +9,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.pizza.daoimpl.ProductDaoImpl;
 import com.pizza.model.Product;
@@ -26,7 +25,6 @@ public class UpdateproductServlet extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session=request.getSession();
 		
 		int productid=Integer.parseInt(request.getParameter("id"));
 		String productname=request.getParameter("name");

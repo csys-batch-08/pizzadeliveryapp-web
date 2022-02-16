@@ -12,15 +12,9 @@ import javax.servlet.http.HttpSession;
 
 import com.pizza.model.Product;
 
-/**
- * Servlet implementation class OrderProductConformation
- */
 @WebServlet("/OrderProductConformation")
 public class OrderProductConformation extends HttpServlet {
-	
-	/**
-	 * 
-	 */
+
 	private static final long serialVersionUID = 1L;
 
 	@Override
@@ -37,8 +31,7 @@ public class OrderProductConformation extends HttpServlet {
 		 
 		 Product product=new Product(name,size,price);		
 		 session.setAttribute("products", product);		 
-	 
-		 
+	 		 
 		 RequestDispatcher dispatcher=request.getRequestDispatcher("order.jsp");
 			dispatcher.forward(request, response);	
 		

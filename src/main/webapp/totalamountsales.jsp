@@ -23,9 +23,11 @@
 	<br>
 
 	<form align="center">
-		<label for="totalprice">Total Sold Rupess</label> <br>
-		<br> <input type="number" name="money" value="${totalprize}"
-			readonly>
+	<c:if test="${totalprize !=null}">
+		<label for="totalprice">Total Sold Rupess</label> <br>		
+		<br> 
+		<input type="number" name="money" value="${totalprize}" readonly>
+		</c:if>
 	</form>
 
 </body>
