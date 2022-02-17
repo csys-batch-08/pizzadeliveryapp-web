@@ -30,7 +30,7 @@
 		<form action="bills" method="post">
 		<table>
 		<tr>
-		<th><input type="number" name="id" value="${Oid}" readonly></th>
+		<th><input type="number" name="id" value="${oId}" readonly></th>
 			<th>${productName}</th>
 			<th>${productSize}</th>
 			<th>${quantity}</th>

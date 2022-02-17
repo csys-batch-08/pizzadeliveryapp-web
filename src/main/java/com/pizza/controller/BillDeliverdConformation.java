@@ -26,23 +26,23 @@ public class BillDeliverdConformation extends HttpServlet {
 	      HttpSession session=request.getSession();	
 
 	        
-			int oid=Integer.parseInt(request.getParameter("orderid"));
-			session.setAttribute("Oid", oid);
+			int id=Integer.parseInt(request.getParameter("orderid"));
+			session.setAttribute("oId", id);
 			
-			String pname=request.getParameter("name");
-			session.setAttribute("productName", pname);
+			String pName=request.getParameter("name");
+			session.setAttribute("productName", pName);
 			
-			String psize=request.getParameter("size");
-			session.setAttribute("productSize", psize);
+			String pSize=request.getParameter("size");
+			session.setAttribute("productSize", pSize);
 			
 			int qty=Integer.parseInt(request.getParameter("quantity"));
 			session.setAttribute("quantity", qty);
 					
-			Double pprize=Double.parseDouble(request.getParameter("price"));
-			session.setAttribute("productPrice", pprize);
+			Double pPrize=Double.parseDouble(request.getParameter("price"));
+			session.setAttribute("productPrice", pPrize);
 		    
-			RequestDispatcher dispatcher=request.getRequestDispatcher("bill.jsp");
-			dispatcher.forward(request, response);	
+		
+			response.sendRedirect("bill.jsp");
 			
 			
 	}
