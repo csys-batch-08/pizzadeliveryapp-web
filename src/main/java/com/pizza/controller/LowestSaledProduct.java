@@ -35,7 +35,6 @@ public class LowestSaledProduct extends HttpServlet {
 		
 			Date fromdate = sdf.parse(request.getParameter("fromDate"));
 			Date todate =  sdf.parse(request.getParameter("toDate"));
-			HttpSession session = request.getSession();			
 		   	OrderDaoImpl orderdao= new OrderDaoImpl();
 			Product product=orderdao.lowestsaledproduct(fromdate, todate);
 			request.setAttribute("Product", product);

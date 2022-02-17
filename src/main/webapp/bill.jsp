@@ -12,19 +12,19 @@
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1">
-<title>Invoice Bill</title>
+<title> Bill</title>
 <link rel="stylesheet" type="text/css" href="Assets/css/bill.css">
 </head>
 <body  class="order">
-<h1 class="hh">Bill</h1>
+<h1 class="hh">Bill</h1><br>
 <ul>  
 <li><a href="ListProductServlet">Home</a></li>
   <li> <a href="ShowOrderServlet">MyOrders</a></li>
   <li><a href="ShowCartServlet">Mycart</a></li>
   <li> <a href="userdetails.jsp">Account</a></li>
   <li><a href="walletrecharge.jsp">RechargeWallet</a></li>
+    <li><a href="contect.jsp">Contact</a></li>
   <li style="float:right"><a href="Userlogin.jsp">Logout</a></li>
-  <li><a href="contect.jsp">Contact</a></li>
 </ul><br><br><br><br>
 		
 		<form action="bills" method="post">
@@ -37,7 +37,6 @@
 			<th>${productprice}</th>
 		</tr>
 		</table><br><br><br>
-		
 		<div class="take">
 		<button type="submit" class="btn btn-primary" >Take</button>
 		</div>

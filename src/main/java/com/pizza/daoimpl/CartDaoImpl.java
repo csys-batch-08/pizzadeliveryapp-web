@@ -16,26 +16,26 @@ import com.pizza.utill.ConnectionUtill;
 public class CartDaoImpl implements CartDao {
 	public int insertCart(Cart carts) {
 		ConnectionUtill con = new ConnectionUtill();
-		Connection c = con.getDbconnection();
+		Connection connection = con.getDbconnection();
 		String cartQuery = "insert into cart(user_id,product_id,quantity,total_prize) values(?,?,?,?)";
-		PreparedStatement pstmt = null;
+		PreparedStatement preparedstatement = null;
 		int cart1 = 0;
 		try {
-			pstmt = c.prepareStatement(cartQuery);
+			preparedstatement = connection.prepareStatement(cartQuery);
 			UserDaoImpl userdao = new UserDaoImpl();
 			ProductDaoImpl productdao = new ProductDaoImpl();
 			int userid = userdao.finduserid(carts.getUser());
 			Product proId = productdao.findProductId(carts.getProduct());
-			pstmt.setInt(1, userid);
-			pstmt.setInt(2, proId.getProductId());
-			pstmt.setInt(3, carts.getQuantity());
-			pstmt.setDouble(4, carts.getPrice());
-			cart1 = pstmt.executeUpdate();
+			preparedstatement.setInt(1, userid);
+			preparedstatement.setInt(2, proId.getProductId());
+			preparedstatement.setInt(3, carts.getQuantity());
+			preparedstatement.setDouble(4, carts.getPrice());
+			cart1 = preparedstatement.executeUpdate();
 		} catch (SQLException e) {
 			// catch the exception and get that message
 			e.printStackTrace();
 		} finally {
-			ConnectionUtill.close(c, pstmt, null);
+			ConnectionUtill.close(connection, preparedstatement, null);
 		}
 		return cart1;
 	}
@@ -46,12 +46,12 @@ public class CartDaoImpl implements CartDao {
 		List<Cart> cartList = new ArrayList<Cart>();
 		String query = "select cart_id,user_id,product_id,quantity,total_prize from cart where user_id=" + userid;
 		ConnectionUtill con = new ConnectionUtill();
-		Connection c = con.getDbconnection();
-		PreparedStatement pstmt = null;
+		Connection connection = con.getDbconnection();
+		PreparedStatement preparedstatement = null;
 		ResultSet rs = null;
 		try {
-			pstmt = c.prepareStatement(query);
-			rs = pstmt.executeQuery();
+			preparedstatement = connection.prepareStatement(query);
+			rs = preparedstatement.executeQuery();
 			UserDaoImpl userdao = new UserDaoImpl();
 			ProductDaoImpl productdao = new ProductDaoImpl();
 			while (rs.next()) {
@@ -63,25 +63,25 @@ public class CartDaoImpl implements CartDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtill.close(c, pstmt, rs);
+			ConnectionUtill.close(connection, preparedstatement, rs);
 		}
 		return cartList;
 	}
 
 	public int delete(int deleteid) {
 		ConnectionUtill con = new ConnectionUtill();
-		Connection c = con.getDbconnection();
+		Connection connection = con.getDbconnection();
 		String deleteQuery = "delete from cart where cart_id=?";
-		PreparedStatement pstmt = null;
+		PreparedStatement preparedstatement = null;
 		int prod1d = 0;
 		try {
-			pstmt = c.prepareStatement(deleteQuery);
-			pstmt.setInt(1, deleteid);
-			prod1d = pstmt.executeUpdate();
+			preparedstatement = connection.prepareStatement(deleteQuery);
+			preparedstatement.setInt(1, deleteid);
+			prod1d = preparedstatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtill.close(c, pstmt, null);
+			ConnectionUtill.close(connection, preparedstatement, null);
 		}
 		return prod1d;
 	}

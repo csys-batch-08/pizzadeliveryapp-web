@@ -17,13 +17,13 @@ public class ProductDaoImpl implements ProductDao {
 		List<Product> productsList = new ArrayList<Product>();
 		String prod = "select product_id,product_name,product_size,price,status from products where status='Available' order by product_name";
 		ConnectionUtill con = new ConnectionUtill();
-		Connection c = con.getDbconnection();
+		Connection connection = con.getDbconnection();
 		Product products = null;
-		PreparedStatement pstmt = null;
+		PreparedStatement preparedstatement = null;
 		ResultSet rs = null;
 		try {
-			pstmt = c.prepareStatement(prod);
-			rs = pstmt.executeQuery();
+			preparedstatement = connection.prepareStatement(prod);
+			rs = preparedstatement.executeQuery();
 			while (rs.next()) {
 				products = new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4),
 						rs.getString(5));
@@ -32,7 +32,7 @@ public class ProductDaoImpl implements ProductDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtill.close(c, pstmt, rs);
+			ConnectionUtill.close(connection, preparedstatement, rs);
 		}
 		return productsList;
 	}
@@ -41,13 +41,13 @@ public class ProductDaoImpl implements ProductDao {
 		List<Product> productsList = new ArrayList<Product>();
 		String prod = "select product_id,product_name,product_size,price,status from products  order by product_name";
 		ConnectionUtill con = new ConnectionUtill();
-		Connection c = con.getDbconnection();
+		Connection connection = con.getDbconnection();
 		Product products = null;
-		PreparedStatement pstmt = null;
+		PreparedStatement preparedstatement = null;
 		ResultSet rs = null;
 		try {
-			pstmt = c.prepareStatement(prod);
-			rs = pstmt.executeQuery();
+			preparedstatement = connection.prepareStatement(prod);
+			rs = preparedstatement.executeQuery();
 			while (rs.next()) {
 				products = new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4),
 						rs.getString(5));
@@ -56,7 +56,7 @@ public class ProductDaoImpl implements ProductDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtill.close(c, pstmt, rs);
+			ConnectionUtill.close(connection, preparedstatement, rs);
 		}
 		return productsList;
 	}
@@ -64,42 +64,42 @@ public class ProductDaoImpl implements ProductDao {
 	public int insertproduct(Product products) {
 		ConnectionUtill con = new ConnectionUtill();
 		String query = "insert into products(product_name,product_size,price)values(?,?,?)";
-		Connection c = con.getDbconnection();
-		PreparedStatement pstmt = null;
+		Connection connection = con.getDbconnection();
+		PreparedStatement preparedstatement = null;
 		int i = 0;
 		try {			
 			
-			pstmt = c.prepareStatement(query);
-			pstmt.setString(1, products.getProductName());
-			pstmt.setString(2, products.getSize());
-			pstmt.setDouble(3, products.getPrice());
-			i = pstmt.executeUpdate();
+			preparedstatement = connection.prepareStatement(query);
+			preparedstatement.setString(1, products.getProductName());
+			preparedstatement.setString(2, products.getSize());
+			preparedstatement.setDouble(3, products.getPrice());
+			i = preparedstatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtill.close(c, pstmt, null);
+			ConnectionUtill.close(connection, preparedstatement, null);
 		}
 		return i;
 	}
 
 	public int updated(String productname, String size, Double price, String status, int productid) {
 		ConnectionUtill con = new ConnectionUtill();
-		Connection c = con.getDbconnection();
+		Connection connection = con.getDbconnection();
 		String updateQuery = "update products set product_name=?,product_size=?,price=?,status=? where product_id=?";
 		int prodid = 0;
-		PreparedStatement pstmt = null;
+		PreparedStatement preparedstatement = null;
 		try {
-			pstmt = c.prepareStatement(updateQuery);
-			pstmt.setString(1, productname);
-			pstmt.setString(2, size);
-			pstmt.setDouble(3, price);
-			pstmt.setString(4, status);
-			pstmt.setInt(5, productid);
-			prodid = pstmt.executeUpdate();
+			preparedstatement = connection.prepareStatement(updateQuery);
+			preparedstatement.setString(1, productname);
+			preparedstatement.setString(2, size);
+			preparedstatement.setDouble(3, price);
+			preparedstatement.setString(4, status);
+			preparedstatement.setInt(5, productid);
+			prodid = preparedstatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtill.close(c, pstmt, null);
+			ConnectionUtill.close(connection, preparedstatement, null);
 		}
 		return prodid;
 	}
@@ -107,66 +107,66 @@ public class ProductDaoImpl implements ProductDao {
 	public Product findProductId(Product product) {
 		String query = "select product_id,price from products where product_name=? and product_size=? ";
 		ConnectionUtill con = new ConnectionUtill();
-		Connection c = con.getDbconnection();
-		PreparedStatement pstmt = null;
+		Connection connection = con.getDbconnection();
+		PreparedStatement preparedstatement = null;
 		ResultSet rs = null;
 		Product product2 = null;
 		try {
-			pstmt = c.prepareStatement(query);
-			pstmt.setString(1, product.getProductName());
-			pstmt.setString(2, product.getSize());
-			rs = pstmt.executeQuery();
+			preparedstatement = connection.prepareStatement(query);
+			preparedstatement.setString(1, product.getProductName());
+			preparedstatement.setString(2, product.getSize());
+			rs = preparedstatement.executeQuery();
 			while (rs.next()) {
 				product2 = new Product(rs.getInt(1), product.getProductName(), product.getSize(), rs.getDouble(2));
 			}
 		} catch (SQLException e1) {
 			e1.printStackTrace();
 		} finally {
-			ConnectionUtill.close(c, pstmt, rs);
+			ConnectionUtill.close(connection, preparedstatement, rs);
 		}
 		return product2;
 	}
 
 	public Product findProduct(int id, String proname, String prosize, double price) {
 		ConnectionUtill con = new ConnectionUtill();
-		Connection c = con.getDbconnection();
+		Connection connection = con.getDbconnection();
 		String findProductQuery = "select product_id,product_name,product_size,price from products where product_name=? and product_size=?";
-		PreparedStatement pstmt = null;
+		PreparedStatement preparedstatement = null;
 		Product product2 = null;
 		ResultSet rs = null;
 		try {
-			pstmt = c.prepareStatement(findProductQuery);
-			pstmt.setString(1, proname);
-			pstmt.setString(2, prosize);
-			rs = pstmt.executeQuery();
+			preparedstatement = connection.prepareStatement(findProductQuery);
+			preparedstatement.setString(1, proname);
+			preparedstatement.setString(2, prosize);
+			rs = preparedstatement.executeQuery();
 			while (rs.next()) {
 				product2 = new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtill.close(c, pstmt, rs);
+			ConnectionUtill.close(connection, preparedstatement, rs);
 		}
 		return product2;
 	}
 
 	public Product findid(int id) {
 		ConnectionUtill con = new ConnectionUtill();
-		Connection c = con.getDbconnection();
+		Connection connection = con.getDbconnection();
 		String findid = "select product_id,product_name,product_size,price from Products where product_id='" + id + "'";
-		PreparedStatement pstmt = null;
+		PreparedStatement preparedstatement = null;
 		Product productid1 = null;
 		ResultSet rs = null;
 		try {
-			pstmt = c.prepareStatement(findid);
-			rs = pstmt.executeQuery();
+			preparedstatement = connection.prepareStatement(findid);
+			rs = preparedstatement.executeQuery();
 			while (rs.next()) {
 				productid1 = new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtill.close(c, pstmt, rs);
+			ConnectionUtill.close(connection, preparedstatement, rs);
 		}
 		return productid1;
 	}
@@ -176,13 +176,13 @@ public class ProductDaoImpl implements ProductDao {
 		String query = "select product_id,product_name,product_size,price from products where product_name like '"
 					+ search + "%' and status='Available'";
 		ConnectionUtill con = new ConnectionUtill();
-		Connection c = con.getDbconnection();
-		PreparedStatement pstmt = null;
+		Connection connection = con.getDbconnection();
+		PreparedStatement preparedstatement = null;
 		ResultSet rs = null;
 		Product products;
 		try {
-			pstmt = c.prepareStatement(query);
-			rs = pstmt.executeQuery();
+			preparedstatement = connection.prepareStatement(query);
+			rs = preparedstatement.executeQuery();
 			while (rs.next()) {
 				products = new Product(rs.getString(2), rs.getString(3), rs.getDouble(4));
 				productsList.add(products);
@@ -190,7 +190,7 @@ public class ProductDaoImpl implements ProductDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtill.close(c, pstmt, rs);
+			ConnectionUtill.close(connection, preparedstatement, rs);
 		}
 		return productsList;
 	}

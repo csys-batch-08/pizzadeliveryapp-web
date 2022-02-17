@@ -15,18 +15,21 @@ import com.pizza.model.User;
 import com.pizza.utill.ConnectionUtill;
 
 public class OrderDaoImpl implements OrderDao {
+	
 	public List<Order> showorder(User user) {
 		List<Order> orderList = new ArrayList<Order>();
-		String orderlist = "select order_id,user_id,product_id,quantity,total_prize,order_date,status from orders where user_id="
-				+ user.getUserId() + " order by order_id desc ";
+		
+		String orderlist = "select order_id,user_id,product_id,quantity,total_prize,order_date,status "
+				+ "from orders where user_id=? order by order_id desc ";
 		ConnectionUtill con = new ConnectionUtill();
-		Connection c = con.getDbconnection();
-		PreparedStatement pstmt = null;
+		Connection connection = con.getDbconnection();
+		PreparedStatement preparedstatement = null;
 		ResultSet rs = null;
 		Order order = null;
 		try {
-			pstmt = c.prepareStatement(orderlist);
-			rs = pstmt.executeQuery();
+			preparedstatement = connection.prepareStatement(orderlist);
+			preparedstatement.setInt(1, user.getUserId());
+			rs = preparedstatement.executeQuery();
 			UserDaoImpl userdao = new UserDaoImpl();
 			ProductDaoImpl productdao = new ProductDaoImpl();
 			while (rs.next()) {
@@ -38,77 +41,77 @@ public class OrderDaoImpl implements OrderDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtill.close(c, pstmt, rs);
+			ConnectionUtill.close(connection, preparedstatement, rs);
 		}
 		return orderList;
 	}
 
 	public int delete(int deleteid) {
 		ConnectionUtill con = new ConnectionUtill();
-		Connection c = con.getDbconnection();
+		Connection connection = con.getDbconnection();
 		String deleteQuery = "delete from Order where order_id=?";
-		PreparedStatement pstmt = null;
+		PreparedStatement preparedstatement = null;
 		int prod1d = 0;
 		try {
-			pstmt = c.prepareStatement(deleteQuery);
-			pstmt.setInt(1, deleteid);
-			prod1d = pstmt.executeUpdate();
+			preparedstatement = connection.prepareStatement(deleteQuery);
+			preparedstatement.setInt(1, deleteid);
+			prod1d = preparedstatement.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtill.close(c, pstmt, null);
+			ConnectionUtill.close(connection, preparedstatement, null);
 		}
 		return prod1d;
 	}
 
 	public Order findid(int id) {
 		ConnectionUtill con = new ConnectionUtill();
-		Connection c = con.getDbconnection();
+		Connection connection = con.getDbconnection();
 		String findid = "select order_id,user_id,product_id,quantity,total_prize,order_date,status from orders where order_id='"
 				+ id + "'";
-		PreparedStatement pstmt = null;
+		PreparedStatement preparedstatement = null;
 		ResultSet rs = null;
 		Order orderid = null;
 		try {
-			pstmt = c.prepareStatement(findid);
-			rs = pstmt.executeQuery();
+			preparedstatement = connection.prepareStatement(findid);
+			rs = preparedstatement.executeQuery();
 			while (rs.next()) {
 				orderid = new Order();
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtill.close(c, pstmt, rs);
+			ConnectionUtill.close(connection, preparedstatement, rs);
 		}
 		return orderid;
 	}
 
 	public ResultSet orderdetails(int id) {
 		ConnectionUtill con = new ConnectionUtill();
-		Connection c = con.getDbconnection();
+		Connection connection = con.getDbconnection();
 		String findid = "select order_id,user_id,product_id,quantity,total_prize,order_date,status from orders where user_id='"
 				+ id + "'";
-		PreparedStatement pstmt = null;
+		PreparedStatement preparedstatement = null;
 		 
 		ResultSet rs = null;
 		try {
-			pstmt = c.prepareStatement(findid);
-			rs = pstmt.executeQuery(findid);
+			preparedstatement = connection.prepareStatement(findid);
+			rs = preparedstatement.executeQuery(findid);
 			while (rs.next()) {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtill.close(c, pstmt, rs);
+			ConnectionUtill.close(connection, preparedstatement, rs);
 		}
 		return rs;
 	}
 
 	public int orderproduct(Order orders) {
 		ConnectionUtill con = new ConnectionUtill();
-		Connection c = con.getDbconnection();
+		Connection  connection= con.getDbconnection();
 		String query = "insert into orders(user_id,product_id,quantity,total_prize,order_date)values(?,?,?,?,sysdate)";
-		PreparedStatement pstmt = null;
+		PreparedStatement preparedstatement = null;
 		int order1 = 0;
 		UserDaoImpl userdao = new UserDaoImpl();
 		int userid = userdao.finduserid(orders.getUser());
@@ -116,33 +119,33 @@ public class OrderDaoImpl implements OrderDao {
 		Double wallet=orderdao.wallet1(userid);
 		try {		
 		if (wallet > orders.getPrice()) {
-				pstmt = c.prepareStatement(query);
+			preparedstatement = connection.prepareStatement(query);
 				ProductDaoImpl productdao = new ProductDaoImpl();
 				Product proId = productdao.findProductId(orders.getProduct());
-				pstmt.setInt(1, userid);
-				pstmt.setInt(2, proId.getProductId());
-				pstmt.setInt(3, orders.getQuantity());
-				pstmt.setDouble(4, orders.getPrice());
-				order1 = pstmt.executeUpdate();
+				preparedstatement.setInt(1, userid);
+				preparedstatement.setInt(2, proId.getProductId());
+				preparedstatement.setInt(3, orders.getQuantity());
+				preparedstatement.setDouble(4, orders.getPrice());
+				order1 = preparedstatement.executeUpdate();
 			}
 		}catch (SQLException e) {
 				e.printStackTrace();
 			} finally {
-				ConnectionUtill.close(c, pstmt, null);
+				ConnectionUtill.close(connection, preparedstatement, null);
 			
 			}
 		return order1;
 	}
 	public Double wallet1(int userid) {
-		Connection c = ConnectionUtill.getDbconnection();
+		Connection connection = ConnectionUtill.getDbconnection();
 		String query2 = "select wallet from users where user_id=?";
-		PreparedStatement stmt = null;
+		PreparedStatement preparedstatement = null;
 		double wallet = 0;
 		ResultSet rs = null;
 		try {
-			stmt = c.prepareStatement(query2);
-			stmt.setInt(1, userid);
-			rs = stmt.executeQuery();
+			preparedstatement = connection.prepareStatement(query2);
+			preparedstatement.setInt(1, userid);
+			rs = preparedstatement.executeQuery();
 			if (rs.next()) {
 				wallet = rs.getDouble(1);
 			}
@@ -150,65 +153,66 @@ public class OrderDaoImpl implements OrderDao {
 			e1.printStackTrace();
 		}
 		finally {
-			ConnectionUtill.close(c, stmt, rs);
+			ConnectionUtill.close(connection, preparedstatement, rs);
 		}
 		return wallet;
 	}
 
 	public boolean ordercancel(int orderid) {
 		ConnectionUtill con = new ConnectionUtill();
-		Connection c = con.getDbconnection();
+		Connection connection = con.getDbconnection();
 		String cancel = "update orders set status='canceled' where order_id='" + orderid + "'";
-		PreparedStatement pstmt = null;
+		PreparedStatement preparedstatement = null;
 		boolean b = false;
 		try {
-			pstmt = c.prepareStatement(cancel);
-			b = pstmt.executeUpdate() > 0;
+			preparedstatement = connection.prepareStatement(cancel);
+			b = preparedstatement.executeUpdate() > 0;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtill.close(c, pstmt, null);
+			ConnectionUtill.close(connection, preparedstatement, null);
 		}
 		return b;
 	}
 
 	public Double TotalAmount(Date fromDate, Date toDate) {
 		ConnectionUtill con = new ConnectionUtill();
-		Connection c = con.getDbconnection();
+		Connection connection = con.getDbconnection();
 		String total = "select sum(total_prize) from  orders where status='delivered' and order_date between ? and ?";
-		PreparedStatement pstmt = null;
+		PreparedStatement preparedstatement = null;
 		double price = 0;
 		ResultSet rs = null;
 		try {
-			pstmt = c.prepareStatement(total);
-			pstmt.setDate(1, new java.sql.Date(fromDate.getTime()));
-			pstmt.setDate(2, new java.sql.Date(toDate.getTime()));
-			rs = pstmt.executeQuery();
+			preparedstatement = connection.prepareStatement(total);
+			preparedstatement.setDate(1, new java.sql.Date(fromDate.getTime()));
+			preparedstatement.setDate(2, new java.sql.Date(toDate.getTime()));
+			rs = preparedstatement.executeQuery();
 			if (rs.next()) {
 				price = rs.getDouble(1);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtill.close(c, pstmt, rs);
+			ConnectionUtill.close(connection, preparedstatement, rs);
 		}
 		return price;
 	}
 
 	public Product mostsaledproduct(Date fromDate, Date toDate) {
 		ConnectionUtill con = new ConnectionUtill();
-		Connection c = con.getDbconnection();
-		String highsaled = "Select DISTINCT products.product_name, products.product_size,sum(orders.total_prize) total_price from orders join "
+		Connection connection = con.getDbconnection();
+		String highsaled = "Select DISTINCT products.product_name, products.product_size,sum(orders.total_prize) total_price "
+				+ "from orders join "
 				+ "products on products.product_id=orders.product_id where orders.order_date between ? and ? group by "
 				+ "products.product_name ,products.product_size  order by total_price desc ";
-		PreparedStatement pstmt = null;
+		PreparedStatement preparedstatement = null;
 		Product product = null;
 		ResultSet rs = null;
 		try {
-			pstmt = c.prepareStatement(highsaled);
-			pstmt.setDate(1, new java.sql.Date(fromDate.getTime()));
-			pstmt.setDate(2, new java.sql.Date(toDate.getTime()));
-			rs = pstmt.executeQuery();
+			preparedstatement = connection.prepareStatement(highsaled);
+			preparedstatement.setDate(1, new java.sql.Date(fromDate.getTime()));
+			preparedstatement.setDate(2, new java.sql.Date(toDate.getTime()));
+			rs = preparedstatement.executeQuery();
 			ProductDaoImpl productdao = new ProductDaoImpl();
 			if (rs.next()) {
 				product = productdao.findProduct(0, rs.getString(1), rs.getString(2), rs.getDouble(3));
@@ -216,23 +220,23 @@ public class OrderDaoImpl implements OrderDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtill.close(c, pstmt, rs);
+			ConnectionUtill.close(connection, preparedstatement, rs);
 		}
 		return product;
 	}
 
 	public Product lowestsaledproduct(Date fromDate, Date toDate) {
 		ConnectionUtill con = new ConnectionUtill();
-		Connection c = con.getDbconnection();
+		Connection connection = con.getDbconnection();
 		String sold= "Select DISTINCT products.product_name, products.product_size,sum(orders.total_prize) total_price from orders join products on products.product_id=orders.product_id where orders.order_date between ? and ? group by products.product_name ,products.product_size  order by total_price asc ";
-		PreparedStatement pstmt = null;
+		PreparedStatement preparedstatement = null;
 		Product product = null;
 		ResultSet rs = null;
 		try {
-			pstmt = c.prepareStatement(sold);
-			pstmt.setDate(1, new java.sql.Date(fromDate.getTime()));
-			pstmt.setDate(2, new java.sql.Date(toDate.getTime()));
-			rs = pstmt.executeQuery();
+			preparedstatement = connection.prepareStatement(sold);
+			preparedstatement.setDate(1, new java.sql.Date(fromDate.getTime()));
+			preparedstatement.setDate(2, new java.sql.Date(toDate.getTime()));
+			rs = preparedstatement.executeQuery();
 			ProductDaoImpl productdao = new ProductDaoImpl();
 			if (rs.next()) {
 				product = productdao.findProduct(0, rs.getString(1), rs.getString(2), rs.getDouble(3));
@@ -240,48 +244,48 @@ public class OrderDaoImpl implements OrderDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtill.close(c, pstmt, rs);
+			ConnectionUtill.close(connection, preparedstatement, rs);
 		}
 		return product;
 	}
 
 	public User activeuser(Date fromDate, Date toDate) {
 		ConnectionUtill con = new ConnectionUtill();
-		Connection c = con.getDbconnection();
+		Connection connection = con.getDbconnection();
 		String query = " select users.user_name ,sum(orders.total_prize) total_prize from orders join users on users.user_id=orders.user_id"
 				+ " where orders.order_date between ? and ? group by users.user_name  order by total_prize desc";
-		PreparedStatement pstmt = null;
+		PreparedStatement preparedstatement = null;
 		ResultSet rs = null;
 		User user = null;
 		try {
-			pstmt = c.prepareStatement(query);
-			pstmt.setDate(1, new java.sql.Date(fromDate.getTime()));
-			pstmt.setDate(2, new java.sql.Date(toDate.getTime()));
-			rs = pstmt.executeQuery();
+			preparedstatement = connection.prepareStatement(query);
+			preparedstatement.setDate(1, new java.sql.Date(fromDate.getTime()));
+			preparedstatement.setDate(2, new java.sql.Date(toDate.getTime()));
+			rs = preparedstatement.executeQuery();
 			if (rs.next()) {
 				user = new User(rs.getString(1), 0, "", "", "", rs.getDouble(2), "");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtill.close(c, pstmt, rs);
+			ConnectionUtill.close(connection, preparedstatement, rs);
 		}
 		return user;
 	}
 
 	public boolean orderdelivered(int orderid) {
 		ConnectionUtill con = new ConnectionUtill();
-		Connection c = con.getDbconnection();
+		Connection connection = con.getDbconnection();
 		String cancel = "update orders set status='delivered' where order_id='" + orderid + "'";
-		PreparedStatement pstmt = null;
+		PreparedStatement preparedstatement = null;
 		boolean b = false;
 		try {
-			pstmt = c.prepareStatement(cancel);
-			b = pstmt.executeUpdate() > 0;
+			preparedstatement = connection.prepareStatement(cancel);
+			b = preparedstatement.executeUpdate() > 0;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			ConnectionUtill.close(c, pstmt, null);
+			ConnectionUtill.close(connection, preparedstatement, null);
 		}
 		return b;
 	}
