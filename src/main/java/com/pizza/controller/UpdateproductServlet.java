@@ -26,14 +26,14 @@ public class UpdateproductServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int productid=Integer.parseInt(request.getParameter("id"));
-		String productname=request.getParameter("name");
-		String productsize=request.getParameter("size");
-		Double productprice=Double.parseDouble(request.getParameter("price"));
-		String productstatus=request.getParameter("status");
+		int id=Integer.parseInt(request.getParameter("id"));
+		String name=request.getParameter("name");
+		String size=request.getParameter("size");
+		Double price=Double.parseDouble(request.getParameter("price"));
+		String status=request.getParameter("status");
 		ProductDaoImpl dao=new ProductDaoImpl();
 		
-		dao.updated(productname, productsize, productprice, productstatus, productid);
+		dao.updated(name, size, price, status, id);
 		
 		List<Product> adminlist=dao.adiminshowProduct();	
     	request.setAttribute("productList", adminlist);	
