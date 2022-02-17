@@ -41,7 +41,7 @@ public class OrderServlet extends HttpServlet {
 		ProductDaoImpl productdao=new ProductDaoImpl();	
 		Product product=(Product) session.getAttribute("products");
 		Product pro=productdao.findProductId(product);
-		session.setAttribute("productid",pro);
+		request.setAttribute("productid",pro);
 				
 		int quantity=Integer.parseInt(request.getParameter("qty"));
 		

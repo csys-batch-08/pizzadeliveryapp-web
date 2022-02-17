@@ -38,7 +38,7 @@ public class LowestSaledProduct extends HttpServlet {
 			HttpSession session = request.getSession();			
 		   	OrderDaoImpl orderdao= new OrderDaoImpl();
 			Product product=orderdao.lowestsaledproduct(fromdate, todate);
-			session.setAttribute("Product", product);
+			request.setAttribute("Product", product);
 			 
 			 RequestDispatcher dispatcher=request.getRequestDispatcher("lowestsaledproduct.jsp");
 				dispatcher.forward(request, response);

@@ -15,7 +15,7 @@
 <body class="background">
 	<h1 class="hh">Most Purchased User</h1>
 	<ul>
-		<li><a href="adddeleteupdate.jsp">Home</a></li>
+		<li><a href="AdminProductList">Home</a></li>
 		<li style="float: right"><a href="userlogin.jsp">Logout</a></li>
 	</ul>
 	<br>

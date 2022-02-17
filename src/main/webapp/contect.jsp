@@ -12,7 +12,7 @@
 <h1>Contect Us</h1>
 <ul>  
 <li><a href="ListProductServlet">Home</a></li>
-  <li> <a href="ShowOrderServlet?orderId=0">MyOrders</a></li>
+  <li> <a href="ShowOrderServlet">MyOrders</a></li>
   <li><a href="ShowCartServlet">Mycart</a></li>  
   <li> <a href="userdetails.jsp">Account</a></li>
   <li><a href="walletrecharge.jsp">RechargeWallet</a></li>   

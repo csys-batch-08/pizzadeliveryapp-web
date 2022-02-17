@@ -18,8 +18,8 @@
 <h1 class="hh">ADMIN</h1>
 
 <ul class="nav navbar-nav">
-<li class="active"><a href="adddeleteupdate.jsp">Home</a></li>
-<li><a href="userlist.jsp">Users List</a></li>
+<li class="active"><a href="AdminProductList">Home</a></li>
+<li><a href="UserListServlet">Users List</a></li>
 <li style="float:right"><a href="userlogin.jsp">Logout</a></li>
 </ul><br>
 

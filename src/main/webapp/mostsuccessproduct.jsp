@@ -17,7 +17,7 @@
 <body class="background">
 	<h1 class="hh">Most Sold Product</h1>
 	<ul>
-		<li><a href="adddeleteupdate.jsp">Home</a></li>
+		<li><a href="AdminProductList">Home</a></li>
 		<li style="float: right"><a href="userlogin.jsp">Logout</a></li>
 	</ul>
 	<br>
@@ -27,11 +27,11 @@
 
 	<form align="center" method="post">
 		<label for="name">Product Name</label> <input type="text" name="name"
-			value="${Product.productName }" readonly><br>
+			value="${highProduct.productName }" readonly><br>
 		<br> <label for="size">Product Size</label> <input type="text"
-			name="size" value="${Product.size }" readonly><br>
+			name="size" value="${highProduct.size }" readonly><br>
 		<br> <label for="prize ">Total Prize </label> <input
-			type="number" name="prize" value="${Product.price }" readonly>
+			type="number" name="prize" value="${highProduct.price }" readonly>
 	</form>
 </body>
 </html>

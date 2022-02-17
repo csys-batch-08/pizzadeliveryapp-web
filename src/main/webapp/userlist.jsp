@@ -18,7 +18,7 @@
 	<h3 class="hh">User List</h3>
 	<ul>
 		<li><a href="AdminProductList">Home</a></li>
-		<li><a href="userlist.jsp">Users List</a></li>
+		<li><a href="UserListServlet">Users List</a></li>
 		<li style="float: right"><a href="userlogin.jsp">Logout</a></li>
 	</ul>
 	<br>
@@ -36,7 +36,7 @@
 			<th>Inactive</th>
 		</tr>
 
-		<c:forEach items="${userList}" var="obj">
+		<c:forEach items="${requestScope.userList}" var="obj">
 			<tr>
 
 				<td><c:out value="${obj.userName }"></c:out></td>
