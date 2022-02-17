@@ -2,7 +2,6 @@ package com.pizza.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,20 +26,19 @@ public class UpdateProductConformation extends HttpServlet {
 	   	int productid=Integer.parseInt(request.getParameter("Pid"));  		 
 		 session.setAttribute("id", productid);		
 		 
-		 String name=request.getParameter("productname");
+		 String name=request.getParameter("name");
 		 session.setAttribute("productName", name);	
 		 
-		 String size=request.getParameter("productsize");
+		 String size=request.getParameter("size");
 		 session.setAttribute("productSize", size);	
 		 
-		 Double price=Double.parseDouble(request.getParameter("productprice"));
+		 Double price=Double.parseDouble(request.getParameter("price"));
 		 session.setAttribute("productPrice", price);	
 
 		 String status=request.getParameter("productstatus");
 		 session.setAttribute("productStatus", status);	
 		 
-		 RequestDispatcher dispatcher=request.getRequestDispatcher("updateproduct.jsp");
-			dispatcher.forward(request, response);
+		 response.sendRedirect("updateproduct.jsp");
 
 		 
 	}
