@@ -152,13 +152,13 @@ public class UserDaoImpl implements UserDao {
 	public User findid(int id) {
 		ConnectionUtill con = new ConnectionUtill();
 		Connection connection = con.getDbconnection();
-		String findid = "select user_id,user_name,phonenumber,email,address,wallet,password,role from users where user_id='"
-				+ id + "'";
+		String findid = "select user_id,user_name,phonenumber,email,address,wallet,password,role from users where user_id=?";
 		PreparedStatement preparedstatement = null;
 		User userid = null;
 		ResultSet rs = null;
 		try {
 			preparedstatement = connection.prepareStatement(findid);
+			preparedstatement.setInt(1, id);
 			rs = preparedstatement.executeQuery();
 			while (rs.next()) {
 				userid = new User(rs.getString(2), rs.getLong(3), rs.getString(4), rs.getString(5), rs.getString(7),
@@ -284,11 +284,12 @@ public class UserDaoImpl implements UserDao {
 	public boolean inactive(String email) {
 		ConnectionUtill con = new ConnectionUtill();
 		Connection connection = con.getDbconnection();
-		String inactive = "update users set role='Inactive' where email='" + email + "'";
+		String inactive = "update users set role='Inactive' where email=?";
 		PreparedStatement preparedstatement = null;
 		boolean b = false;
 		try {
 			preparedstatement = connection.prepareStatement(inactive);
+			preparedstatement.setString(1, email);
 			b = 	preparedstatement.executeUpdate() > 0;
 		} catch (SQLException e) {
 			e.printStackTrace();

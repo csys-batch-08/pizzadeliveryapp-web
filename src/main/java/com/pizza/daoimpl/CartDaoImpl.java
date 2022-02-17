@@ -44,13 +44,14 @@ public class CartDaoImpl implements CartDao {
 		UserDaoImpl dao = new UserDaoImpl();
 		int userid = dao.finduserid(user);
 		List<Cart> cartList = new ArrayList<Cart>();
-		String query = "select cart_id,user_id,product_id,quantity,total_prize from cart where user_id=" + userid;
+		String query = "select cart_id,user_id,product_id,quantity,total_prize from cart where user_id=?" ;
 		ConnectionUtill con = new ConnectionUtill();
 		Connection connection = con.getDbconnection();
 		PreparedStatement preparedstatement = null;
 		ResultSet rs = null;
 		try {
 			preparedstatement = connection.prepareStatement(query);
+			preparedstatement.setInt(1, userid);
 			rs = preparedstatement.executeQuery();
 			UserDaoImpl userdao = new UserDaoImpl();
 			ProductDaoImpl productdao = new ProductDaoImpl();

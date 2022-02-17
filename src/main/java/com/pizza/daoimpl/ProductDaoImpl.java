@@ -153,12 +153,13 @@ public class ProductDaoImpl implements ProductDao {
 	public Product findid(int id) {
 		ConnectionUtill con = new ConnectionUtill();
 		Connection connection = con.getDbconnection();
-		String findid = "select product_id,product_name,product_size,price from Products where product_id='" + id + "'";
+		String findid = "select product_id,product_name,product_size,price from Products where product_id=?";
 		PreparedStatement preparedstatement = null;
 		Product productid1 = null;
 		ResultSet rs = null;
 		try {
 			preparedstatement = connection.prepareStatement(findid);
+			preparedstatement.setInt(1, id);
 			rs = preparedstatement.executeQuery();
 			while (rs.next()) {
 				productid1 = new Product(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getDouble(4));
@@ -173,8 +174,7 @@ public class ProductDaoImpl implements ProductDao {
 
 	public List<Product> productsearch(String search) {
 		List<Product> productsList = new ArrayList<Product>();
-		String query = "select product_id,product_name,product_size,price from products where product_name like '"
-					+ search + "%' and status='Available'";
+		String query = "select product_id,product_name,product_size,price from products where product_name like ? and status='Available'";
 		ConnectionUtill con = new ConnectionUtill();
 		Connection connection = con.getDbconnection();
 		PreparedStatement preparedstatement = null;
@@ -182,6 +182,7 @@ public class ProductDaoImpl implements ProductDao {
 		Product products;
 		try {
 			preparedstatement = connection.prepareStatement(query);
+			preparedstatement.setString(1, "%" + search + "%");
 			rs = preparedstatement.executeQuery();
 			while (rs.next()) {
 				products = new Product(rs.getString(2), rs.getString(3), rs.getDouble(4));

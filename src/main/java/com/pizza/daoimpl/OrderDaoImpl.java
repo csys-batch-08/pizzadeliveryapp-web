@@ -276,11 +276,12 @@ public class OrderDaoImpl implements OrderDao {
 	public boolean orderdelivered(int orderid) {
 		ConnectionUtill con = new ConnectionUtill();
 		Connection connection = con.getDbconnection();
-		String cancel = "update orders set status='delivered' where order_id='" + orderid + "'";
+		String cancel = "update orders set status='delivered' where order_id=?";
 		PreparedStatement preparedstatement = null;
 		boolean b = false;
 		try {
 			preparedstatement = connection.prepareStatement(cancel);
+			preparedstatement.setInt(1, orderid);
 			b = preparedstatement.executeUpdate() > 0;
 		} catch (SQLException e) {
 			e.printStackTrace();
