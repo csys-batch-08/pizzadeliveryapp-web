@@ -114,8 +114,8 @@ color: white;
 		
 		<c:out value="${obj.price}"></c:out> Rs<br> <br> </strong> &nbsp; &nbsp; 
 		
- 	  	<a href="AddCartProductConformation?productname=${obj.productName}&productsize=${obj.size}&productprice=${obj.price}"><button class="btn btn-primary">cart</button></a>   &nbsp; &nbsp; &nbsp;		
- 		<a href="OrderProductConformation?productname=${obj.productName}&productsize=${obj.size}&productprice=${obj.price}"><button class="btn btn-primary">order</button></a>   <br><br><br><br> 		
+ 	  	<a href="AddCartProductConformation?productName=${obj.productName}&productSize=${obj.size}&productPrice=${obj.price}"><button class="btn btn-primary">cart</button></a>   &nbsp; &nbsp; &nbsp;		
+ 		<a href="OrderProductConformation?productName=${obj.productName}&productSize=${obj.size}&productPrice=${obj.price}"><button class="btn btn-primary">order</button></a>   <br><br><br><br> 		
 		</c:forEach>
 </div>
 
