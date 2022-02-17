@@ -55,7 +55,7 @@ h1{
 <form align="center" action="inactive" method="post"> 
 	<div>	
 	 <label for="name">User</label>
-        <input type="text" name="id" value="${email}" readonly><br><br> 
+        <input type="text" name="id" value="${userEmail}" readonly><br><br> 
         <button type="submit">Inactive</button>   
        </div>    
   </form>

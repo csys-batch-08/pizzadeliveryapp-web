@@ -69,9 +69,9 @@ li a:hover:not(.active) {
 
   	<div>		 	
 		<label for="productid">product name :</label>
-		<input type="text" name="productid" value="${pname}" readonly><br><br>
+		<input type="text" name="productid" value="${pName}" readonly><br><br>
 		<label for="productid">product size :</label>
-		<input type="text" name="productid" value="${psize}" readonly><br><br>   
+		<input type="text" name="productid" value="${pSize}" readonly><br><br>   
 		<label for="productid">product price :</label>
 		<input type="text" name="productid" value="${pprice}" readonly><br><br>        
         <button onclick="demo()">add to cart</button>  &nbsp; &nbsp; &nbsp; &nbsp; 

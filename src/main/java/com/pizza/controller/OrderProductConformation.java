@@ -23,11 +23,11 @@ public class OrderProductConformation extends HttpServlet {
 		HttpSession session=request.getSession();	 
 		 
 	   	String name=request.getParameter("productname");
-		 session.setAttribute("pname", name);	
+		 session.setAttribute("pName", name);	
 		 String size=request.getParameter("productsize");
-		 session.setAttribute("psize", size);		 
+		 session.setAttribute("pSize", size);		 
 		 Double price=Double.parseDouble(request.getParameter("productprice"));  		 
-		 session.setAttribute("pprice", price);	
+		 session.setAttribute("pPrice", price);	
 		 
 		 Product product=new Product(name,size,price);		
 		 session.setAttribute("products", product);		 

@@ -31,10 +31,10 @@
 		<table>
 		<tr>
 		<th><input type="number" name="id" value="${Oid}" readonly></th>
-			<th>${productname}</th>
-			<th>${productsize}</th>
+			<th>${productName}</th>
+			<th>${productSize}</th>
 			<th>${quantity}</th>
-			<th>${productprice}</th>
+			<th>${productPrice}</th>
 		</tr>
 		</table><br><br><br>
 		<div class="take">

@@ -26,9 +26,9 @@ public class AddCartProductConformation extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		HttpSession session=request.getSession(); 	 		 
    	   	 String name=request.getParameter("productname");
-		 session.setAttribute("pname", name);
+		 session.setAttribute("pName", name);
 		 String size=request.getParameter("productsize");
-		 session.setAttribute("psize", size);		 
+		 session.setAttribute("pSize", size);		 
 		 Double price=Double.parseDouble(request.getParameter("productprice"));  		 
 		 session.setAttribute("pprice", price);	
 		 

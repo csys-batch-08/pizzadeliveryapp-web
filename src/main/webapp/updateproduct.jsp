@@ -22,13 +22,13 @@
 		<label for="id">product id :</label>
         <input type="text" name="id" value="${id }" readonly><br><br>      
         <label for="name">product name :</label>
-        <input type="text" name="name" value="${ProductName}"><br><br>
+        <input type="text" name="name" value="${productName}"><br><br>
         <label for="size">product size :</label>
-        <input type="text" name="size" value="${ProductSize}"><br><br>
+        <input type="text" name="size" value="${productSize}"><br><br>
         <label for="price">product price :</label>
-        <input type="text" name="price" min="1" value="${ProductPrice}"><br><br>    
+        <input type="text" name="price" min="1" value="${productPrice}"><br><br>    
         <label for="status">product status :</label>
-        <input type="text" name="status" value="${ProductStatus}"><br><br> 
+        <input type="text" name="status" value="${productStatus}"><br><br> 
         <button onclick="demo()">UPDATE</button>
         <button type="reset">RESET</button>
        </form>

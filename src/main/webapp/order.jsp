@@ -72,7 +72,7 @@ li a:hover:not(.active) {
   
   	<div> 
 		<label for="productid">product name :</label>
-		<input type="text" name="productid" value="${pname}" readonly><br><br>
+		<input type="text" name="productid" value="${pName}" readonly><br><br>
 		
 		<label for="name">quantity:</label>
         <input type="text" name="qty" id="quantity" pattern="[1-9]{1}"><br><br> 
@@ -80,7 +80,7 @@ li a:hover:not(.active) {
         <label for="price">price : </label>       
         <input type="number" name="price" id="price" min="1"  readonly> <br><br>
             
-        <button onclick="demo()">buy</button>  &nbsp &nbsp &nbsp &nbsp 
+        <button onclick="demo()">buy</button>  &nbsp; &nbsp; &nbsp; &nbsp; 
         <button type="reset">RESET</button>            
         </div>     
  </form>     
@@ -89,7 +89,7 @@ function check(){
 	var count=document.getElementById("quantity").value;
 	var totalPrice=document.getElementById("price");
 	console.log(count)
-	totalPrice.value=count * ${pprice};
+	totalPrice.value=count * ${pPrice};
 	console.log(totalPrice.value);	
 }
 </script>

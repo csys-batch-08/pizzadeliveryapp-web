@@ -28,16 +28,16 @@ public class UpdateProductConformation extends HttpServlet {
 		 session.setAttribute("id", productid);		
 		 
 		 String name=request.getParameter("productname");
-		 session.setAttribute("ProductName", name);	
+		 session.setAttribute("productName", name);	
 		 
 		 String size=request.getParameter("productsize");
-		 session.setAttribute("ProductSize", size);	
+		 session.setAttribute("productSize", size);	
 		 
 		 Double price=Double.parseDouble(request.getParameter("productprice"));
-		 session.setAttribute("ProductPrice", price);	
+		 session.setAttribute("productPrice", price);	
 
 		 String status=request.getParameter("productstatus");
-		 session.setAttribute("ProductStatus", status);	
+		 session.setAttribute("productStatus", status);	
 		 
 		 RequestDispatcher dispatcher=request.getRequestDispatcher("updateproduct.jsp");
 			dispatcher.forward(request, response);
