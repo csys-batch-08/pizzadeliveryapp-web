@@ -26,7 +26,8 @@ public class InactiveUserServlet extends HttpServlet {
 		 
 		 String email=request.getParameter("email"); 
    		 session.setAttribute("userEmail", email);
-   		 RequestDispatcher dispatcher=request.getRequestDispatcher("inactive.jsp");
-			dispatcher.forward(request, response);
+   	
+			response.sendRedirect("inactive.jsp");	
+
 	}
 }
