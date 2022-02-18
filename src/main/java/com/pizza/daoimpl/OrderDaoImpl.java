@@ -21,8 +21,8 @@ public class OrderDaoImpl implements OrderDao {
 		
 		String orderlist = "select order_id,user_id,product_id,quantity,total_prize,order_date,status "
 				+ "from orders where user_id=? order by order_id desc ";
-		ConnectionUtill con = new ConnectionUtill();
-		Connection connection = con.getDbconnection();
+		Connection connection = ConnectionUtill.getDbconnection();
+
 		PreparedStatement preparedstatement = null;
 		ResultSet rs = null;
 		Order order = null;
@@ -47,8 +47,8 @@ public class OrderDaoImpl implements OrderDao {
 	}
 
 	public int delete(int deleteid) {
-		ConnectionUtill con = new ConnectionUtill();
-		Connection connection = con.getDbconnection();
+		Connection connection = ConnectionUtill.getDbconnection();
+
 		String deleteQuery = "delete from Order where order_id=?";
 		PreparedStatement preparedstatement = null;
 		int prod1d = 0;

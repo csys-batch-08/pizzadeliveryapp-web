@@ -1,5 +1,6 @@
 <%@page import="java.sql.ResultSet"%>
 <%@page import="com.pizza.daoimpl.UserDaoImpl"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@page import="com.pizza.model.User"%>
 <%@page import="java.util.List"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -11,7 +12,7 @@
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1">
-<title>SHOWORDRS</title>
+<title>SHOWORDERS</title>
 <style type="text/css">
 th {
 	background-color: gray;
@@ -84,10 +85,7 @@ li a:hover:not(.active) {
 			<li style="float: right"><a href="userlogin.jsp">Logout</a></li>
 			<li><a href="contect.jsp">Contact</a></li>
 		</ul>
-		<br>
-		<br>
-		<br>
-		<br>
+
 		<tr>
 			<th>Order Id</th>
 			<th>Product Name</th>
@@ -106,9 +104,10 @@ li a:hover:not(.active) {
 				<td>${obj.product.size}</td>
 				<td>${obj.price} Rs</td>
 				<td>${obj.quantity}</td>
-				<td>${obj.orderDate}</td>
+				<td><fmt:parseDate value="${obj.orderDate}" pattern="yyyy-MM-dd" var="macthDate" type="date"/> 
+				<fmt:formatDate pattern="dd/MM/yyyy" value="${macthDate}" /></td>
 				<td>${obj.status}</td>
-				<td><c:if test="${obj.status == 'pending' }"><a href="BillDeliverdConformation?orderid=${obj.orderId}&name=${obj.product.productName}&size=${obj.product.size}&quantity=${obj.quantity}&price=${obj.price}&date=${obj.orderDate}">bill</a></c:if></td>	<br/><br/>
+				<td><c:if test="${obj.status == 'pending' }"><a href="BillDeliverdConformation?orderid=${obj.orderId}&name=${obj.product.productName}&size=${obj.product.size}&quantity=${obj.quantity}&price=${obj.price}&date=${obj.orderDate}">bill</a></c:if></td>
 				<td><c:if test="${obj.status == 'pending'}"><a href="CancelOrderConformation?orderId=${obj.orderId}&amount=${obj.price}">cancel</a></c:if></td>
 			</tr>
 		</c:forEach>
