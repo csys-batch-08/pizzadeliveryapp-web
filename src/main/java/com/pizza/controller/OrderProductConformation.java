@@ -28,11 +28,9 @@ public class OrderProductConformation extends HttpServlet {
 		 session.setAttribute("pSize", size);		 
 		 Double price=Double.parseDouble(request.getParameter("productPrice"));  		 
 		 session.setAttribute("pPrice", price);	
-		 
-		 Product product=new Product(name,size,price);		
-		 session.setAttribute("products", product);		 
-	 		
-			response.sendRedirect("order.jsp");
+		 					
+			RequestDispatcher dispatcher=request.getRequestDispatcher("order.jsp");
+			dispatcher.forward(request, response);	
 	}
 
 }

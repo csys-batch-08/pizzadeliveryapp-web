@@ -36,10 +36,14 @@ public class OrderServlet extends HttpServlet {
 		HttpSession session=request.getSession();
 		
 		User user=(User) session.getAttribute("user");
-
-		
+	
 		ProductDaoImpl productdao=new ProductDaoImpl();	
-		Product product=(Product) session.getAttribute("products");
+				
+		String name=(String) session.getAttribute("pName");
+		String size=(String) session.getAttribute("pSize");
+		Double price=(Double) session.getAttribute("pPrice");
+		 Product product=new Product(name,size,price);
+		 
 		Product pro=productdao.findProductId(product);
 		request.setAttribute("productid",pro);
 				

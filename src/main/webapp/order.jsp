@@ -71,8 +71,8 @@ li a:hover:not(.active) {
 <form action="order" align="center" method="post">
   
   	<div> 
-		<label for="productid">product name :</label>
-		<input type="text" name="productid" value="${pName}" readonly><br><br>
+		<label for="productName">product name :</label>
+		<input type="text" name="productName" value="${pName}" readonly><br><br>
 		
 		<label for="name">quantity:</label>
         <input type="text" name="qty" id="quantity" pattern="[1-9]{1}"><br><br> 

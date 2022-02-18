@@ -30,10 +30,13 @@ public class Cartservlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session=request.getSession();
 
-		User user=(User) session.getAttribute("user");
-		                                           
-		Product product=(Product) session.getAttribute("products");
-	    
+		User user=(User) session.getAttribute("user");	
+		String name= request.getParameter("productName");
+		String size= request.getParameter("productSize");
+		Double price=Double.parseDouble(request.getParameter("productprice"));
+
+		Product product=new Product(name,size,price);	
+
 		CartDaoImpl dao=new CartDaoImpl();
 		Cart cart=new Cart(user,product,0,0.0);
 	    dao.insertCart(cart);		

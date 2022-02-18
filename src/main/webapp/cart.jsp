@@ -65,7 +65,7 @@ li a:hover:not(.active) {
   <li style="float:right"><a href="userlogin.jsp">Logout</a></li>
   <li><a href="contect.jsp">Contact</a></li>
 </ul><br><br><br><br>
-<form action="cart" method="post">
+<form action="cart">
 
   	<div>		 	
 		<label for="productName">product name :</label>
